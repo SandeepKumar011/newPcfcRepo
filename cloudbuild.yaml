@@ -1,0 +1,56 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - '-c'
+      - >-
+        docker run -t --rm -v $(pwd):/app hiptest/hiptest-publisher -t
+        ${_HIPTEST_TOKEN} -f javascript -l cucumber -o ./features
+        --test-run-id=${_RUN_ID} --only=features --with-folders true
+    id: cucumber-pull
+    entrypoint: bash
+    timeout: 25000s
+  - name: 'mcr.microsoft.com/playwright:v1.35.0-jammy'
+    args:
+      - '-c'
+      - |
+        npm install 
+
+        npx bddgen && npx playwright test --project=${_BROWSER}
+    id: execute-test
+    waitFor:
+      - cucumber-pull
+    entrypoint: sh
+    timeout: 25000s
+    allowFailure: true
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - '-c'
+      - >-
+        docker run -t --rm -v $(pwd):/app hiptest/hiptest-publisher -t
+        ${_HIPTEST_TOKEN} -f javascript -l cucumber --test-run-id=${_RUN_ID}
+        --push-format junit --push="./junit-reports/results.xml"
+    
+    id: cucumber-push
+    waitFor:
+      - execute-test
+    entrypoint: bash
+    timeout: 25000s
+    allowFailure: true
+  - name: node
+    env:
+      - COMMIT_INFO_BRANCH=$BRANCH_NAME
+    args:
+      - '-c'
+      - |
+        node test_result_reporter/publish_result_to_teams_junit.js ${_JOB_NAME}
+    
+    id: publishResultToTeams
+    waitFor:
+      - execute-test
+      - cucumber-push
+    entrypoint: sh
+    timeout: 25000s
+    allowFailure: true
+timeout: 30000s
+options:
+  machineType: E2_HIGHCPU_32

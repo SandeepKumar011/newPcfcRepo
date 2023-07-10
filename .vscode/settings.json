@@ -1,0 +1,7 @@
+{
+    "cucumberautocomplete.steps": [
+        "support/step_definitions/**/*.js",
+    ],
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "git.mergeEditor": false
+}
