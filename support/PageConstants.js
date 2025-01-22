@@ -1,14 +1,11 @@
-const {BasePage} = require("./page_objects/BasePage");
-const {ComplicatedPage} = require("./page_objects/ComplicatedPage");
-const {AutomationPage} = require("./page_objects/AutomationPage");
-const {FakePricingPage} = require("./page_objects/FakePricingPage");
+
+const { LoginPage } = require("./page_objects/loginPage");
+const { RegistrationPage } = require("./page_objects/RegistrationPage");
 
 class PageConstants {
     constructor(page) {
-        this.complicatedPage = new ComplicatedPage(page);
-        this.basePage = new BasePage(page);
-        this.automationPage = new AutomationPage(page);
-        this.fakePricingPage = new FakePricingPage(page);
+        this.loginPage=new LoginPage(page);
+        this.registrationPage=new RegistrationPage(page);
     }
 }
     

@@ -1,5 +1,17 @@
 {
-    "user1" : {
+    "globalData" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "emiratesId":"784199112345",
+        "actualEid":"784199112345678",
+        "passportNumber":"9875678987",
+        "exYear":"2029",
+        "dobYear":"2004",
+        "exMonth":"Nov",
+        "singleDate":"21",
+        "visaNumber":"897845",
+        "national":"India",
+        "mobileNo":"985-89-9887548"
         
     }
 }

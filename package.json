@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This package helps to create a basic folder structure for Playwright JS with BDD",
   "scripts": {
-    "test": "npx bddgen && npx playwright test"
+    "test": "npx bddgen && npx playwright test",
+    "openReport":"npx playwright show-report"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^9.2.0",
@@ -13,7 +14,7 @@
     "dayjs": "^1.11.7",
     "libphonenumber-js": "^1.10.37",
     "playwright": "^1.35",
-    "playwright-bdd": "^3.2.1",
+    "playwright-bdd": "^8.0.1",
     "test-results-reporter": "^1.0.17"
   },
   "repository": {
@@ -30,5 +31,13 @@
   "bugs": {
     "url": "https://github.com/nitor-infotech-oss/PlaywrightJs-BDD-Accelerator/issues"
   },
-  "homepage": "https://github.com/nitor-infotech-oss/PlaywrightJs-BDD-Accelerator#readme"
+  "homepage": "https://github.com/nitor-infotech-oss/PlaywrightJs-BDD-Accelerator#readme",
+  "dependencies": {
+    "@playwright/browser-chromium": "^1.49.1",
+    "cjs": "^0.0.11",
+    "cjs-loader": "^0.1.0",
+    "cli": "^1.0.1",
+    "playwright-firefox": "^1.49.1",
+    "playwright-webkit": "^1.49.1"
+  }
 }
