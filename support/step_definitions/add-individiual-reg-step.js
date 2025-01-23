@@ -1,13 +1,15 @@
 const { createBdd } = require('playwright-bdd');
 const { Given, Then ,When} = createBdd();
+const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { DataUtils } = require("../../utils/DataUtils");
 const { expect } = require('@playwright/test');
 const dataUtils = new DataUtils();
 const testData=require('../../test_data/userData.json');
 const { faker } = require('@faker-js/faker');
-const number=faker.number.int(1000)
-const emid=testData.globalData.emiratesId+number;
+const dynamicNumber=faker.number.int(100000)
+const emid=testData.globalData.emiratesId;
+const actualEid=emid+dynamicNumber
 const passportnumber=testData.globalData.passportNumber
 const expiredYear=testData.globalData.exYear
 const expiredMonth=testData.globalData.exMonth
@@ -19,6 +21,7 @@ const nationality=testData.globalData.national
 const firstName=faker.person.firstName()
 const lastName=faker.person.lastName()
 const emailIdd=faker.internet.email()
+const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 
 
 
@@ -38,7 +41,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
     const pageConstants = new PageConstants(page);
     const dropdownLocator = page.locator("//select[@id='visaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
-    await pageConstants.registrationPage.emiratesIdInputField.type(emid)
+    await pageConstants.registrationPage.emiratesIdInputField.type(actualEid)
     //calendra handle expiredate emirates
     const openCalendar = page.locator("//input[@id='emiratesIdExpiryDate']");
     await openCalendar.click();
@@ -125,11 +128,11 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Given('user uploads the files for passport photo eid and visa', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.registrationPage.passFile.setInputFiles('C:/Users/Sandeep/Downloads/416kb.jpg')
-    await pageConstants.registrationPage.passFile.setInputFiles('C:/Users/Sandeep/Downloads/416kb.jpg')
-    await pageConstants.registrationPage.perFile.setInputFiles('C:/Users/Sandeep/Downloads/416kb.jpg')
-    await pageConstants.registrationPage.eidFile.setInputFiles('C:/Users/Sandeep/Downloads/416kb.jpg')
-    await pageConstants.registrationPage.visaFile.setInputFiles('C:/Users/Sandeep/Downloads/416kb.jpg')
+    await pageConstants.registrationPage.passFile.setInputFiles(uploadFilePath);
+    await pageConstants.registrationPage.passFile.setInputFiles(uploadFilePath);
+    await pageConstants.registrationPage.perFile.setInputFiles(uploadFilePath);
+    await pageConstants.registrationPage.eidFile.setInputFiles(uploadFilePath);
+    await pageConstants.registrationPage.visaFile.setInputFiles(uploadFilePath);
 
   });
   
