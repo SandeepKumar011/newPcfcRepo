@@ -101,7 +101,7 @@ Given('the user navigates to the registration page', async ({page}) => {
  Then(/^the form should display all section profile and document and contact details$/, async({page}) => {
   const pageConstants = new PageConstants(page);
   await expect(pageConstants.registrationPage.mobileInputField).toBeVisible();
-  await expect(pageConstants.registrationPage.passportFile).toBeVisible();
-  await expect(pageConstants.registrationPage.personalFile).toBeVisible();
+  await expect(pageConstants.registrationPage.uiPassValidation).toBeVisible();
+  await expect(pageConstants.registrationPage.uiPerValidation).toBeVisible();
 
  });

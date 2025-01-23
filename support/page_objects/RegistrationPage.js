@@ -1,3 +1,5 @@
+const { th } = require("@faker-js/faker");
+
 class RegistrationPage
 {
     constructor(page)
@@ -25,6 +27,9 @@ class RegistrationPage
         this.visaFile=page.locator("//input[@id='visa']");
         this.submitInfo=page.locator("//input[@id='register']");
         this.successMess=page.locator("//label[@class='successCard-header']");
+        this.uiPassValidation=page.locator("(//label[normalize-space(text())='Choose or Drag & Drop File'])[1]");
+        this.uiPerValidation=page.locator("(//label[normalize-space(text())='Choose or Drag & Drop File'])[2]")
+
     }
 }
 
