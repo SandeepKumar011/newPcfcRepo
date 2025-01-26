@@ -2,7 +2,8 @@
     "globalData" : {
         "username":"wallstreet",
         "password":"Login@345",
-        "emiratesId":"7841991123",
+        "emiratesId":"7841991",
+        "existingEid":"784199553553536",
         "actualEid":"784199112345678",
         "passportNumber":"9875678987",
         "exYear":"2029",

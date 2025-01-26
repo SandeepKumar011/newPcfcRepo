@@ -97,7 +97,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Given('user enters dob and visa number and visa expire date', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    //calendra handle expiredate visa
+    //calendra handle dob
     const openCalendardob = page.locator("//input[@id='dateOfBirth']");
     await openCalendardob.click();
     const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -128,7 +128,6 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Given('user uploads the files for passport photo eid and visa', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.registrationPage.passFile.setInputFiles(uploadFilePath);
     await pageConstants.registrationPage.passFile.setInputFiles(uploadFilePath);
     await pageConstants.registrationPage.perFile.setInputFiles(uploadFilePath);
     await pageConstants.registrationPage.eidFile.setInputFiles(uploadFilePath);

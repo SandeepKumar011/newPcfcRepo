@@ -28,6 +28,7 @@ Given('user logged in and directed to the homepage', async ({page}) => {
   When('user select Apply gate pass on the management pass page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.selectapplyGatePass).click();
+    await page.waitForLoadState("networkidle");
   });
   
   Then('verify port entry gate and pass type is visible', async ({page}) => {

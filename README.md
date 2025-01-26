@@ -36,7 +36,7 @@
 - `npm run getFeatureFiles --test-run-id=<runID>` to pull the feature files from HipTest/CucumberStudio (Replace <runID> with run id)
 - `npm run test -- --project=chromium --headed` (to run suite using command line, here headed implies that we need to run test cases in Headed mode, and we can pass different projects present in playwright.config.js to run test cases on different browsers)
 - `npx playwright show-report` to open BDD HTML report
-- `npm run test -- --project=firefox --headed features/login-management/login.feature` (to execute specific tests use this command)
+- `npm run test -- --project=chromium --headed features/login-management/login.feature` (to execute specific tests use this command)
 
 ### Test data passing to test cases:
 
