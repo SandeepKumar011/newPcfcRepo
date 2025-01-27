@@ -13,7 +13,7 @@ Feature: Verify apply pass Service Availability
     Then verify error message for the email address
     When user enter the valid email address for visitor
     And add the visitor on the visitor page
-    Then verify user is added in the list 
+    Then verify user is added in the list
     When user submit the visitor information
     Then user should redirected to the payment page
     When user enter infomation for the payment and submit
