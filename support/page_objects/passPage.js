@@ -55,6 +55,10 @@ class PassPage
         this.nextButton=page.locator("//input[@name='commit']");
         this.finalPay=page.locator("//input[@name='commit']");
         this.confirmationPay=page.locator("//label[@class='successCard-header']");
+        this.confirmApprovalAlert=page.locator("//div[@class='bootbox-body']");
+        this.alertOk=page.locator("//button[@class='btn btn-primary bootbox-accept']");
+        this.notifyMe=page.locator("//label[normalize-space(text())='Notify me with the payment status.']");
+        this.emailForPayment=page.locator("//input[@placeholder='Enter your e-mail id']");
     }
 }
 

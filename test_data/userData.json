@@ -15,7 +15,8 @@
         "mobileNo":"985-89-9887548",
         "masterCard":"5555555555554444",
         "cvv":"123",
-        "hostCompany":"HASCO GENERAL TRADING"
+        "hostCompany":"HASCO GENERAL TRADING",
+        "emailNotification":"abc@gmail.com"
         
     }
 }

@@ -73,7 +73,6 @@ When(/^user enter visa type emirate id gender and dob$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
-    console.log('this is eid' + actualEid);
     await pageConstants.passPage.eidUi.type(actualEid);
      //calendra handle dob
      const openCalendardob = page.locator("//input[@id='dateOfBirth']");
@@ -133,7 +132,6 @@ When(/^user enters the visitor all information and add$/, async({page}) => {
      await pageConstants.passPage.supportingaFile.setInputFiles(uploadFilePath);
      await pageConstants.passPage.addVisitor.click();
  
-
 });
 
 Then(/^verify visitor added manually in list$/, async({page}) => {
