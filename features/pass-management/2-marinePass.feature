@@ -1,6 +1,6 @@
-Feature: Verify apply pass Service Availability
+Feature: Verify apply pass Service Availability for marine
 
-  Scenario: Verify apply multiple pass and delete funtionality for pass service availability
+  Scenario: Verify apply pass funtionality for the marine
     Given user logged in and directed to the homepage
     When the user navigates to the services menu
     Then verify Apply Pass service option should be visible and accessible
