@@ -34,5 +34,17 @@ When(/^user click on submit button on login page$/, async({page}) => {
 
 Then(/^verify user is redirected to the home page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
 });
+
+When('user select logout button on home page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await pageConstants.loginPage.logoutDrop.click();
+    await pageConstants.loginPage.logoutButton.click();
+  });
+  
+  Then('verify logout verification message', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await expect(pageConstants.loginPage.logoutVeriMessage).toBeVisible();
+  });

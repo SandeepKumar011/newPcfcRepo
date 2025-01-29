@@ -13,3 +13,6 @@ Feature: Verify UI part for the Pass Service Availability
     When user is redirected to the payment Information
     Then verify total payable pass amount should visible
     And terms and condition check box should be visible
+    When user select logout button on home page
+    Then verify logout verification message
+

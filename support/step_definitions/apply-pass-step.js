@@ -13,7 +13,7 @@ const dynamicNumber=faker.number.int(100000000)
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber;
 const existingEid=testData.globalData.existingEid
-const particularDateExpire=faker.helpers.arrayElement(['27','28']);
+const particularDateExpire=faker.helpers.arrayElement(['31','1','2']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -52,7 +52,7 @@ Then(/^user enters pass duration Purpose of visit and date of visit$/, async({pa
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
     await openCalendardob.click();
-    const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDateExpire}']`)
+    const selectDatedob=page.locator(`(//td[normalize-space(text())='${particularDateExpire}'])[2]`)
     await selectDatedob.click();
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);
