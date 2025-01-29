@@ -23,3 +23,6 @@ Feature: Verify apply pass Service Availability
     And user select terms and condition check box on apply page
     When user is redirected to the payment Information for apply pass
     Then verify total payable pass amount is paid on payment page
+    When user select logout button on home page
+    Then verify logout verification message
+

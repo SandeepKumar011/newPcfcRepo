@@ -11,4 +11,7 @@ Feature: Verify new user registration functionality
     And user uploads the files for passport photo eid and visa
     And user submit the files for the Registration
     Then verify the success message for the registration 
+    When user select logout button on home page
+    Then verify logout verification message
+
    

@@ -14,7 +14,7 @@ const dynamicNumber=faker.number.int(100000000)
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber;
 const existingEid=testData.globalData.existingEid
-const particularDateExpire=faker.helpers.arrayElement(['30','29']);
+const particularDateExpire=faker.helpers.arrayElement(['30','31']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -82,7 +82,7 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
      const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
      await selectDatedob.click();
      //select gender
-     const genderDrop = page.locator("//select[@name='serachGender']");
+     const genderDrop =page.locator("//select[@name='serachGender']");
      await genderDrop.selectOption({ label: 'Male' });
      await pageConstants.passPage.searchButton.click();
      await expect(pageConstants.passPage.errorValidManually).toBeVisible();

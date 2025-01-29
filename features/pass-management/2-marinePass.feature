@@ -18,5 +18,8 @@ Feature: Verify apply pass Service Availability for marine
     Then user should redirected to the payment page
     When user enter infomation for the payment and submit
     Then Verify payment successfull message 
+    When user select logout button on home page
+    Then verify logout verification message
+
 
     
