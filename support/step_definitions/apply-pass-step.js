@@ -8,6 +8,7 @@ const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 const hCompany=testData.globalData.hostCompany
 const masterCardNo=testData.globalData.masterCard
+const passportNumber='326587549854'
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.number.int(100000000)
 const emid=testData.globalData.emiratesId;
@@ -31,6 +32,7 @@ Then(/^user select port entry gate and pass type$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.portAccess.click();
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
     const dropdownLocator = page.locator("//select[@id='portsId']");
     await dropdownLocator.selectOption({ label: 'Port Rashid' });
@@ -95,6 +97,7 @@ When(/^user enter visa type emirate id gender and dob$/, async({page}) => {
 Then(/^user search the visitor information$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await pageConstants.passPage.searchButton.click();
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.errorValidManually).toBeVisible();
 });
 
@@ -108,7 +111,7 @@ When(/^user enters the visitor all information and add$/, async({page}) => {
     await pageConstants.passPage.visMobile.type(mobileNum);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
-    await pageConstants.passPage.vispassPortNumber.fill('986587');
+    await pageConstants.passPage.vispassPortNumber.type(masterCardNo);
     //eid expire date
      const openCalendardob = page.locator("//input[@id='emiratesIdExpiry']");
      await openCalendardob.click();

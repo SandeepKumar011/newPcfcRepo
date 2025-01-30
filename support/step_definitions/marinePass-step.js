@@ -9,6 +9,7 @@ const exp = require('constants');
 const hCompany=testData.globalData.hostCompany
 const emailForNotification=testData.globalData.emailNotification
 const masterCardNo=testData.globalData.masterCard
+const passportNumber='896587548956'
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.number.int(100000000)
 const emid=testData.globalData.emiratesId;
@@ -41,6 +42,7 @@ When(/^user enter all the information for pass information$/, async({page}) => {
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
     const dropdownLocator = page.locator("//select[@id='portsId']");
     await dropdownLocator.selectOption({ label: 'Al Hamriya Port' });
+    await page.waitForLoadState("networkidle");
     const dropdownLocator2 = page.locator("//select[@id='gateIdStr']");
     await dropdownLocator2.selectOption({ label: 'Gate - 1' });
     const dropdownLocator3 = page.locator("//select[@id='passTypeIdStr']");
@@ -51,7 +53,7 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
 	 const pageConstants = new PageConstants(page);
         await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
         const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
-        await dropdownLocator.selectOption({ label: 'One Year Pass' });
+        await dropdownLocator.selectOption({ label: 'Six Months Pass' });
         await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
         const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
         await dropdownLocator2.selectOption({ label: 'Other' });
@@ -116,7 +118,7 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
     await pageConstants.passPage.visMobile.type(mobileNum);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
-    await pageConstants.passPage.vispassPortNumber.fill('986587');
+    await pageConstants.passPage.vispassPortNumber.fill(passportNumber);
     //eid expire date
      const openCalendardob = page.locator("//input[@id='emiratesIdExpiry']");
      await openCalendardob.click();

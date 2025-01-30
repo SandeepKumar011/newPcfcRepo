@@ -4,6 +4,7 @@
   "description": "This package helps to create a basic folder structure for Playwright JS with BDD",
   "scripts": {
     "test": "npx bddgen && npx playwright test",
+    "testHead":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium",
     "openReport":"npx playwright show-report"
   },
   "devDependencies": {
