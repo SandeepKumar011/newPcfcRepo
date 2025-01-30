@@ -17,6 +17,7 @@ Given(/^user navigates to the login page$/, async({page}) => {
 
 When(/^user enter the username on login page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
 });
 

@@ -34,11 +34,13 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Given('user is redirected to the registration for add redirected', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.registrationPage.emiratesIdInputField).toBeVisible();
   });
   
   Given('user select visa and enter emirated id and the emirate expire date', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     const dropdownLocator = page.locator("//select[@id='visaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     await pageConstants.registrationPage.emiratesIdInputField.type(actualEid)

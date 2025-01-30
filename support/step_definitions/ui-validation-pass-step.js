@@ -17,11 +17,13 @@ Given('user logged in and directed to the homepage', async ({page}) => {
   
   When('the user navigates to the services menu', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.passmanagementDrop).toBeVisible();
   });
   
   Then('verify Apply Pass service option should be visible and accessible', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await (pageConstants.passPage.passmanagementDrop).click();
   });
   

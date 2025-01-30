@@ -16,6 +16,7 @@ Given('the user navigates to the registration page', async ({page}) => {
   
   Given('the registration form should be displayed', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.registrationPage.emiratesIdInputField).toBeVisible();
   });
   
