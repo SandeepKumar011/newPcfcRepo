@@ -11,8 +11,7 @@ const masterCardNo=testData.globalData.masterCard
 const passportNumber='326587549854'
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.number.int(100000000)
-const emid=testData.globalData.emiratesId;
-const actualEid=emid+dynamicNumber;
+const actualEid='784197312312399'
 const existingEid=testData.globalData.existingEid
 const particularDateExpire=faker.helpers.arrayElement(['31','1','2']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
@@ -76,6 +75,7 @@ When(/^user enter visa type emirate id gender and dob$/, async({page}) => {
     const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     await pageConstants.passPage.eidUi.type(actualEid);
+
      //calendra handle dob
      const openCalendardob = page.locator("//input[@id='dateOfBirth']");
      await openCalendardob.click();
@@ -111,7 +111,7 @@ When(/^user enters the visitor all information and add$/, async({page}) => {
     await pageConstants.passPage.visMobile.type(mobileNum);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
-    await pageConstants.passPage.vispassPortNumber.type(masterCardNo);
+    await pageConstants.passPage.vispassPortNumber.type(passportNumber);
     //eid expire date
      const openCalendardob = page.locator("//input[@id='emiratesIdExpiry']");
      await openCalendardob.click();
