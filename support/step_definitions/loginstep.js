@@ -47,5 +47,6 @@ When('user select logout button on home page', async ({page}) => {
   
   Then('verify logout verification message', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.logoutVeriMessage).toBeVisible();
   });
