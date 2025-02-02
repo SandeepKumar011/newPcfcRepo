@@ -28,8 +28,13 @@ class RegistrationPage
         this.submitInfo=page.locator("//input[@id='register']");
         this.successMess=page.locator("//label[@class='successCard-header']");
         this.uiPassValidation=page.locator("(//label[normalize-space(text())='Choose or Drag & Drop File'])[1]");
-        this.uiPerValidation=page.locator("(//label[normalize-space(text())='Choose or Drag & Drop File'])[2]")
-
+        this.uiPerValidation=page.locator("(//label[normalize-space(text())='Choose or Drag & Drop File'])[2]");
+        this.companyName=page.locator("//input[@id='companyName']");
+        this.companyToggle=page.locator("//button[@id='companyButton']");
+        this.companyPhone=page.locator("//input[@id='phoneNumber']");
+        this.companyLicenceNumber=page.locator("//input[@id='tradeLicNo']");
+        this.companyAddress=page.locator("//textarea[@id='companyAddress']");
+        this.companyFileUpload=page.locator("//input[@id='tradeLic']");
     }
 }
 

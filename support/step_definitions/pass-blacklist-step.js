@@ -15,7 +15,7 @@ const dynamicNumber=faker.number.int(100000000)
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber;
 const existingEid=testData.globalData.existingEid
-const particularDateExpire=faker.helpers.arrayElement(['30','31']);
+const visitDate=faker.helpers.arrayElement(['5','6','4']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -30,12 +30,17 @@ const nationality=testData.globalData.national
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 
 
-When('user enter all the infomation for the pass infomation', async ({}) => {
+When('user enter all the infomation for the pass infomation', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await (pageConstants.passPage.passmanagementDrop).click();
+    await (pageConstants.passPage.selectapplyGatePass).click();
+    await page.waitForLoadState("networkidle");
+    await expect(pageConstants.passPage.portAccess).toBeVisible();
     await pageConstants.passPage.portAccess.click();
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
+    await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     const dropdownPort = page.locator("//select[@id='portsId']");
     await dropdownPort.selectOption({ label: 'Port Rashid' });
     const dropdownGate = page.locator("//select[@id='gateIdStr']");
@@ -51,7 +56,7 @@ When('user enter all the infomation for the pass infomation', async ({}) => {
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
     await openCalendardob.click();
-    const selectDatedob=page.locator(`(//td[normalize-space(text())='${particularDateExpire}'])[2]`)
+    const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
     await selectDatedob.click();
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);
@@ -59,7 +64,7 @@ When('user enter all the infomation for the pass infomation', async ({}) => {
     await pageConstants.passPage.hcompanyselect.click();
   });
   
-  When('user enter information for the visitor', async ({}) => {
+  When('user enter information for the visitor', async ({page}) => {
      const pageConstants = new PageConstants(page);
        const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
        await dropdownLocator.selectOption({ label: 'Resident' });
@@ -81,15 +86,14 @@ When('user enter all the infomation for the pass infomation', async ({}) => {
         await dropdownLocator2.selectOption({ label: 'Male' });
   });
   
-  When('user enters the blacklist emirateid', async ({}) => {
+  When('user enters the blacklist emirateid', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.passPage.eidUi.type('784198512312355');
-    //await expect(pageConstants.passPage.errorValidManually).toBeVisible();
+    await pageConstants.passPage.eidUi.type('784198512312350');
   });
   
-  Then('verify error message for the blacklist emirate id', async ({}) => {
-    // const pageConstants = new PageConstants(page);
-    // await pageConstants.passPage.searchButton.click();
-    // await page.waitForLoadState("networkidle");
-    // await expect(pageConstants.passPage.errorValidManually).toBeVisible();
+  Then('verify error message for the blacklist emirate id', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await pageConstants.passPage.searchButton.click();
+    await page.waitForLoadState("networkidle");
+    await expect(pageConstants.passPage.errorValidManually).toBeVisible();
   });
