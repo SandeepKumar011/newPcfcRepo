@@ -2,7 +2,7 @@ Feature: Verify new user registration functionality
 
   Scenario: verify add update and delete registration functionality
     Given user navigates to the registration page fo add registration
-    And user is redirected to the registration for add redirected
+    And user is redirected to the registration for add registration
     And user select visa and enter emirated id and the emirate expire date
     And user enter passport number and expire date for passport
     And user enter first and last name and email and title
