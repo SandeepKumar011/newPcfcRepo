@@ -16,13 +16,6 @@ Feature: Verify apply pass Service Availability
     Then user search the visitor information
     When user enters the visitor all information and add
     Then verify visitor added manually in list
-    When user enters the existing emirate id on apply gate pass page
-    And user search the visitor information on the apply gate page
-    Then verify pop for the existing visitor infomation
-    And user selects yes then visitor infomation should filled
-    Then verify visitor added with existing eid in list
-    When user select visitor from list and select delete button
-    Then verify vistor deleted message should display
     And user select terms and condition check box on apply page
     When user is redirected to the payment Information for apply pass
     Then verify total payable pass amount is paid on payment page

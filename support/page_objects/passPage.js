@@ -59,6 +59,7 @@ class PassPage
         this.alertOk=page.locator("//button[@class='btn btn-primary bootbox-accept']");
         this.notifyMe=page.locator("//label[normalize-space(text())='Notify me with the payment status.']");
         this.emailForPayment=page.locator("//input[@placeholder='Enter your e-mail id']");
+        this.enterManually=page.locator("//button[normalize-space(text())='Enter Manually']");
     }
 }
 

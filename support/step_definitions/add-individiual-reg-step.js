@@ -7,10 +7,10 @@ const { expect } = require('@playwright/test');
 const dataUtils = new DataUtils();
 const testData=require('../../test_data/userData.json');
 const { faker } = require('@faker-js/faker');
-const dynamicNumber=faker.number.int(100000000)
+const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
-const passportnumber=testData.globalData.passportNumber
+const passportnumber=faker.string.numeric({ length: 8 })
 const expiredYear=testData.globalData.exYear
 const expiredMonth=testData.globalData.exMonth
 const particularDate=testData.globalData.singleDate
@@ -32,7 +32,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
     await pageConstants.registrationPage.registrationLink.click();
   });
   
-  Given('user is redirected to the registration for add redirected', async ({page}) => {
+  Given('user is redirected to the registration for add registration', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.registrationPage.emiratesIdInputField).toBeVisible();
@@ -144,5 +144,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Then('verify the success message for the registration', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.registrationPage.successMess).toBeVisible();
   });

@@ -11,10 +11,11 @@ const emailForNotification=testData.globalData.emailNotification
 const masterCardNo=testData.globalData.masterCard
 const passportNumber='896587548956'
 const cvnNo=testData.globalData.cvv
-const dynamicNumber=faker.number.int(100000000)
+const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
-const actualEid='784202595123659'
-const particularDateExpire=faker.helpers.arrayElement(['30','31']);
+const actualEid=emid+dynamicNumber
+const addedEid='784199221026589';
+const visitDate=faker.helpers.arrayElement(['5','6','4']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -38,6 +39,7 @@ When(/^user selects port access for apply marine pass$/, async({page}) => {
 When(/^user enter all the information for pass information$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
     const dropdownLocator = page.locator("//select[@id='portsId']");
     await dropdownLocator.selectOption({ label: 'Al Hamriya Port' });
@@ -53,22 +55,27 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
         await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
         const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
         await dropdownLocator.selectOption({ label: 'Six Months Pass' });
+        await page.waitForLoadState("networkidle");
         await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
         const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
         await dropdownLocator2.selectOption({ label: 'Other' });
         const visitReason=page.locator("//input[@id='reasonOfVisitTextStr']")
         await visitReason.fill('Maintance');
+        await page.waitForLoadState("networkidle");
         await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
         const dateOfVisit = page.locator("//input[@id='dateOfVisitStr']");
         await dateOfVisit.click();
-        const dateOfVisitMonth=page.locator(`(//td[normalize-space(text())='${particularDateExpire}'])[2]`)
+        const dateOfVisitMonth=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
         await dateOfVisitMonth.click();
+        await page.waitForLoadState("networkidle");
         const visitArea=page.locator("//input[@id='companyNameHC']")
         await visitArea.fill('polo');
+        await page.waitForLoadState("networkidle");
         //enter visa type
         const visaTpe = page.locator("//select[@id='searchVisaTypeIdStr']");
         await visaTpe.selectOption({ label: 'Resident' });
         await pageConstants.passPage.eidUi.type(actualEid);
+        await page.waitForLoadState("networkidle");
         //calendra handle dob
         const openCalendardob = page.locator("//input[@id='dateOfBirth']");
         await openCalendardob.click();
@@ -82,10 +89,12 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
      await selectMonthdob.click();
      const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
      await selectDatedob.click();
+     await page.waitForLoadState("networkidle");
      //select gender
      const genderDrop =page.locator("//select[@name='serachGender']");
      await genderDrop.selectOption({ label: 'Male' });
      await pageConstants.passPage.searchButton.click();
+     await page.waitForLoadState("networkidle");
      await expect(pageConstants.passPage.errorValidManually).toBeVisible();
 });
 
@@ -93,13 +102,16 @@ When(/^user enter the infomation of visitor manually$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     const dropdownLocator = page.locator("//select[@id='title']");
     await dropdownLocator.selectOption({ label: 'Mr' });
+    await pageConstants.passPage.visfirstName.clear();
     await pageConstants.passPage.visfirstName.type(fname);
+    await pageConstants.passPage.vislastName.clear();
     await pageConstants.passPage.vislastName.type(lname);
    
 });
 
 When(/^user enter the invalid email address$/, async({page}) => {
     const pageConstants = new PageConstants(page);
+    await pageConstants.passPage.visemail.clear();
     await pageConstants.passPage.visemail.type('abcpolo');
     await pageConstants.passPage.visMobile.click();
 });
@@ -114,10 +126,13 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await pageConstants.passPage.visemail.clear();
     await pageConstants.passPage.visemail.type(emailId);
+    await pageConstants.passPage.visMobile.clear();
     await pageConstants.passPage.visMobile.type(mobileNum);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
-    await pageConstants.passPage.vispassPortNumber.fill(passportNumber);
+    await pageConstants.passPage.vispassPortNumber.clear();
+    await pageConstants.passPage.vispassPortNumber.fill(dynamicNumber);
+    await page.waitForLoadState("networkidle");
     //eid expire date
      const openCalendardob = page.locator("//input[@id='emiratesIdExpiry']");
      await openCalendardob.click();
@@ -131,9 +146,11 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
      await selectMonthdob.click();
      const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
      await selectDatedob.click();
+     await page.waitForLoadState("networkidle");
      //enter nationality
      await pageConstants.passPage.visNationalField.type(nationality);
      await pageConstants.passPage.selectVisNationality.click();
+     await pageConstants.passPage.visCompany.clear();
      await pageConstants.passPage.visCompany.type(fname);
      await pageConstants.passPage.personalPic.setInputFiles(uploadFilePath);
      await pageConstants.passPage.passportup.setInputFiles(uploadFilePath);
@@ -146,6 +163,8 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
 When(/^add the visitor on the visitor page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`(//a[@data-bind='click: $root.editUser'])[1]`, { state: 'visible' });
     await expect(pageConstants.passPage.editButton).toBeVisible();
 });
 
@@ -166,18 +185,22 @@ When(/^user submit the visitor information$/, async({page}) => {
 Then(/^user should redirected to the payment page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
     await expect(pageConstants.passPage.creditDebit).toBeVisible();
 });
 
 When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 	    const pageConstants = new PageConstants(page);
         await pageConstants.passPage.creditDebit.click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
         await pageConstants.passPage.masterCard.click();
         await pageConstants.passPage.notifyMe.click();
         await pageConstants.passPage.emailForPayment.type(emailForNotification)
         await pageConstants.passPage.paymentTermCond.click();
         await pageConstants.passPage.agreeandPay.click();
         await page.waitForLoadState("networkidle");
+        await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
         await pageConstants.passPage.cardNumberInput.type(masterCardNo);
         //expire monyth
         const dropdownLocator2 = page.locator("//select[@name='card_expiry_month']");
@@ -195,5 +218,6 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 Then(/^Verify payment successfull message$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
 });
