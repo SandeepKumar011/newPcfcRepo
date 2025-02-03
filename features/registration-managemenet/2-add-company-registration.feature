@@ -15,3 +15,6 @@ Feature: Verify compamny registration functionality
     And user enter trade licence source address and upload file
     And user submit the files for the Registration
     Then verify the success message for the registration
+    When user selects back to login button
+    Then Verify page is redirected to the login page
+

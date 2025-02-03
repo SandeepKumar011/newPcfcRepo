@@ -16,4 +16,6 @@ Feature: Verify new user registration service availability
     Then verify the ID should be accepted
     And the user checks the Profile Information for full name Gender and dob
     And the form should display all section profile and document and contact details
+    When user selects back to login button on registration page
+    Then Verify page is redirected to the login page for registration
 
