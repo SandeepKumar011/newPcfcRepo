@@ -33,9 +33,11 @@ const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 When('user enter all the infomation for the pass infomation', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(10000);
     await (pageConstants.passPage.passmanagementDrop).click();
     await (pageConstants.passPage.selectapplyGatePass).click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(10000);
     await expect(pageConstants.passPage.portAccess).toBeVisible();
     await pageConstants.passPage.portAccess.click();
     await page.waitForLoadState("networkidle");

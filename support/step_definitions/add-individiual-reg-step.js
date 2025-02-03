@@ -8,7 +8,7 @@ const dataUtils = new DataUtils();
 const testData=require('../../test_data/userData.json');
 const { faker } = require('@faker-js/faker');
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesId;
+const emid=testData.globalData.emiratesIdRegis;
 const actualEid=emid+dynamicNumber
 const passportnumber=faker.string.numeric({ length: 8 })
 const expiredYear=testData.globalData.exYear
@@ -145,6 +145,19 @@ Given('user navigates to the registration page fo add registration', async ({pag
   Then('verify the success message for the registration', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(7000);
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.registrationPage.successMess).toBeVisible();
   });
+
+When(/^user selects back to login button$/, async({page}) => {
+  const pageConstants = new PageConstants(page);
+  await pageConstants.registrationPage.backToginButton.click();
+});
+
+Then(/^Verify page is redirected to the login page$/, async({page}) => {
+  const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
+  await page.waitForSelector(`//input[@id='username']`, { state: 'visible' });
+  await expect(pageConstants.registrationPage.enterUsername).toBeVisible();
+});

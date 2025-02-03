@@ -15,7 +15,7 @@ const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const addedEid='784199161993271'
 const existingEid=testData.globalData.existingEid
-const visitDate=faker.helpers.arrayElement(['4','5','6']);
+const visitDate=faker.helpers.arrayElement(['7','5','6']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -239,14 +239,17 @@ Then(/^user select terms and condition check box on apply page$/, async({page}) 
 When(/^user is redirected to the payment Information for apply pass$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
     await pageConstants.passPage.creditDebit.click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
     await pageConstants.passPage.masterCard.click();
     await pageConstants.passPage.paymentTermCond.click();
     await pageConstants.passPage.agreeandPay.click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
     await pageConstants.passPage.cardNumberInput.type(masterCardNo);
     //expire monyth
@@ -265,6 +268,7 @@ When(/^user is redirected to the payment Information for apply pass$/, async({pa
 Then(/^verify total payable pass amount is paid on payment page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
 

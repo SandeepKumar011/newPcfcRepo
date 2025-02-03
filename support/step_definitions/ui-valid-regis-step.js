@@ -106,3 +106,16 @@ Given('the user navigates to the registration page', async ({page}) => {
   await expect(pageConstants.registrationPage.uiPerValidation).toBeVisible();
 
  });
+
+When(/^user selects back to login button on registration page$/, async({page}) => {
+  const pageConstants = new PageConstants(page);
+  await pageConstants.registrationPage.uiBacktoLogin.click();
+});
+
+Then(/^Verify page is redirected to the login page for registration$/, async({page}) => {
+  const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
+  await page.waitForSelector(`//input[@id='username']`, { state: 'visible' });
+  await expect(pageConstants.registrationPage.enterUsername).toBeVisible();
+});
+

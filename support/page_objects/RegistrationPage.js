@@ -35,6 +35,9 @@ class RegistrationPage
         this.companyLicenceNumber=page.locator("//input[@id='tradeLicNo']");
         this.companyAddress=page.locator("//textarea[@id='companyAddress']");
         this.companyFileUpload=page.locator("//input[@id='tradeLic']");
+        this.backToginButton=page.locator("//button[@id='backToLogin']")
+        this.enterUsername=page.locator("//input[@id='username']");
+        this.uiBacktoLogin=page.locator("//label[normalize-space(text())='Back to Login']");
     }
 }
 

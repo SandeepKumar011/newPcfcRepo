@@ -15,7 +15,7 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const addedEid='784199221026589';
-const visitDate=faker.helpers.arrayElement(['5','6','4']);
+const visitDate=faker.helpers.arrayElement(['5','6','7']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -193,6 +193,7 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 	    const pageConstants = new PageConstants(page);
         await pageConstants.passPage.creditDebit.click();
         await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(20000);
         await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
         await pageConstants.passPage.masterCard.click();
         await pageConstants.passPage.notifyMe.click();
@@ -200,6 +201,7 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
         await pageConstants.passPage.paymentTermCond.click();
         await pageConstants.passPage.agreeandPay.click();
         await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(20000);
         await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
         await pageConstants.passPage.cardNumberInput.type(masterCardNo);
         //expire monyth
@@ -218,6 +220,7 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 Then(/^Verify payment successfull message$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
 });
