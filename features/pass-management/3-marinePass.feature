@@ -23,3 +23,7 @@ Feature: Verify apply pass Service Availability for marine
     Then Verify payment successfull message
     When user select logout button on home page
     Then verify logout verification message
+    When user cancelled apply pass on the list page
+    Then verify confirmation message for the cancelled
+    When user select logout button on home page
+    Then verify logout verification message
