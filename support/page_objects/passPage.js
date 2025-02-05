@@ -60,6 +60,12 @@ class PassPage
         this.notifyMe=page.locator("//label[normalize-space(text())='Notify me with the payment status.']");
         this.emailForPayment=page.locator("//input[@placeholder='Enter your e-mail id']");
         this.enterManually=page.locator("//button[normalize-space(text())='Enter Manually']");
+        this.adminDropdown=page.locator("//a[normalize-space(text())='Admin']");
+        this.cancelOption=page.locator("//a[normalize-space(text())='Cancel Pass']");
+        this.referenceNumInput=page.locator("//input[@id='passRefNumber']");
+        this.remarkInput=page.locator("//textarea[@id='remarks']");
+        this.cancelSubmit=page.locator("//input[@id='submitid']");
+        this.cancelConfirmtion=page.locator("//label[normalize-space(text())='Pass Cancelled successfully.']")
     }
 }
 

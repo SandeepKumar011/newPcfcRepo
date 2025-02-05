@@ -2,6 +2,8 @@
     "globalData" : {
         "username":"wallstreet",
         "password":"Login@345",
+        "adminUsername":"ibrahim.alhammadi@dubaiworld.ae",
+        "adminPassword":"Login345",
         "emiratesId":"7842024",
         "emiratesIdRegis":"7841993",
         "existingEid":"784199553553536",
@@ -20,6 +22,32 @@
         "cvv":"123",
         "hostCompany":"HASCO GENERAL TRADING",
         "emailNotification":"abc@gmail.com"
-        
+    },
+    "port":{
+        "1":"Al Hamriya Port",
+        "2":"Deira Wharfage",
+        "3":"Dry Port",
+        "4":"Drydocks World Dubai",
+        "5":"Dubai Harbour Cruise Terminal",
+        "6":"Dubai Maritime City (DMC)",
+        "7":"Fishing harbour 1 - Jumeirah 01",
+        "8":"Fishing harbour 2 - Ummsuqeim 01",
+        "9":"JAFZA",
+        "10":"Jebel Ali Port",
+        "11":"Port Rashid",
+        "12":"ZONE 01",
+        "13":"ZONE 02",
+        "14":"Zone 1 & Zone 2",
+        "15":"DUBAI AUTO ZONE(DAZ)",
+        "16":"Jadaf"
+    },
+    "passDuration":{
+        "1":"One Day Pass",
+        "2":"One Week Pass",
+        "3":"One Month Pass",
+        "4":"Six Months Pass",
+        "5":"One Year Pass",
+        "6":"Three Months Pass",
+        "7":"Two Months Pass"
     }
 }
