@@ -21,3 +21,7 @@ Feature: Verify apply pass Service Availability
     Then verify total payable pass amount is paid on payment page
     When user select logout button on home page
     Then verify logout verification message
+    When user cancelled apply pass on the list page
+    Then verify confirmation message for the cancelled
+    When user select logout button on home page
+    Then verify logout verification message
