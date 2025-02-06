@@ -65,7 +65,26 @@ class PassPage
         this.referenceNumInput=page.locator("//input[@id='passRefNumber']");
         this.remarkInput=page.locator("//textarea[@id='remarks']");
         this.cancelSubmit=page.locator("//input[@id='submitid']");
-        this.cancelConfirmtion=page.locator("//label[normalize-space(text())='Pass Cancelled successfully.']")
+        this.cancelConfirmtion=page.locator("//label[normalize-space(text())='Pass Cancelled successfully.']");
+        this.passManaDrop=page.locator("//a[normalize-space(text())='Pass Management']");
+        this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
+        this.approvePassOption=page.locator("//a[normalize-space(text())='Pass Approval']");
+        this.searchForPassRefence=page.locator("//input[@id='tableSearch']");
+        this.approveEdit=page.locator("(//i[@class='bi bi-pencil-fill tableIcon action-icon'])[1]");
+        this.approvePhotoEdit=page.locator("(//label[@class='form-file-name']//a)[1]");
+        this.approvePassportEdit=page.locator("(//label[@class='form-file-name']//a)[2]");
+        this.approveSupportEdit=page.locator("(//label[@class='form-file-name']//a)[3]");
+        this.approveEmiratesEdit=page.locator("(//label[@class='form-file-name']//a)[4]");
+        this.approveClose=page.locator("(//button[@class='btn-close'])[1]");
+        this.approveButton=page.locator("//input[@id='approveId']");
+        this.approveSuccessMess=page.locator("//label[normalize-space(text())='Pass Approved Successfully']");
+        this.expireStatus=page.locator("//span[normalize-space(text())='Expired']");
+        this.saveAsDraft=page.locator("//input[@id='saveAsDraft']");
+        this.submitforDraft=page.locator("//button[@id='saveAsDraftSubmit']");
+        this.draftSuccessMess=page.locator("//label[normalize-space(text())='Draft Saved Successfully']");
+        this.myWorkspace=page.locator("//a[normalize-space(text())='My Workspace']");
+        this.myDraft=page.locator("//a[normalize-space(text())='My Draft']"); 
+        this.eyeIcon=page.locator("(//img[@class='iconSquare'])[1]"); 
     }
 }
 
