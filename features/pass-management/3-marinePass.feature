@@ -23,7 +23,9 @@ Feature: Verify apply pass Service Availability for marine
     Then Verify payment successfull message
     When user select logout button on home page
     Then verify logout verification message
-    When user cancelled apply pass on the list page
-    Then verify confirmation message for the cancelled
+    When user cancelled apply pass on the list page for marine
+    Then verify confirmation message for the cancelled for marine
+    When user search cancelled pass on list page for marine
+    Then verify status of cancelled pass should be expired for marine
     When user select logout button on home page
     Then verify logout verification message
