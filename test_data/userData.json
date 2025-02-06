@@ -4,6 +4,8 @@
         "password":"Login@345",
         "adminUsername":"ibrahim.alhammadi@dubaiworld.ae",
         "adminPassword":"Login345",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
         "emiratesId":"7842024",
         "emiratesIdRegis":"7841993",
         "existingEid":"784199553553536",
@@ -21,6 +23,7 @@
         "masterCard":"5555555555554444",
         "cvv":"123",
         "hostCompany":"HASCO GENERAL TRADING",
+        "approveHostCompany":"DEV HOST1",
         "emailNotification":"abc@gmail.com"
     },
     "port":{

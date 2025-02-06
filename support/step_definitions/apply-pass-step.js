@@ -13,7 +13,7 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const existingEid=testData.globalData.existingEid
-const visitDate=faker.helpers.arrayElement(['7','8','9']);
+const visitDate=faker.helpers.arrayElement(['10','8','9']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -294,4 +294,18 @@ When('user cancelled apply pass on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.cancelConfirmtion).toBeVisible();
+  });
+
+  When('user search cancelled pass on list page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await pageConstants.passPage.passmanagementDrop.click();
+    await pageConstants.passPage.viewAllPassOption.click();
+    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+  });
+  
+  Then('verify status of cancelled pass should be expired', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await expect(pageConstants.passPage.expireStatus).toBeVisible();
   });
