@@ -84,7 +84,9 @@ class PassPage
         this.draftSuccessMess=page.locator("//label[normalize-space(text())='Draft Saved Successfully']");
         this.myWorkspace=page.locator("//a[normalize-space(text())='My Workspace']");
         this.myDraft=page.locator("//a[normalize-space(text())='My Draft']"); 
-        this.eyeIcon=page.locator("(//img[@class='iconSquare'])[1]"); 
+        this.eyeIcon=page.locator("(//img[@class='iconSquare'])[1]");
+        this.moreThanTenError=page.locator("//div[normalize-space(text())='A Pass can have only upto 10 visitors.']");
+        this.okForErrorMoreThanten=page.locator("//button[normalize-space(text())='OK']");
     }
 }
 
