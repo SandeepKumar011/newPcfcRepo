@@ -11,6 +11,9 @@ Feature: Verify eroor message pass functionality
     When user select Apply gate pass on the management pass page
     And user enter pass information on the create page for more than ten
     And user enter the visitor information on the create page for more than ten
+    Then save four visitor as draft and select edit button from mydraft
+    When user add more four visitor and save as draft and select edit from mydraft
+    And user add more three visitor and select save visitor
     Then verify error message if user trying to add eleventh visitor
     When user select logout button on home page
     Then verify logout verification message

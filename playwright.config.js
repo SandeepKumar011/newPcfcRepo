@@ -14,7 +14,7 @@ const { defineBddConfig } = require('playwright-bdd');
 
 const testDir = defineBddConfig({
   paths: [ 'features/**/*.feature' ],       
-  require: [ 'support/step_definitions/**/*.js' ]
+  require: [ 'support/step_definitions/**/*.js', 'support/step_definitions/regressionSteps/*.js' ]
 });
 
 module.exports = defineConfig({
