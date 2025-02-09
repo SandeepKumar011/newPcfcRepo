@@ -7,6 +7,7 @@ const { expect } = require('@playwright/test');
 const dataUtils = new DataUtils();
 const testData=require('../../test_data/userData.json');
 const { faker } = require('@faker-js/faker');
+
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesIdRegis;
 const actualEid=emid+dynamicNumber

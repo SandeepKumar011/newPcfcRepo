@@ -1,0 +1,230 @@
+
+spec file
+
+
+ it('user should able to sign up with valid data', async () => {
+
+        await browser.refresh()
+        await browser.pause(5000)
+        await SignUp.enterFirstName(validation.firstName)
+        await SignUp.enterLastName(validation.lastName)
+        await SignUp.selectAccountType();
+        await SignUp.enterEmailId(validation.randomEmail);
+        await browser.scroll(0, 500)
+        await SignUp.enterMobileNumber(validation.phoneNumber)
+        await SignUp.enterPassword(validation.randomPassword)
+        await SignUp.submitButtonclick()
+        await browser.pause(1000)
+
+        let parentWindow = await browser.getWindowHandle();
+        await browser.createWindow("https://www.mailinator.com/");
+        let ID = await browser.getWindowHandles();
+        browser.pause(2000);
+        //get otp from mailinator
+        for (let i = 0; i < ID.length; i++) {
+            if (ID[i] != parentWindow) {
+                browser.pause(300);
+                await browser.switchToWindow(ID[i]);
+                await browser.url("https://www.mailinator.com/")
+                browser.pause(700);
+                await SignUp.enterMailIntoMailinator(validation.randomEmail);
+                await SignUp.clickOnGoButton();
+                browser.pause(2000);
+                await SignUp.openMailForOTP();
+                await SignUp.clickOnImageForOTP();
+                await browser.pause(300);
+                await SignUp.copyActualOTP();
+                console.log("this is actual otp " + await SignUp.randomOtp)
+                break;
+            }
+        }
+        browser.pause(100);
+        browser.switchToWindow(parentWindow);
+        browser.pause(300);
+        await SignUp.enterOtpTextField(await SignUp.randomOtp);
+        await SignUp.clickonVerify();
+        await browser.pause(500);
+        await SignUp.verifyHomePage('Home');
+    });
+
+
+page file
+let otp;
+
+class SignUp {
+
+    get randomOtp(){
+        return otp
+    }
+
+    get randomMail(){
+        return mailId
+    }
+
+    get clickonsignupbutton() {
+        return $("//a[text()='Signup']")
+    }
+
+    get firstnametextbox() {
+        return $("//input[@name='firstname']")
+    }
+
+    get secondnametextbox(){
+        return $("//input[@name='lastname']")
+    }
+
+    get companynametextbox(){
+        return $("//input[@placeholder='Company/Organization']")
+    }
+ 
+    get emailtextbox(){
+        return $("//input[@name='email']")
+    }
+
+    get accountType(){
+        return $("#Personal")
+    }
+
+    get mobiletextbox(){
+        return $("//input[@type='tel']")
+    }
+
+    get passwordtextbox(){
+        return $("//input[@name='password']")
+    }
+
+    get clickonregisteredbutton(){
+        return $("//button[text()='Register']");
+    }
+
+    get otpTextField(){
+        return $("//input[@name='code']")
+    }
+    
+    get clickafterenterotp(){
+        return $("(//button[@type='submit'])[last()-0]");
+    }
+    
+    get headertextvalue(){
+        return $("#headertext");
+    }
+
+    get alertforduplicateuser(){
+        return $("//div[@class='swal2-container swal2-top-end swal2-backdrop-show']");
+    }
+
+    get thisError(){
+        return $("(//div[contains(text(),'This field is required')])[4]");
+    }
+
+    get mailinatorTextField(){
+        return $("//input[@id='search']");
+    }
+
+    get goButton(){
+        return $("//button[normalize-space(text())='GO']");
+    }
+
+    get openReceivedMail(){
+        return $("//tr[@ng-repeat='email in emails']");
+    }
+
+    get clickImage(){
+        return $("//h1[normalize-space(text())='Welcome to Tutist']")
+    }
+
+    get getOTP(){
+        return $("//h1[@style='margin: 0px ; line-height: 140% ; text-align: center ; word-wrap: break-word ; font-size: 22px']")
+    }
+
+    get frameId(){
+        return $("#html_msg_body")
+    }
+
+
+  // ======================Action methods=====================================//
+    async clickOnSignuPLink() {
+        await this.clickonsignupbutton.click()
+    }
+
+    async enterFirstName(fname) {
+       await this.firstnametextbox.clearValue()
+        await this.firstnametextbox.setValue(fname)
+    }
+
+    async enterLastName(lname){
+       await this.secondnametextbox.clearValue();
+        await this.secondnametextbox.setValue(lname)
+    }
+
+    async selectAccountType(){
+     await this.accountType.click()
+    }
+
+    async enterEmailId(mail){
+        await this.emailtextbox.clearValue();
+        await this.emailtextbox.setValue(mail)
+    }
+
+    async enterMobileNumber(mobile){
+        await this.mobiletextbox.clearValue();
+        await this.mobiletextbox.setValue(mobile)
+    }
+
+    async enterPassword(password){
+       await this.passwordtextbox.clearValue();
+        await this.passwordtextbox.setValue(password)
+    }
+
+    async submitButtonclick(){
+        await this.clickonregisteredbutton.click()
+    }
+
+    async enterOtpTextField(otpEnter){
+       await this.otpTextField.setValue(otpEnter);
+    }
+
+    async clickonVerify(){
+        await this.clickafterenterotp.click()
+    }
+
+    async verifyHomePage(home){
+        await expect(this.headertextvalue).toHaveText(home)
+    }
+
+    async duplicateUserErrorMess(dupmess){
+        await expect(this.alertforduplicateuser).toHaveText(dupmess)
+    }
+    async verifyThisField(textField){
+        await expect(this.thisError).toHaveText(textField)
+    }
+
+    async enterMailIntoMailinator(mailText){
+        await this.mailinatorTextField.setValue(mailText)
+    }
+
+    async clickOnGoButton(){
+        await this.goButton.click();
+    }
+
+    async openMailForOTP(){
+        await this.openReceivedMail.click();
+    }
+
+    async clickOnImageForOTP(){
+        await browser.switchToFrame(await this.frameId)
+        await this.clickImage.doubleClick();
+    }
+
+    async copyActualOTP(){
+       await this.getOTP.scrollIntoView();
+       otp=await this.getOTP.getText();
+       console.log(otp);
+    }
+}
+
+module.exports = new SignUp()
+
+1. how to use find my agent
+2.how to use find my id
+3
