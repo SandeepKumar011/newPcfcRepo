@@ -1,5 +1,5 @@
 
-Feature: Verify eroor message pass functionality
+Feature: Verify eroor message for more than ten pass functionality
 
   Scenario Outline: Verify error message if user add more than ten visitor
     Given user navigates to the login page

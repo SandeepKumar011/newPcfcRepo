@@ -1,4 +1,4 @@
-Feature: Verify new user registration service availability
+Feature: Verify UI for new user registration service availability
 
   Scenario: Check if the new user registration service is available
     Given the user navigates to the registration page

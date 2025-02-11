@@ -1,6 +1,6 @@
-Feature: Verify apply pass Service Availability for marine
+Feature: Verify apply marine pass Service Availability for marine
 
-  Scenario: Verify apply pass funtionality for the marine
+  Scenario: Verify apply marine pass funtionality for the marine
     Given user navigates to the login page
     When user enter the username on login page
     And user enter the password on login page
