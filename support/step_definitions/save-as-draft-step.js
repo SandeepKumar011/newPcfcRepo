@@ -9,7 +9,7 @@ const hCompany=testData.globalData.approveHostCompany
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
-const visitDate=faker.helpers.arrayElement(['9','8','7']);
+const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -57,10 +57,12 @@ When('user enter pass information on the create page for draft', async ({page}) 
   
   When('user enter the visitor information on the create page for draft', async ({page}) => {
       const pageConstants = new PageConstants(page);
+          await page.waitForTimeout(5000);
           const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
           await dropdownVisa.selectOption({ label: 'Resident' });
           await pageConstants.passPage.eidUi.type(actualEid);
           await page.waitForLoadState("networkidle");
+          await page.waitForTimeout(5000);
       
            //calendra handle dob
            const openCalendardob = page.locator("//input[@id='dateOfBirth']");
@@ -77,12 +79,14 @@ When('user enter pass information on the create page for draft', async ({page}) 
            await selectDatedob.click();
            await page.waitForLoadState("networkidle");
            //select gender
+           await page.waitForTimeout(5000);
            const dropdownLocator2 = page.locator("//select[@name='serachGender']");
            await dropdownLocator2.selectOption({ label: 'Male' });
            await pageConstants.passPage.searchButton.click();
            await page.waitForLoadState("networkidle");
            await expect(pageConstants.passPage.errorValidManually).toBeVisible();
            await page.waitForLoadState("networkidle");
+           await page.waitForTimeout(5000);
            const dropdownLocator = page.locator("//select[@id='title']");
            await dropdownLocator.selectOption({ label: 'Mr' });
            await pageConstants.passPage.visfirstName.clear();
@@ -93,11 +97,13 @@ When('user enter pass information on the create page for draft', async ({page}) 
            await pageConstants.passPage.visemail.type(emailId);
            await pageConstants.passPage.visMobile.clear();
            await pageConstants.passPage.visMobile.type(mobileNum);
+           await page.waitForTimeout(5000);
            const designation = page.locator("//select[@id='designationIdStr']");
            await designation.selectOption({ label: 'Admin' });
            await pageConstants.passPage.vispassPortNumber.clear();
            await pageConstants.passPage.vispassPortNumber.type(dynamicNumber);
            await page.waitForLoadState("networkidle");
+           await page.waitForTimeout(5000);
            //eid expire date
             const openCalendarExp = page.locator("//input[@id='emiratesIdExpiry']");
             await openCalendarExp.click();
@@ -146,6 +152,7 @@ When('user enter pass information on the create page for draft', async ({page}) 
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.draftSuccessMess).toBeVisible();
+    await page.waitForTimeout(5000);
     referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
     console.log('this is added refence number'+ referceNumber);
   });

@@ -42,10 +42,12 @@ Given('user navigates to the registration page fo add registration', async ({pag
   Given('user select visa and enter emirated id and the emirate expire date', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='visaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     await pageConstants.registrationPage.emiratesIdInputField.type(actualEid)
     //calendra handle expiredate emirates
+    await page.waitForTimeout(5000);
     const openCalendar = page.locator("//input[@id='emiratesIdExpiryDate']");
     await openCalendar.click();
     const openYear=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -64,6 +66,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
     const pageConstants = new PageConstants(page);
     await pageConstants.registrationPage.passportnumberInputField.type(passportnumber);
     //calendra handle expiredate pasport
+    await page.waitForTimeout(5000);
     const openCalendar = page.locator("//input[@id='passportExpiryDate']");
     await openCalendar.click();
     const openYear=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -85,6 +88,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
     await pageConstants.registrationPage.firstNameInputField.type(firstName);
     await pageConstants.registrationPage.lastnameInputField.type(lastName);
     await pageConstants.registrationPage.emaiIdInputField.type(emailIdd);
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='title']");
     await dropdownLocator.selectOption({ label: 'Mr' });
   });
@@ -92,6 +96,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
   Given('user enter mobile designation and nationlity', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await pageConstants.registrationPage.mobileInputField.type(mobileNumber)
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='designationIdStr']");
     await dropdownLocator.selectOption({ label: 'Admin' });
     await pageConstants.registrationPage.nationalInputField.type(nationality);
@@ -101,6 +106,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
   Given('user enters dob and visa number and visa expire date', async ({page}) => {
     const pageConstants = new PageConstants(page);
     //calendra handle dob
+    await page.waitForTimeout(5000);
     const openCalendardob = page.locator("//input[@id='dateOfBirth']");
     await openCalendardob.click();
     const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -114,6 +120,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
     const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
     await selectDatedob.click();
     await pageConstants.registrationPage.visanumberInputField.type(visanmr);
+    await page.waitForTimeout(5000);
     //calendra handle expiredate visa
     const openCalendar = page.locator("//input[@id='visaExpiryDate']");
     await openCalendar.click();
@@ -159,6 +166,7 @@ When(/^user selects back to login button$/, async({page}) => {
 Then(/^Verify page is redirected to the login page$/, async({page}) => {
   const pageConstants = new PageConstants(page);
   await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(5000);
   await page.waitForSelector(`//input[@id='username']`, { state: 'visible' });
   await expect(pageConstants.registrationPage.enterUsername).toBeVisible();
 });

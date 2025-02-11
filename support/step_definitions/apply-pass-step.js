@@ -13,7 +13,7 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const existingEid=testData.globalData.existingEid
-const visitDate=faker.helpers.arrayElement(['10','8','9']);
+const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -33,12 +33,16 @@ Then(/^user select port entry gate and pass type$/, async({page}) => {
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.portAccess.click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='portsId']");
     await dropdownLocator.selectOption({ label: 'Port Rashid' });
+    await page.waitForTimeout(5000);
     const dropdownLocator2 = page.locator("//select[@id='gateIdStr']");
     await dropdownLocator2.selectOption({ label: 'Any Gate' });
+    await page.waitForTimeout(5000);
     const dropdownLocator3 = page.locator("//select[@id='passTypeIdStr']");
     await dropdownLocator3.selectOption({ label: 'Business Meeting' });
    
@@ -48,14 +52,16 @@ Then(/^user enters pass duration Purpose of visit and date of visit$/, async({pa
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
     await dropdownLocator.selectOption({ label: 'One Day Pass' });
     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
     await dropdownLocator2.selectOption({ label: 'Business Meeting' });
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     await page.waitForLoadState("networkidle");
-    //const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
+    await page.waitForTimeout(5000);
     const openCalendardob=page.locator("(//img[@alt='Calender Icon'])[3]");
     await openCalendardob.click();
     const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
@@ -78,12 +84,14 @@ When(/^user is redirected to the visitor Information for apply pass$/, async({pa
 
 When(/^user enter visa type emirate id gender and dob$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     await pageConstants.passPage.eidUi.type(actualEid);
     await page.waitForLoadState("networkidle");
 
      //calendra handle dob
+     await page.waitForTimeout(5000);
      const openCalendardob = page.locator("//input[@id='dateOfBirth']");
      await openCalendardob.click();
      const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -113,6 +121,7 @@ Then(/^user search the visitor information$/, async({page}) => {
 When(/^user enters the visitor all information and add$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='title']");
     await dropdownLocator.selectOption({ label: 'Mr' });
     await pageConstants.passPage.visfirstName.clear();
@@ -123,11 +132,13 @@ When(/^user enters the visitor all information and add$/, async({page}) => {
     await pageConstants.passPage.visemail.type(emailId);
     await pageConstants.passPage.visMobile.clear();
     await pageConstants.passPage.visMobile.type(mobileNum);
+    await page.waitForTimeout(5000);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
     await pageConstants.passPage.vispassPortNumber.clear();
     await pageConstants.passPage.vispassPortNumber.type(dynamicNumber);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     //eid expire date
      const openCalendardob = page.locator("//input[@id='emiratesIdExpiry']");
      await openCalendardob.click();
@@ -157,16 +168,19 @@ When(/^user enters the visitor all information and add$/, async({page}) => {
 Then(/^verify visitor added manually in list$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await page.waitForSelector(`(//a[@data-bind='click: $root.editUser'])[1]`, { state: 'visible' });
     await expect(pageConstants.passPage.editButton).toBeVisible();
 });
 
 When(/^user enters the existing emirate id on apply gate pass page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     await pageConstants.passPage.eidUi.type(existingEid);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
      //calendra handle dob
      const openCalendardob = page.locator("//input[@id='dateOfBirth']");
      await openCalendardob.click();
@@ -248,7 +262,7 @@ When(/^user is redirected to the payment Information for apply pass$/, async({pa
     await pageConstants.passPage.paymentTermCond.click();
     await pageConstants.passPage.agreeandPay.click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
     await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
     await pageConstants.passPage.cardNumberInput.type(masterCardNo);
     //expire monyth
@@ -267,7 +281,7 @@ When(/^user is redirected to the payment Information for apply pass$/, async({pa
 Then(/^verify total payable pass amount is paid on payment page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(20000);
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
     referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
@@ -277,6 +291,7 @@ Then(/^verify total payable pass amount is paid on payment page$/, async({page})
 When('user cancelled apply pass on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(10000);
     await pageConstants.loginPage.enterUsername.fill(testData.globalData.adminUsername);
     await pageConstants.loginPage.enterpassword.fill(testData.globalData.adminPassword);
     await pageConstants.loginPage.submitButton.click();
@@ -285,6 +300,7 @@ When('user cancelled apply pass on the list page', async ({page}) => {
     await pageConstants.passPage.adminDropdown.click();
     await pageConstants.passPage.cancelOption.click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await pageConstants.passPage.referenceNumInput.type(referceNumber);
     await pageConstants.passPage.remarkInput.type('this is generated by automation and cancelled');
     await pageConstants.passPage.cancelSubmit.click();
@@ -293,12 +309,14 @@ When('user cancelled apply pass on the list page', async ({page}) => {
   Then('verify confirmation message for the cancelled', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.cancelConfirmtion).toBeVisible();
   });
 
   When('user search cancelled pass on list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await pageConstants.passPage.passmanagementDrop.click();
     await pageConstants.passPage.viewAllPassOption.click();
     await pageConstants.passPage.searchForPassRefence.type(referceNumber);
@@ -307,5 +325,6 @@ When('user cancelled apply pass on the list page', async ({page}) => {
   Then('verify status of cancelled pass should be expired', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.expireStatus).toBeVisible();
   });

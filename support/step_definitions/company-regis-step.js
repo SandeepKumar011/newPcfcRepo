@@ -41,6 +41,7 @@ When('user select the compamny information for the registration', async ({page})
   When('user enter trade licence source address and upload file', async ({page}) => {
     const pageConstants = new PageConstants(page);
     //licence expire date
+    await page.waitForTimeout(5000);
     const openCalendarExp = page.locator("//input[@id='tradeLicExpiryDate']");
     await openCalendarExp.click();
     const openYearExp=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -54,8 +55,38 @@ When('user select the compamny information for the registration', async ({page})
     const selectDateExp=page.locator(`//td[normalize-space(text())='${particularDate}']`)
     await selectDateExp.click();
     //lic source
+    await page.waitForTimeout(5000);
     const licenceSource = page.locator("//select[@id='tradeLicSource']");
     await licenceSource.selectOption({ label: 'DED' });
     await pageConstants.registrationPage.companyAddress.fill(lastName);
     await pageConstants.registrationPage.companyFileUpload.setInputFiles(uploadFilePath);
   });
+
+  
+When(/^user submit the files for the company Registration$/, async ({page}) => {
+  const pageConstants = new PageConstants(page);
+  await pageConstants.registrationPage.submitInfo.click();
+});
+
+
+Then(/^verify the success message for the compamny registration$/, async({page}) => {
+	const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(7000);
+    await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
+    await expect(pageConstants.registrationPage.successMess).toBeVisible();
+});
+
+
+When(/^user selects back to login button for company$/, async({page}) => {
+  const pageConstants = new PageConstants(page);
+  await pageConstants.registrationPage.backToginButton.click();
+});
+
+Then(/^Verify page is redirected to the login page for company$/, async({page}) => {
+	const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(5000);
+  await page.waitForSelector(`//input[@id='username']`, { state: 'visible' });
+  await expect(pageConstants.registrationPage.enterUsername).toBeVisible();
+});
