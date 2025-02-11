@@ -61,11 +61,25 @@ When('user enter all the infomation for the pass infomation', async ({page}) => 
     const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
     await dropdownLocator2.selectOption({ label: 'Business Meeting' });
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
-    const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
-    await openCalendardob.click();
-    const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-    await selectDatedob.click();
+    await page.waitForTimeout(2000);
+    
+    if(visitDate<26){
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+      await selectDatedob.click();
+  }
+  else{
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
+      await selectDatedob.click();
+  }
+    // const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
+    // await openCalendardob.click();
+    // const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+    // await selectDatedob.click();
+    await page.waitForTimeout(2000);
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);
     await pageConstants.passPage.hostCompanyUi.type(hCompany);

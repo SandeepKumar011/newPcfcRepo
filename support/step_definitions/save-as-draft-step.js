@@ -43,12 +43,24 @@ When('user enter pass information on the create page for draft', async ({page}) 
       const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
       await dropdownreason.selectOption({ label: 'Business Meeting' });
       await page.waitForLoadState("networkidle");
+      await page.waitForTimeout(2000);
       await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
-      const dateOfVisit = page.locator("//input[@id='dateOfVisitStr']");
-      await dateOfVisit.click();
-      const dateOfVisitMonth=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-      await dateOfVisitMonth.click();
+
+      if(visitDate<26){
+        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+        await openCalendardob.click();
+        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+        await selectDatedob.click();
+    }
+    else{
+        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+        await openCalendardob.click();
+        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
+        await selectDatedob.click();
+    }
+
       await page.waitForLoadState("networkidle");
+      await page.waitForTimeout(2000);
       await pageConstants.passPage.visitHour.type(hoursToVisit);
       await pageConstants.passPage.visitMinutes.type(hoursToVisit);
       await pageConstants.passPage.hostCompanyUi.type(hCompany);

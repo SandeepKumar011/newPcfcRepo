@@ -13,7 +13,6 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const existingEid=testData.globalData.existingEid
-const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -61,11 +60,31 @@ Then(/^user enters pass duration Purpose of visit and date of visit$/, async({pa
     await dropdownLocator2.selectOption({ label: 'Business Meeting' });
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
-    const openCalendardob=page.locator("(//img[@alt='Calender Icon'])[3]");
-    await openCalendardob.click();
-    const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-    await selectDatedob.click();
+    await page.waitForTimeout(2000);
+
+    const today = new Date();
+    const dateString = today.toLocaleDateString();
+    const parts = dateString.split("/");
+    const day = parts[1];
+    console.log('this is before converted date' + dateString);
+    const intDate=parseInt(day);
+    const visitDate=(intDate+2);
+    console.log('this is actual visit date ' + visitDate);
+    await page.waitForTimeout(2000);
+
+    if(visitDate<26){
+        const openCalendardob=page.locator("(//img[@alt='Calender Icon'])[3]");
+        await openCalendardob.click();
+        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+        await selectDatedob.click();
+    }
+    else{
+        const openCalendardob=page.locator("(//img[@alt='Calender Icon'])[3]");
+        await openCalendardob.click();
+        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
+        await selectDatedob.click();
+    }
+
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);

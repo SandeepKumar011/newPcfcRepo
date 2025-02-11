@@ -58,11 +58,30 @@ When('user enter pass information on the create page', async ({page}) => {
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     await page.waitForTimeout(5000);
-    const dateOfVisit = page.locator("//input[@id='dateOfVisitStr']");
-    await dateOfVisit.click();
-    const dateOfVisitMonth=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-    await dateOfVisitMonth.click();
-    await page.waitForLoadState("networkidle");
+    const today = new Date();
+    const dateString = today.toLocaleDateString();
+    const parts = dateString.split("/");
+    const day = parts[1];
+    console.log('this is before converted date' + dateString);
+    const intDate=parseInt(day);
+    const visitDate=(intDate+2);
+    console.log('this is actual visit date ' + visitDate);
+    await page.waitForTimeout(2000);
+
+    if(visitDate<26){
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+      await selectDatedob.click();
+  }
+  else{
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
+      await selectDatedob.click();
+  }
+  
+    await page.waitForTimeout(2000);
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);
     await pageConstants.passPage.hostCompanyUi.type(hCompany);
