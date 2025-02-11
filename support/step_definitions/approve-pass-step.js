@@ -16,7 +16,7 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const addedEid='784199221026589';
-const visitDate=faker.helpers.arrayElement(['9','8','7']);
+const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -33,24 +33,31 @@ let referceNumber;
 
 When('user enter pass information on the create page', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(5000);
     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dropdownPort = page.locator("//select[@id='portsId']");
     await dropdownPort.selectOption({ label: 'Jebel Ali Port' });
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     const dropdownGate = page.locator("//select[@id='gateIdStr']");
     await dropdownGate.selectOption({ label: 'Any Gate' });
+    await page.waitForTimeout(5000);
     const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
     await dropdownPassType.selectOption({ label: 'Business Meeting' });
      await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
+     await page.waitForTimeout(5000);
     const dropdownPassDura = page.locator("//select[@id='passDurationIdStr']");
     await dropdownPassDura.selectOption({ label: 'One Day Pass' });
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
     await dropdownreason.selectOption({ label: 'Business Meeting' });
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
+    await page.waitForTimeout(5000);
     const dateOfVisit = page.locator("//input[@id='dateOfVisitStr']");
     await dateOfVisit.click();
     const dateOfVisitMonth=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
@@ -65,12 +72,14 @@ When('user enter pass information on the create page', async ({page}) => {
   
   When('user enter the visitor information on the create page', async ({page}) => {
        const pageConstants = new PageConstants(page);
+       await page.waitForTimeout(5000);
        const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
        await dropdownVisa.selectOption({ label: 'Resident' });
        await pageConstants.passPage.eidUi.type(actualEid);
        await page.waitForLoadState("networkidle");
    
         //calendra handle dob
+        await page.waitForTimeout(5000);
         const openCalendardob = page.locator("//input[@id='dateOfBirth']");
         await openCalendardob.click();
         const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -85,12 +94,14 @@ When('user enter pass information on the create page', async ({page}) => {
         await selectDatedob.click();
         await page.waitForLoadState("networkidle");
         //select gender
+        await page.waitForTimeout(5000);
         const dropdownLocator2 = page.locator("//select[@name='serachGender']");
         await dropdownLocator2.selectOption({ label: 'Male' });
         await pageConstants.passPage.searchButton.click();
         await page.waitForLoadState("networkidle");
         await expect(pageConstants.passPage.errorValidManually).toBeVisible();
         await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
         const dropdownLocator = page.locator("//select[@id='title']");
         await dropdownLocator.selectOption({ label: 'Mr' });
         await pageConstants.passPage.visfirstName.clear();
@@ -101,11 +112,13 @@ When('user enter pass information on the create page', async ({page}) => {
         await pageConstants.passPage.visemail.type(emailId);
         await pageConstants.passPage.visMobile.clear();
         await pageConstants.passPage.visMobile.type(mobileNum);
+        await page.waitForTimeout(5000);
         const designation = page.locator("//select[@id='designationIdStr']");
         await designation.selectOption({ label: 'Admin' });
         await pageConstants.passPage.vispassPortNumber.clear();
         await pageConstants.passPage.vispassPortNumber.type(dynamicNumber);
         await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
         //eid expire date
          const openCalendarExp = page.locator("//input[@id='emiratesIdExpiry']");
          await openCalendarExp.click();
@@ -148,7 +161,7 @@ When('user enter pass information on the create page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(20000);
   });
   
   Then('verify pass apply successfully messge', async ({page}) => {
@@ -163,10 +176,12 @@ When('user enter pass information on the create page', async ({page}) => {
   When('user approve the apply pass on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(10000);
     await pageConstants.loginPage.enterUsername.type(testData.globalData.approveUsername);
     await pageConstants.loginPage.enterpassword.type(testData.globalData.approvePassword);
     await pageConstants.loginPage.submitButton.click();
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await pageConstants.passPage.passManaDrop.click();
     await pageConstants.passPage.approvePassOption.click();
 
@@ -175,6 +190,7 @@ When('user enter pass information on the create page', async ({page}) => {
   Then('verify pass approved successfully message', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
     await pageConstants.passPage.searchForPassRefence.type(referceNumber);
     await pageConstants.passPage.approveEdit.click();
 
@@ -192,7 +208,7 @@ When('user enter pass information on the create page', async ({page}) => {
 
     await pageConstants.passPage.approveButton.click();
     await page.waitForLoadState("networkidle");
-
+    await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
  
   });

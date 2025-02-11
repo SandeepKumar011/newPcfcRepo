@@ -1,6 +1,6 @@
-Feature: Verify apply pass Service Availability
+Feature: Verify apply normal pass Service Availability
 
-  Scenario: Verify apply multiple pass and delete funtionality for pass service availability
+  Scenario: Verify apply pass funtionality for pass service availability
     Given user navigates to the login page
     When user enter the username on login page
     And user enter the password on login page

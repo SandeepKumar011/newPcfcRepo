@@ -63,6 +63,7 @@ Given('the user navigates to the registration page', async ({page}) => {
   
   When('user select the Visa Type Resident', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='visaTypeIdStr']");
     await dropdownLocator.selectOption({ label: 'Resident' });
     

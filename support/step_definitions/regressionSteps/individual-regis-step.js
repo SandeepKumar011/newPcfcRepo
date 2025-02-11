@@ -29,10 +29,12 @@ const emailIdd=faker.internet.email()
 When('user eneters all the profile infomation', async ({page}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
+       await page.waitForTimeout(5000);
        const visType = page.locator("//select[@id='visaTypeIdStr']");
        await visType.selectOption({ label: 'Resident' });
        await pageConstants.registrationPage.emiratesIdInputField.type(actualEid)
        //calendra handle expiredate emirates
+       await page.waitForTimeout(5000);
        const expireEmirates = page.locator("//input[@id='emiratesIdExpiryDate']");
        await expireEmirates.click();
        const openYearExpire=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -48,6 +50,7 @@ When('user eneters all the profile infomation', async ({page}) => {
 
        await pageConstants.registrationPage.passportnumberInputField.type(passportnumber);
        //calendra handle expiredate pasport
+       await page.waitForTimeout(5000);
        const passportExpire = page.locator("//input[@id='passportExpiryDate']");
        await passportExpire.click();
        const openYearPass=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -65,14 +68,17 @@ When('user eneters all the profile infomation', async ({page}) => {
        await pageConstants.registrationPage.firstNameInputField.type(firstName);
        await pageConstants.registrationPage.lastnameInputField.type(lastName);
        await pageConstants.registrationPage.emaiIdInputField.type(emailIdd);
+       await page.waitForTimeout(5000);
        const dropdownTitle = page.locator("//select[@id='title']");
        await dropdownTitle.selectOption({ label: 'Mr' });
        await pageConstants.registrationPage.mobileInputField.type(mobileNumber)
+       await page.waitForTimeout(5000);
        const dropdownLocator = page.locator("//select[@id='designationIdStr']");
        await dropdownLocator.selectOption({ label: 'Admin' });
        await pageConstants.registrationPage.nationalInputField.type(nationality);
        await pageConstants.registrationPage.selectnationality.click();
         //calendra handle dob
+        await page.waitForTimeout(5000);
     const openCalendardob = page.locator("//input[@id='dateOfBirth']");
     await openCalendardob.click();
     const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
@@ -87,6 +93,7 @@ When('user eneters all the profile infomation', async ({page}) => {
     await selectDatedob.click();
     await pageConstants.registrationPage.visanumberInputField.type(visanmr);
     //calendra handle expiredate visa
+    await page.waitForTimeout(5000);
     const openCalendar = page.locator("//input[@id='visaExpiryDate']");
     await openCalendar.click();
     const openYear=page.locator("(//th[@class='datepicker-switch'])[1]")

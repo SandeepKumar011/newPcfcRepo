@@ -13,8 +13,8 @@ Feature: Verify compamny registration functionality
     And user enter the compamny name and phone for the registration
     And user enter trad licence number expiry date
     And user enter trade licence source address and upload file
-    And user submit the files for the Registration
-    Then verify the success message for the registration
-    When user selects back to login button
-    Then Verify page is redirected to the login page
+    And user submit the files for the company Registration
+    Then verify the success message for the compamny registration
+    When user selects back to login button for company 
+    Then Verify page is redirected to the login page for company
 

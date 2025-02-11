@@ -9,6 +9,7 @@ Given('user logged in and directed to the homepage', async ({page}) => {
   const pageConstants = new PageConstants(page);
   await page.goto("/");
   await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(5000);
   await pageConstants.loginPage.loginButton.click();
   await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
   await pageConstants.loginPage.enterpassword.type(testData.globalData.password);

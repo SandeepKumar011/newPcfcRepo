@@ -8,6 +8,7 @@ const dataUtils = new DataUtils();
 Given('the Visa Type is Resident for registration', async ({page}) => {
    const pageConstants = new PageConstants(page);
    await page.waitForLoadState("networkidle");
+   await page.waitForTimeout(5000);
    const dropdownLocator = page.locator("//select[@id='visaTypeIdStr']");
    await dropdownLocator.selectOption({ label: 'Resident' });
   });

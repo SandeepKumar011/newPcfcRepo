@@ -1,4 +1,4 @@
-Feature: Verify apply pass Service Availability
+Feature: Verify apply multiple pass Service Availability
 
   Scenario Outline: Verify apply multiple pass and delete funtionality for pass service availability
     Given user navigates to the login page
