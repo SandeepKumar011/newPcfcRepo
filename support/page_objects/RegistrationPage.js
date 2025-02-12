@@ -44,6 +44,7 @@ class RegistrationPage
         this.uploadError=page.locator("//div[normalize-space(text())='Please upload a file of type pdf/jpg/gif/png.']");
         this.uploadErrorOk=page.locator("//button[normalize-space(text())='OK']");
         this.afteruploadDelete=page.locator("//label[normalize-space(text())='Delete']");
+        this.compnaynameError=page.locator("//label[normalize-space(text())='Company Name is required']");
     }
 }
 
