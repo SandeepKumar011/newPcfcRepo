@@ -45,6 +45,12 @@ class RegistrationPage
         this.uploadErrorOk=page.locator("//button[normalize-space(text())='OK']");
         this.afteruploadDelete=page.locator("//label[normalize-space(text())='Delete']");
         this.compnaynameError=page.locator("//label[normalize-space(text())='Company Name is required']");
+        this.compnayPhoneError=page.locator("//label[@id='phoneNumber-error']");
+        this.compnayLicenceNumError=page.locator("//label[normalize-space(text())='Trade Licence Number is Required']");
+        this.compnayLicenceSourceError=page.locator("//label[normalize-space(text())='Trade License Source is Required']");
+        this.compnayLicenceExpireError=page.locator("//label[normalize-space(text())='Trade License Expiry Date is required']");
+        this.moreThan2mb=page.locator("//div[normalize-space(text())='Uploaded file size should not be greater than 500KB']");
+        this.afteruploadDeleteCom=page.locator("(//label[normalize-space(text())='Delete'])[5]");
     }
 }
 
