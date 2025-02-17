@@ -87,6 +87,7 @@ class PassPage
         this.eyeIcon=page.locator("(//img[@class='iconSquare'])[1]");
         this.moreThanTenError=page.locator("//div[normalize-space(text())='A Pass can have only upto 10 visitors.']");
         this.okForErrorMoreThanten=page.locator("//button[normalize-space(text())='OK']");
+        this.okForAlert=page.locator("//button[normalize-space(text())='OK']");
     }
 }
 

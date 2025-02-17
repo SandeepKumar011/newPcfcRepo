@@ -1,0 +1,16 @@
+{
+    "approvalCredentials" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "approvalUsername":"devhost1",
+        "approvalPassword":"Login@345"
+    },
+    "commonData":{
+        "portName":"Al Hamriya Port",
+        "gateType":"Gate - 1",
+        "passDuration":"One Week Pass",
+        "passType":"Entry Permit (For Individual)",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1"
+    }
+}

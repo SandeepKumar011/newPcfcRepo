@@ -5,27 +5,32 @@ const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
 const testData=require('../../test_data/userData.json');
+const oneDayData=require('../../test_data/oneDayData.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
-const hCompany=testData.globalData.approveHostCompany
-const emailForNotification=testData.globalData.emailNotification
+
+const portName=oneDayData.commonData.portName
+const gateType=oneDayData.commonData.gateType
+const passDuration=oneDayData.commonData.passDuration
+const passType=oneDayData.commonData.passType
+const reasonVisit=oneDayData.commonData.visitReason
+const hCompany=oneDayData.commonData.hostCompany
+const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
+const approvalusername=oneDayData.approvalCredentials.approveUsername
+const approvalpassword=oneDayData.approvalCredentials.approvePassword
 const masterCardNo=testData.globalData.masterCard
-const passportNumber='896587548956'
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
-const addedEid='784199221026589';
-const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
 const monthDob=faker.helpers.arrayElement(['Sep', 'Oct','Nov']);
-const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
 const fname=faker.person.firstName();
 const lname=faker.person.lastName();
 const emailId=faker.internet.email();
-const mobileNum='788956897854';
+const mobileNum=faker.string.numeric({ length: 12 })
 const hoursToVisit='5';
 const nationality=testData.globalData.national
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
@@ -38,23 +43,23 @@ When('user enter pass information on the create page', async ({page}) => {
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
     await page.waitForTimeout(5000);
     const dropdownPort = page.locator("//select[@id='portsId']");
-    await dropdownPort.selectOption({ label: 'Jebel Ali Port' });
+    await dropdownPort.selectOption({ label: portName });
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
     const dropdownGate = page.locator("//select[@id='gateIdStr']");
-    await dropdownGate.selectOption({ label: 'Any Gate' });
+    await dropdownGate.selectOption({ label: gateType });
     await page.waitForTimeout(5000);
     const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
-    await dropdownPassType.selectOption({ label: 'Business Meeting' });
+    await dropdownPassType.selectOption({ label: passType });
      await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
      await page.waitForTimeout(5000);
     const dropdownPassDura = page.locator("//select[@id='passDurationIdStr']");
-    await dropdownPassDura.selectOption({ label: 'One Day Pass' });
+    await dropdownPassDura.selectOption({ label: passDuration });
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
     await page.waitForTimeout(5000);
     const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
-    await dropdownreason.selectOption({ label: 'Business Meeting' });
+    await dropdownreason.selectOption({ label: reasonVisit });
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
     await page.waitForTimeout(5000);
@@ -133,7 +138,7 @@ When('user enter pass information on the create page', async ({page}) => {
         await pageConstants.passPage.visMobile.type(mobileNum);
         await page.waitForTimeout(5000);
         const designation = page.locator("//select[@id='designationIdStr']");
-        await designation.selectOption({ label: 'Admin' });
+        await designation.selectOption({ label: visDesignation });
         await pageConstants.passPage.vispassPortNumber.clear();
         await pageConstants.passPage.vispassPortNumber.type(dynamicNumber);
         await page.waitForLoadState("networkidle");
@@ -196,8 +201,8 @@ When('user enter pass information on the create page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(10000);
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.approveUsername);
-    await pageConstants.loginPage.enterpassword.type(testData.globalData.approvePassword);
+    await pageConstants.loginPage.enterUsername.type(approvalusername);
+    await pageConstants.loginPage.enterpassword.type(approvalpassword);
     await pageConstants.loginPage.submitButton.click();
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
@@ -230,4 +235,33 @@ When('user enter pass information on the create page', async ({page}) => {
     await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
  
+  });
+
+  When('user paid amount for the apply pass', async ({page}) => {
+   const pageConstants = new PageConstants(page);
+       await page.waitForLoadState("networkidle");
+       await page.waitForTimeout(20000);
+       await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
+       await pageConstants.passPage.creditDebit.click();
+       await page.waitForLoadState("networkidle");
+       await page.waitForTimeout(10000);
+       await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
+       await pageConstants.passPage.masterCard.click();
+       await pageConstants.passPage.paymentTermCond.click();
+       await pageConstants.passPage.agreeandPay.click();
+       await page.waitForLoadState("networkidle");
+       await page.waitForTimeout(10000);
+       await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
+       await pageConstants.passPage.cardNumberInput.type(masterCardNo);
+       //expire monyth
+       const dropdownLocator2 = page.locator("//select[@name='card_expiry_month']");
+       await dropdownLocator2.selectOption({ index: 2 });
+   
+       //expire year
+       const expYear = page.locator("//select[@name='card_expiry_year']");
+       await expYear.selectOption({ index: 4 });
+       await page.waitForLoadState("networkidle");
+       await pageConstants.passPage.cvnInput.type(cvnNo);
+       await pageConstants.passPage.nextButton.click();
+       await pageConstants.passPage.finalPay.click();
   });
