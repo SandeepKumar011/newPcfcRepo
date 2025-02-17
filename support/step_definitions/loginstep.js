@@ -26,7 +26,6 @@ When(/^user enter the password on login page$/, async({page}) => {
    await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
 });
 
-
 When(/^user click on submit button on login page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
    await pageConstants.loginPage.submitButton.click();
@@ -41,6 +40,7 @@ Then(/^verify user is redirected to the home page$/, async({page}) => {
 
 When('user select logout button on home page', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
     await pageConstants.loginPage.logoutButton.click();
   });
