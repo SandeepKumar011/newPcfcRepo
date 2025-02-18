@@ -15,7 +15,6 @@ const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
 const addedEid='784199221026589';
-const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -70,7 +69,17 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
         await visitReason.fill('Maintance');
         await page.waitForLoadState("networkidle");
         await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(5000);
+       const today = new Date();
+       const dateString = today.toLocaleDateString();
+       const parts = dateString.split("/");
+       const day = parts[1];
+       console.log('this is before converted date' + dateString);
+       const intDate=parseInt(day);
+       const visitDate=(intDate+2);
+       console.log('this is actual visit date ' + visitDate);
+       await page.waitForTimeout(2000);
+
 
         if(visitDate<26){
             const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");

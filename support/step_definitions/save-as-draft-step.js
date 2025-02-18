@@ -9,7 +9,6 @@ const hCompany=testData.globalData.approveHostCompany
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
-const visitDate=faker.helpers.arrayElement(['15','13','14']);
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
 const futureYear=faker.helpers.arrayElement(['2026', '2027','2028','2029']);
@@ -43,17 +42,28 @@ When('user enter pass information on the create page for draft', async ({page}) 
       const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
       await dropdownreason.selectOption({ label: 'Business Meeting' });
       await page.waitForLoadState("networkidle");
-      await page.waitForTimeout(2000);
       await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
+      await page.waitForTimeout(5000);
+      const today = new Date();
+      const dateString = today.toLocaleDateString();
+      const parts = dateString.split("/");
+      const day = parts[1];
+      console.log('this is before converted date' + dateString);
+      const intDate=parseInt(day);
+      const visitDate=(intDate+2);
+      console.log('this is actual visit date ' + visitDate);
+      await page.waitForTimeout(2000);
 
       if(visitDate<26){
-        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+        await page.waitForTimeout(5000);
+        const openCalendardob=page.locator("(//img[@class='input-group-append'])[3]");
         await openCalendardob.click();
         const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
         await selectDatedob.click();
     }
     else{
-        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+        await page.waitForTimeout(5000);
+        const openCalendardob=page.locator("(//img[@class='input-group-append'])[3]");
         await openCalendardob.click();
         const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
         await selectDatedob.click();
