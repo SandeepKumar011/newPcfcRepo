@@ -1,6 +1,6 @@
-Feature: Verify approve pass functionality
+Feature: Verify save as draft pass functionality
 
-  Scenario Outline: Verify apply and approve pass functionality
+  Scenario Outline: Verify save as draft pass functionality
     Given user navigates to the login page
     When user enter the username on login page
     And user enter the password on login page
