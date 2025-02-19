@@ -39,7 +39,7 @@ let referceNumber;
 
 
 When('user enter pass information for one week pass', async ({page}) => {       
-    const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForTimeout(2000);
        await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
        await expect(pageConstants.passPage.portDropUi).toBeVisible();

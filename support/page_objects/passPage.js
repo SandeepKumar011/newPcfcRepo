@@ -14,6 +14,7 @@ class PassPage
         this.visitHour=page.locator("//input[@id='dateOfVisitHour']");
         this.visitMinutes=page.locator("//input[@id='dateOfVisitMin']");
         this.hostCompanyUi=page.locator("//input[@id='hostCompanyName']");
+        this.visitAreaName=page.locator("//input[@id='companyNameHC']");
         this.hcompanyselect=page.locator("//div[normalize-space(text())='HASCO GENERAL TRADING']");
         this.perpassAmountUi=page.locator("//input[@id='perPassAmount']");
         this.visaTypeUi=page.locator("//select[@id='searchVisaTypeIdStr']");
@@ -70,6 +71,8 @@ class PassPage
         this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
         this.approvePassOption=page.locator("//a[normalize-space(text())='Pass Approval']");
         this.searchForPassRefence=page.locator("//input[@id='tableSearch']");
+        this.openViewOption=page.locator("//i[@class='bi bi-three-dots-vertical tableIcon']");
+        this.selectViewButton=page.locator("//a[normalize-space(text())='View']");
         this.approveEdit=page.locator("(//i[@class='bi bi-pencil-fill tableIcon action-icon'])[1]");
         this.approvePhotoEdit=page.locator("(//label[@class='form-file-name']//a)[1]");
         this.approvePassportEdit=page.locator("(//label[@class='form-file-name']//a)[2]");
@@ -88,6 +91,13 @@ class PassPage
         this.moreThanTenError=page.locator("//div[normalize-space(text())='A Pass can have only upto 10 visitors.']");
         this.okForErrorMoreThanten=page.locator("//button[normalize-space(text())='OK']");
         this.okForAlert=page.locator("//button[normalize-space(text())='OK']");
+        this.forPrintStatus=page.locator("//span[normalize-space(text())='For Print']");
+        this.openPicApproval=page.locator("//a[normalize-space(text())='Photo.jpg']");
+        this.openPassportApproval=page.locator("//a[normalize-space(text())='Passport.jpg']");
+        this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");
+        this.openEmiratesApproval=page.locator("//a[normalize-space(text())='Emirates_Id.jpg']");
+        this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.jpg']");
+
     }
 }
 
