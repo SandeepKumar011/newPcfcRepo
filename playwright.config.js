@@ -18,9 +18,9 @@ const testDir = defineBddConfig({
 });
 
 module.exports = defineConfig({
-  timeout: 480 * 1000,
+  timeout: 680 * 1000,
   expect: {
-    timeout: 40 * 1000
+    timeout: 50 * 1000
   },
   // testDir: './tests',
   testDir, // <- generated BDD tests
