@@ -1,0 +1,19 @@
+{
+    "oneyearApprovalCred" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "approvalUsername1":"devhdall",
+        "approvalPassword1":"Login@345",
+        "approvalUsername2":"devssdall",
+        "approvalPassword2":"Login@345",
+         "approvalUsername3":"devmarinepoliceall",
+        "approvalPassword3":"Login@345"
+    },
+    "commonData":{
+        "portName":"Al Hamriya Port",
+        "gateType":"Gate - 1",
+        "passDuration":"One Year Pass",
+        "passType":"Entry Permit to Maritime Zone",
+        "visitReason":"Maintanance/Repairing"
+    }
+}
