@@ -12,5 +12,17 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1"
+    },
+    "sanityData":{
+        "indiVidualUserName":"automation21",
+        "indiVidualPassword":"Login@345",
+        "portName":"JAFZA",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV LIMITED",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
     }
 }
