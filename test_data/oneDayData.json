@@ -13,7 +13,7 @@
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1"
     },
-    "sanityData":{
+    "sanityDataIndividual":{
         "indiVidualUserName":"automation21",
         "indiVidualPassword":"Login@345",
         "portName":"JAFZA",
@@ -21,8 +21,23 @@
         "passDuration":"One Day Pass",
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
-        "hostCompany":"DEV LIMITED",
-        "approveUsername":"devhost1",
-        "approvePassword":"Login@345"
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"automation25",
+        "approvePassword":"Login@34567",
+        "hostUsername":"devhost1",
+        "hostPassword":"Login@345"
+    },
+
+    "sanityDataHost":{
+        "hostUsername":"devhost1",
+        "hostPassword":"Login@345",
+        "portName":"JAFZA",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"automation25",
+        "approvePassword":"Login@34567"
     }
 }

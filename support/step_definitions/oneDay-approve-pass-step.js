@@ -238,7 +238,7 @@ When('user enter pass information on the create page', async ({page}) => {
   });
 
   When('user paid amount for the apply pass', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(20000);
        await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
