@@ -9,15 +9,19 @@ const oneDayData=require('../../../test_data/oneDayData.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const portName=oneDayData.sanityData.portName
-const gateType=oneDayData.sanityData.gateType
-const passDuration=oneDayData.sanityData.passDuration
-const passType=oneDayData.sanityData.passType
-const reasonVisit=oneDayData.sanityData.visitReason
-const hCompany=oneDayData.sanityData.hostCompany
+const portName=oneDayData.sanityDataIndividual.portName
+const gateType=oneDayData.sanityDataIndividual.gateType
+const passDuration=oneDayData.sanityDataIndividual.passDuration
+const passType=oneDayData.sanityDataIndividual.passType
+const reasonVisit=oneDayData.sanityDataIndividual.visitReason
+const hCompany=oneDayData.sanityDataIndividual.hostCompany
 const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
-const approvalusername=oneDayData.sanityData.approveUsername
-const approvalpassword=oneDayData.sanityData.approvePassword
+const approvalusername=oneDayData.sanityDataIndividual.approveUsername
+const approvalpassword=oneDayData.sanityDataIndividual.approvePassword
+const loginusername=oneDayData.sanityDataIndividual.indiVidualUserName
+const loginpassword=oneDayData.sanityDataIndividual.indiVidualPassword
+const masterCardNo=testData.globalData.masterCard
+const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
@@ -45,8 +49,8 @@ Given(/^user navigates to the login page for sanity$/, async({page}) => {
 When(/^user enter the credential for the login for sanity$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(oneDayData.sanityData.indiVidualUserName);
-    await pageConstants.loginPage.enterpassword.type(oneDayData.sanityData.indiVidualPassword);
+    await pageConstants.loginPage.enterUsername.type(loginusername);
+    await pageConstants.loginPage.enterpassword.type(loginpassword);
     await pageConstants.loginPage.submitButton.click();
 });
 

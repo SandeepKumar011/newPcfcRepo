@@ -6,7 +6,7 @@
         "approvalPassword1":"Login@345",
         "approvalUsername2":"devssdall",
         "approvalPassword2":"Login@345",
-         "approvalUsername3":"devmarinepoliceall",
+        "approvalUsername3":"devmarinepoliceall",
         "approvalPassword3":"Login@345"
     },
     "commonData":{
@@ -15,5 +15,46 @@
         "passDuration":"One Year Pass",
         "passType":"Entry Permit to Maritime Zone",
         "visitReason":"Maintanance/Repairing"
+    },
+
+    "sanityDataContractor":{
+        "contractorUserName":"devcontractor1",
+        "contractorPassword":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Year Pass",
+        "passType":"Free Pass",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "hostUsername":"devhost1",
+        "hostPassword":"Login@345",
+        "approvalUsername1":"devhost1",
+        "approvalPassword1":"Login@345",
+        "approvalUsername2":"automation25",
+        "approvalPassword2":"Login@34567",
+        "approvalUsername3":"devmarinepoliceall",
+        "approvalPassword3":"Login@345"
+    },
+    "sanityDataGovernment":{
+        "gevernmentUserName":"devgovtpasscreator",
+        "gevernmentPassword":"Login@345",
+        "portName":"Al Hamriya Port",
+        "gateType":"Gate - 1",
+        "passDuration":"One Year Pass",
+        "passType":"Governmental Pass",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "hostUsername":"devhost1",
+        "hostPassword":"Login@345",
+        "approvalUsername1":"automation27",
+        "approvalPassword1":"Login@34567",
+        "approvalUsername2":"devssdall",
+        "approvalPassword2":"Login@345",
+        "approvalUsername3":"devmarinepoliceall",
+        "approvalPassword3":"Login@345"
     }
 }

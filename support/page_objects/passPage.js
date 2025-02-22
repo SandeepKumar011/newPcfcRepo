@@ -35,6 +35,7 @@ class PassPage
         this.passportFile=page.locator("//input[@name='Passport']");
         this.personalFile=page.locator("//input[@name='Photo']");
         this.eidFile=page.locator("//input[@name='Emirates Id']");
+        this.uidFileUpload=page.locator("//input[@name='Unique Identification Document(UID)']");
         this.supportingaFile=page.locator("//input[@name='Supporting Documents']");
         this.personalPic=page.locator("(//input[@id='existingUserFilePath'])[1]")
         this.passportup=page.locator("(//input[@id='existingUserFilePath'])[2]")
@@ -97,6 +98,7 @@ class PassPage
         this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");
         this.openEmiratesApproval=page.locator("//a[normalize-space(text())='Emirates_Id.jpg']");
         this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.jpg']");
+        this.openSupportiveDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.jpg']");
 
     }
 }

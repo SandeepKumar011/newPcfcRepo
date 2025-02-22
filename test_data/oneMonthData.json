@@ -1,0 +1,28 @@
+{
+    "approvalCredentials" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
+    },
+    "commonData":{
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1"
+    },
+    "sanityDataCompany":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Port Rashid",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
+    }
+}

@@ -190,7 +190,7 @@ When('user enter pass information for one week pass', async ({page}) => {
   });
   
   Then('verify pass apply successfully messge for one week pass', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
        await expect(pageConstants.passPage.confirmationPay).toBeVisible();
