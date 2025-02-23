@@ -6,6 +6,7 @@
     "test": "npx bddgen && npx playwright test",
     "testHead":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium",
     "regPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/regressionPack/",
+    "sanityPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/sanity/",
     "openReport":"npx playwright show-report"
   },
   "devDependencies": {
