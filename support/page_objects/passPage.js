@@ -72,6 +72,7 @@ class PassPage
         this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
         this.approvePassOption=page.locator("//a[normalize-space(text())='Pass Approval']");
         this.searchForPassRefence=page.locator("//input[@id='tableSearch']");
+        this.completedStatus=page.locator("//span[normalize-space(text())='Completed']");
         this.openViewOption=page.locator("//i[@class='bi bi-three-dots-vertical tableIcon']");
         this.selectViewButton=page.locator("//a[normalize-space(text())='View']");
         this.approveEdit=page.locator("(//i[@class='bi bi-pencil-fill tableIcon action-icon'])[1]");
@@ -99,6 +100,7 @@ class PassPage
         this.openEmiratesApproval=page.locator("//a[normalize-space(text())='Emirates_Id.jpg']");
         this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.jpg']");
         this.openSupportiveDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.jpg']");
+        this.openUIDApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");
 
     }
 }

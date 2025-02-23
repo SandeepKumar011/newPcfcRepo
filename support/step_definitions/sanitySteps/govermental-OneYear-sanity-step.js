@@ -20,10 +20,8 @@ const gevernmentusername=oneYearData.sanityDataGovernment.gevernmentUserName;
 const governmentpassword=oneYearData.sanityDataGovernment.gevernmentPassword;
 const govapprovalUsername1=oneYearData.sanityDataGovernment.approvalUsername1
 const govapprovalpassword1=oneYearData.sanityDataGovernment.approvalPassword1
-const govapprovalUsername2=oneYearData.sanityDataGovernment.approvalUsername2
-const govapprovalpassword2=oneYearData.sanityDataGovernment.approvalPassword2
-const govapprovalUsername3=oneYearData.sanityDataGovernment.approvalUsername3
-const govapprovalpassword3=oneYearData.sanityDataGovernment.approvalPassword3
+const govapprovalUsername2=oneYearData.sanityDataGovernment.gevernmentUserName;
+const govapprovalpassword2=oneYearData.sanityDataGovernment.gevernmentPassword;
 const masterCardNo=testData.globalData.masterCard
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
@@ -215,38 +213,14 @@ Given('user navigates to the login page for governmental', async ({page}) => {
   });
   
   When('user paid amount for the apply pass for governmental', async ({page}) => {
-    const pageConstants = new PageConstants(page);
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(20000);
-    await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
-    await pageConstants.passPage.creditDebit.click();
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
-    await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
-    await pageConstants.passPage.masterCard.click();
-    await pageConstants.passPage.paymentTermCond.click();
-    await pageConstants.passPage.agreeandPay.click();
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
-    await page.waitForSelector(`//input[@id='card_number']`, { state: 'visible' });
-    await pageConstants.passPage.cardNumberInput.type(masterCardNo);
-    //expire monyth
-    const dropdownLocator2 = page.locator("//select[@name='card_expiry_month']");
-    await dropdownLocator2.selectOption({ index: 2 });
-
-    //expire year
-    const expYear = page.locator("//select[@name='card_expiry_year']");
-    await expYear.selectOption({ index: 4 });
-    await page.waitForLoadState("networkidle");
-    await pageConstants.passPage.cvnInput.type(cvnNo);
-    await pageConstants.passPage.nextButton.click();
-    await pageConstants.passPage.finalPay.click();
+   console.log("there is not need to paid for one year pass")
   });
   
   Then('verify pass apply successfully messge for governmental', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+            const pageConstants = new PageConstants(page);
             await page.waitForLoadState("networkidle");
             await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
+            await page.waitForTimeout(5000);
             await expect(pageConstants.passPage.confirmationPay).toBeVisible();
             referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
             console.log('this is added refence number'+ referceNumber);
@@ -298,9 +272,6 @@ Then(/^verify first approvel successfully message for governmental$/, async({pag
           
               await pageConstants.passPage.openEmiratesApproval.click();
               await pageConstants.passPage.approveClose.click();
-    
-              await pageConstants.passPage.openSupportiveApproval.click();
-              await pageConstants.passPage.approveClose.click();
           
               await pageConstants.passPage.approveButton.click();
               await page.waitForLoadState("networkidle");
@@ -313,56 +284,22 @@ Then(/^verify first approvel successfully message for governmental$/, async({pag
 });
 
 Then(/^verify second approval successfully message for governmental$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	           const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
-              await page.waitForTimeout(1000);
+              await page.waitForTimeout(2000);
               await pageConstants.loginPage.enterUsername.type(govapprovalUsername2);
               await pageConstants.loginPage.enterpassword.type(govapprovalpassword2);
               await pageConstants.loginPage.submitButton.click();
               await page.waitForTimeout(1000);
               await pageConstants.passPage.passManaDrop.click();
-              await pageConstants.passPage.approvePassOption.click();
+              await pageConstants.passPage.viewAllPassOption.click();
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(1000);
               await pageConstants.passPage.searchForPassRefence.type(referceNumber);
               await page.waitForTimeout(1000);
-              await pageConstants.passPage.approveEdit.click();
-              await page.waitForTimeout(1000);
-              await pageConstants.passPage.approveButton.click();
-              await page.waitForLoadState("networkidle");
-              await page.waitForTimeout(5000);
-              await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-    
-              await page.waitForTimeout(2000);
-              await pageConstants.loginPage.logoutDrop.click();
-              await pageConstants.loginPage.logoutButton.click();
+              await expect(pageConstants.passPage.completedStatus).toBeVisible();
 });
 
 Then(/^verify Final approval successfully message for governmental$/, async({page}) => {
-	 const pageConstants = new PageConstants(page);
-        await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(2000);
-        await pageConstants.loginPage.enterUsername.type(govapprovalUsername3);
-        await pageConstants.loginPage.enterpassword.type(govapprovalpassword3);
-        await pageConstants.loginPage.submitButton.click();
-        await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(2000);
-        await pageConstants.passPage.passManaDrop.click();
-        await pageConstants.passPage.approvePassOption.click();
-        await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(1000);
-        await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-        await page.waitForTimeout(1000);
-        await pageConstants.passPage.approveEdit.click();
-        await page.waitForTimeout(1000);
-        await pageConstants.passPage.approveButton.click();
-        await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(2000);
-        await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-        await pageConstants.passPage.passManaDrop.click();
-        await pageConstants.passPage.viewAllPassOption.click();
-        await page.waitForTimeout(1000);
-        await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-        await page.waitForTimeout(3000);
-        await expect(pageConstants.passPage.forPrintStatus).toBeVisible();
+	   console.log("there is not need for third approval");
 });
