@@ -32,30 +32,30 @@ const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 When('user enter all the infomation for the pass infomation', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
     await (pageConstants.passPage.passmanagementDrop).click();
     await (pageConstants.passPage.selectapplyGatePass).click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
     await expect(pageConstants.passPage.portAccess).toBeVisible();
     await pageConstants.passPage.portAccess.click();
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     const dropdownPort = page.locator("//select[@id='portsId']");
     await dropdownPort.selectOption({ label: 'Port Rashid' });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownGate = page.locator("//select[@id='gateIdStr']");
     await dropdownGate.selectOption({ label: 'Any Gate' });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
     await dropdownPassType.selectOption({ label: 'Business Meeting' });
     await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
     await dropdownLocator.selectOption({ label: 'One Day Pass' });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
     const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
     await dropdownLocator2.selectOption({ label: 'Business Meeting' });
@@ -84,10 +84,6 @@ When('user enter all the infomation for the pass infomation', async ({page}) => 
       const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
       await selectDatedob.click();
   }
-    // const openCalendardob = page.locator("//input[@id='dateOfVisitStr']");
-    // await openCalendardob.click();
-    // const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-    // await selectDatedob.click();
     await page.waitForTimeout(2000);
     await pageConstants.passPage.visitHour.type(hoursToVisit);
     await pageConstants.passPage.visitMinutes.type(hoursToVisit);
@@ -96,8 +92,8 @@ When('user enter all the infomation for the pass infomation', async ({page}) => 
   });
   
   When('user enter information for the visitor', async ({page}) => {
-     const pageConstants = new PageConstants(page);
-     await page.waitForTimeout(5000);
+       const pageConstants = new PageConstants(page);
+       await page.waitForTimeout(2000);
        const dropdownLocator = page.locator("//select[@id='searchVisaTypeIdStr']");
        await dropdownLocator.selectOption({ label: 'Resident' });
         //calendra handle dob
@@ -120,7 +116,7 @@ When('user enter all the infomation for the pass infomation', async ({page}) => 
   
   When('user enters the blacklist emirateid', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.passPage.eidUi.type('784198512312350');
+    await pageConstants.passPage.eidUi.type('784202432658978');
   });
   
   Then('verify error message for the blacklist emirate id', async ({page}) => {
