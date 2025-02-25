@@ -101,6 +101,9 @@ class PassPage
         this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.jpg']");
         this.openSupportiveDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.jpg']");
         this.openUIDApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");
+        this.advanceSearchButton=page.locator("//button[normalize-space(text())='Advanced Search']");
+        this.referenceInput=page.locator("//input[@id='searchPassRefNumber']");
+        this.searcgButton=page.locator("//input[@id='Search']");
 
     }
 }

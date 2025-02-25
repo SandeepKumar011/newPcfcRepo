@@ -26,10 +26,28 @@ Given('user navigates the login page for pass', async ({page}) => {
     await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
     await pageConstants.loginPage.submitButton.click();
   });
+
+  Then('user should be redirected to the home page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(2000);
+    await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
+  });
   
   Then('verify Apply Pass service option should be visible', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await page.waitForLoadState("networkidle");
-    await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
      await expect(pageConstants.passPage.passmanagementDrop).toBeVisible();
+  });
+
+  When('user select logout dropdown on home page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForTimeout(2000);
+    await pageConstants.loginPage.logoutDrop.click();
+    await pageConstants.loginPage.logoutButton.click();
+  });
+  
+  Then('verify user is redirected to the login page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await expect(pageConstants.loginPage.enterUsername).toBeVisible();
   });

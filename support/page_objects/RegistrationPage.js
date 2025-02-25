@@ -51,6 +51,9 @@ class RegistrationPage
         this.compnayLicenceExpireError=page.locator("//label[normalize-space(text())='Trade License Expiry Date is required']");
         this.moreThan2mb=page.locator("//div[normalize-space(text())='Uploaded file size should not be greater than 500KB']");
         this.afteruploadDeleteCom=page.locator("(//label[normalize-space(text())='Delete'])[5]");
+        this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
+        this.passmanagementDrop=page.locator("//a[normalize-space(text())='Pass Management']");
+        this.selectapplyGatePass=page.locator("//a[normalize-space(text())='Apply Gate Pass']");
     }
 }
 
