@@ -71,6 +71,10 @@ class PassPage
         this.passManaDrop=page.locator("//a[normalize-space(text())='Pass Management']");
         this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
         this.approvePassOption=page.locator("//a[normalize-space(text())='Pass Approval']");
+        this.printPass=page.locator("//a[normalize-space(text())='Print Pass']");
+        this.checkboxForPrint=page.locator("(//input[@type='checkbox'])[1]");
+        this.donwloadPass=page.locator("//input[@id='download']");
+        this.yesForDownload=page.locator("//button[normalize-space(text())='Yes']");
         this.searchForPassRefence=page.locator("//input[@id='tableSearch']");
         this.completedStatus=page.locator("//span[normalize-space(text())='Completed']");
         this.openViewOption=page.locator("//i[@class='bi bi-three-dots-vertical tableIcon']");
@@ -94,6 +98,7 @@ class PassPage
         this.okForErrorMoreThanten=page.locator("//button[normalize-space(text())='OK']");
         this.okForAlert=page.locator("//button[normalize-space(text())='OK']");
         this.forPrintStatus=page.locator("//span[normalize-space(text())='For Print']");
+        this.passPrintingStatus=page.locator("//span[normalize-space(text())='Printing']");
         this.openPicApproval=page.locator("//a[normalize-space(text())='Photo.jpg']");
         this.openPassportApproval=page.locator("//a[normalize-space(text())='Passport.jpg']");
         this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");

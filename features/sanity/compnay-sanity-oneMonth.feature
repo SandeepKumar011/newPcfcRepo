@@ -15,5 +15,8 @@ Feature: Verify one month approve pass for individual functionality
     Then verify logout verification message for the company for one month
     When user approve the apply pass on the list page for the company for one month
     Then verify pass approved successfully message for the company for one month
+    When verify second second approval message for the company one month
+    And verify Third approval message for the company one month
+    Then verify final status completed for the applyied pass
     When user select logout button on home page for sanity
     Then verify logout verification message for sanity

@@ -35,7 +35,9 @@
         "approvalUsername2":"automation25",
         "approvalPassword2":"Login@34567",
         "approvalUsername3":"devmarinepoliceall",
-        "approvalPassword3":"Login@345"
+        "approvalPassword3":"Login@345",
+        "approveUsername4":"ibrahim.alhammadi@dubaiworld.ae",
+        "approvePassword4":"Login345"
     },
     "sanityDataGovernment":{
         "gevernmentUserName":"devgovtpasscreator",
@@ -55,6 +57,8 @@
         "approvalUsername2":"devssdall",
         "approvalPassword2":"Login@345",
         "approvalUsername3":"devmarinepoliceall",
-        "approvalPassword3":"Login@345"
+        "approvalPassword3":"Login@345",
+        "approvalUsername4":"ibrahim.alhammadi@dubaiworld.ae",
+        "approvalPassword4":"Login345"
     }
 }
