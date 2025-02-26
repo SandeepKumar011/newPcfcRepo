@@ -282,4 +282,13 @@ Then(/^verify pass approved successfully message for the host for one day$/, asy
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+    await page.waitForTimeout(5000);
+    await pageConstants.passPage.passManaDrop.click();
+    await pageConstants.passPage.viewAllPassOption.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(2000);
+    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+    await page.waitForTimeout(3000);
+    await expect(pageConstants.passPage.completedStatus).toBeVisible();
+
 });
