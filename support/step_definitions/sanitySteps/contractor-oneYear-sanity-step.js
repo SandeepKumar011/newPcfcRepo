@@ -40,6 +40,10 @@ const mobileNum=faker.string.numeric({ length: 12 });
 const hoursToVisit='5';
 const nationality=testData.globalData.national;
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
+const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
+const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
+const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
+const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
 
@@ -190,10 +194,10 @@ Given('user navigates to the login page for contractor', async ({page}) => {
         await pageConstants.passPage.visNationalField.type(nationality);
         await pageConstants.passPage.selectVisNationality.click();
         await pageConstants.passPage.visCompany.type(fname);
-        await pageConstants.passPage.personalFile.setInputFiles(uploadFilePath);
-        await pageConstants.passPage.passportFile.setInputFiles(uploadFilePath);
-        await pageConstants.passPage.eidFile.setInputFiles(uploadFilePath);
-        await pageConstants.passPage.supportingaFile.setInputFiles(uploadFilePath);
+        await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
+        await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
+        await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
+        await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
   });
   
   Then('user save the visitor for contractor', async ({page}) => {
