@@ -22,6 +22,8 @@ const govapprovalUsername1=oneYearData.sanityDataGovernment.approvalUsername1
 const govapprovalpassword1=oneYearData.sanityDataGovernment.approvalPassword1
 const govapprovalUsername2=oneYearData.sanityDataGovernment.gevernmentUserName;
 const govapprovalpassword2=oneYearData.sanityDataGovernment.gevernmentPassword;
+const govapprovalUsername4=oneYearData.sanityDataGovernment.approvalUsername4
+const govapprovalpassword4=oneYearData.sanityDataGovernment.approvalPassword4
 const masterCardNo=testData.globalData.masterCard
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
@@ -301,5 +303,33 @@ Then(/^verify second approval successfully message for governmental$/, async({pa
 });
 
 Then(/^verify Final approval successfully message for governmental$/, async({page}) => {
-	   console.log("there is not need for third approval");
+	       const pageConstants = new PageConstants(page);
+         await page.waitForTimeout(2000);
+         await pageConstants.loginPage.logoutDrop.click();
+         await pageConstants.loginPage.logoutButton.click();
+         await page.waitForLoadState("networkidle");
+         await page.waitForTimeout(2000);
+         await pageConstants.loginPage.enterUsername.type(govapprovalUsername4);
+         await pageConstants.loginPage.enterpassword.type(govapprovalpassword4);
+         await pageConstants.loginPage.submitButton.click();
+         await page.waitForLoadState("networkidle");
+         await page.waitForTimeout(2000);
+         await pageConstants.passPage.passManaDrop.click();
+         await pageConstants.passPage.printPass.click();
+         await page.waitForLoadState("networkidle");
+         await page.waitForTimeout(5000);
+         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+         await page.waitForTimeout(2000);
+         await pageConstants.passPage.checkboxForPrint.click();
+         await pageConstants.passPage.donwloadPass.click();
+         await pageConstants.passPage.yesForDownload.click();
+         await page.waitForTimeout(2000);
+         await pageConstants.passPage.okForAlert.click();
+         await page.waitForLoadState("networkidle");
+         await pageConstants.passPage.passManaDrop.click();
+         await pageConstants.passPage.viewAllPassOption.click();
+         await page.waitForTimeout(5000);
+         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+         await page.waitForTimeout(5000);
+         await expect(pageConstants.passPage.passPrintingStatus).toBeVisible();
 });
