@@ -60,5 +60,23 @@
         "approvalPassword3":"Login@345",
         "approvalUsername4":"ibrahim.alhammadi@dubaiworld.ae",
         "approvalPassword4":"Login345"
+    },
+    "sanityDataHost":{
+        "hostUsername":"devhost1",
+        "hostPassword":"Login@345",
+        "portName":"JAFZA",
+        "gateType":"Any Gate",
+        "passDuration":"One Year Pass",
+        "passType":"Entry Permit (For Individual)",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername1":"automation25",
+        "approvePassword1":"Login@34567",
+        "approveUsername2":"devssdall",
+        "approvePassword2":"Login@345",
+        "approveUsername3":"devssdall",
+        "approvePassword3":"Login@345",
+        "approveUsername4":"ibrahim.alhammadi@dubaiworld.ae",
+        "approvePassword4":"Login345"
     }
 }
