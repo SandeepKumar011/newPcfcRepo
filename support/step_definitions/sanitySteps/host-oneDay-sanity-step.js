@@ -67,7 +67,7 @@ Given('user navigates to the login page for host for one day', async ({page}) =>
   });
   
   Then('Enter the pass information for the host for one day', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
       await page.waitForTimeout(5000);
       await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
       await expect(pageConstants.passPage.portDropUi).toBeVisible();
@@ -109,12 +109,19 @@ Given('user navigates to the login page for host for one day', async ({page}) =>
         const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
         await selectDatedob.click();
     }
-    else{
-        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-        await openCalendardob.click();
-        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
-        await selectDatedob.click();
+    else if(visitDate<29){
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
+      await selectDatedob.click();
     }
+
+  else if(visitDate<34){
+   const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+   await openCalendardob.click();
+   const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
+   await selectDatedob.click();
+}
     
       await page.waitForTimeout(2000);
       await pageConstants.passPage.visitHour.type(hoursToVisit);
@@ -124,7 +131,7 @@ Given('user navigates to the login page for host for one day', async ({page}) =>
   });
   
   Then('user enter the visitor information for the host for one day', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
       await page.waitForTimeout(2000);
       const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
       await dropdownVisa.selectOption({ label: 'Resident' });
@@ -214,7 +221,7 @@ Given('user navigates to the login page for host for one day', async ({page}) =>
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
   });
   
   When('user paid amount for the apply pass for the host for one day', async ({page}) => {
@@ -240,13 +247,13 @@ When(/^user select logout button on home page for the host for one day$/, async(
 });
 
 Then(/^verify logout verification message for the host for one day$/, async({page}) => {
-	const pageConstants = new PageConstants(page);
+	  const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.enterUsername).toBeVisible();
 });
 
 When(/^user approve the apply pass on the list page for the host for one day$/, async({page}) => {
-	    const pageConstants = new PageConstants(page);
+	     const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
         await pageConstants.loginPage.enterUsername.type(approvalusername);

@@ -115,12 +115,19 @@ let referceNumber;
       const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
       await selectDatedob.click();
   }
-  else{
-      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-      await openCalendardob.click();
-      const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
-      await selectDatedob.click();
+  else if(visitDate<29){
+    const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+    await openCalendardob.click();
+    const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
+    await selectDatedob.click();
   }
+
+else if(visitDate<34){
+ const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+ await openCalendardob.click();
+ const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
+ await selectDatedob.click();
+}
   
     await page.waitForTimeout(2000);
     await pageConstants.passPage.hostCompanyUi.type(hCompany);
@@ -309,6 +316,8 @@ Then(/^verify pass approved successfully message for the company for one month$/
           await page.waitForLoadState("networkidle");
           await page.waitForTimeout(5000);
           await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+          referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+          console.log('this is updated refence number'+ referceNumber);
 });
 
 
@@ -318,12 +327,12 @@ When('verify second second approval message for the company one month', async ({
     await pageConstants.loginPage.logoutDrop.click();
     await pageConstants.loginPage.logoutButton.click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     await pageConstants.loginPage.enterUsername.type(approvalusername2);
     await pageConstants.loginPage.enterpassword.type(approvalpassword2);
     await pageConstants.loginPage.submitButton.click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     await pageConstants.passPage.passManaDrop.click();
     await pageConstants.passPage.approvePassOption.click();
     await page.waitForLoadState("networkidle");
@@ -333,7 +342,7 @@ When('verify second second approval message for the company one month', async ({
 
     await pageConstants.passPage.approvePhotoEdit.click();
     await pageConstants.passPage.approveClose.click();
-
+    await page.waitForTimeout(7000);
     await pageConstants.passPage.approvePassportEdit.click();
     await pageConstants.passPage.approveClose.click();
 

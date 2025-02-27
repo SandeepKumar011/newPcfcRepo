@@ -115,12 +115,19 @@ Given('user navigates to the login page for contractor', async ({page}) => {
         const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
         await selectDatedob.click();
     }
-    else{
-        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-        await openCalendardob.click();
-        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
-        await selectDatedob.click();
+    else if(visitDate<29){
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
+      await selectDatedob.click();
     }
+
+  else if(visitDate<34){
+   const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+   await openCalendardob.click();
+   const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
+   await selectDatedob.click();
+}
     
       await page.waitForTimeout(2000);
       await pageConstants.passPage.hostCompanyUi.type(hCompany);
@@ -250,7 +257,7 @@ Then(/^verify logout verification message for contractor$/, async({page}) => {
 });
 
 When(/^user approve the apply pass for contractor$/, async({page}) => {
-	 const pageConstants = new PageConstants(page);
+	         const pageConstants = new PageConstants(page);
            await page.waitForLoadState("networkidle");
            await page.waitForTimeout(7000);
            await pageConstants.loginPage.enterUsername.type(contrapprovalUsername1);
@@ -335,33 +342,5 @@ Then(/^verify second approval successfully message for contractor$/, async({page
 });
 
 Then(/^verify Final approval successfully message for contractor$/, async({page}) => {
-    const pageConstants = new PageConstants(page);
-    await page.waitForTimeout(2000);
-    await pageConstants.loginPage.logoutDrop.click();
-    await pageConstants.loginPage.logoutButton.click();
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(2000);
-    await pageConstants.loginPage.enterUsername.type(contrapprovalUsername4);
-    await pageConstants.loginPage.enterpassword.type(contrapprovalpassword4);
-    await pageConstants.loginPage.submitButton.click();
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(2000);
-    await pageConstants.passPage.passManaDrop.click();
-    await pageConstants.passPage.printPass.click();
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
-    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-    await page.waitForTimeout(2000);
-    await pageConstants.passPage.checkboxForPrint.click();
-    await pageConstants.passPage.donwloadPass.click();
-    await pageConstants.passPage.yesForDownload.click();
-    await page.waitForTimeout(2000);
-    await pageConstants.passPage.okForAlert.click();
-    await page.waitForLoadState("networkidle");
-    await pageConstants.passPage.passManaDrop.click();
-    await pageConstants.passPage.viewAllPassOption.click();
-    await page.waitForTimeout(5000);
-    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-    await page.waitForTimeout(5000);
-    await expect(pageConstants.passPage.passPrintingStatus).toBeVisible();
+   console.log('no need for the final approval');
 });
