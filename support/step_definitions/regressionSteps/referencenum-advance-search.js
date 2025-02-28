@@ -25,5 +25,4 @@ When('user select advance search on view all passes page', async ({page}) => {
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.referenceInput.type("6589548754")
     await pageConstants.passPage.searcgButton.click();
-    //add more validation here
   });
