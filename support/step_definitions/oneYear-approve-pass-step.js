@@ -80,12 +80,19 @@ When('user enter pass information for one year pass', async ({page}) => {
             const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
             await selectDatedob.click();
         }
-        else{
-            const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-            await openCalendardob.click();
-            const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
-            await selectDatedob.click();
+        else if(visitDate<29){
+          const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+          await openCalendardob.click();
+          const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
+          await selectDatedob.click();
         }
+    
+      else if(visitDate<34){
+       const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+       await openCalendardob.click();
+       const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
+       await selectDatedob.click();
+    }
         
           await page.waitForTimeout(2000);
           await pageConstants.passPage.visitAreaName.type(fname);
