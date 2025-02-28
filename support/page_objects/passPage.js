@@ -108,6 +108,12 @@ class PassPage
         this.openUIDApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.pdf']");
         this.advanceSearchButton=page.locator("//button[normalize-space(text())='Advanced Search']");
         this.referenceInput=page.locator("//input[@id='searchPassRefNumber']");
+        this.searchFirstnameInput=page.locator("//input[@id='searchVisitorName']");
+        this.searchLastnameInput=page.locator("//input[@id='searchVisitorlastName']");
+        this.searchHosctComInput=page.locator("//input[@id='searchHostCompanyName']");
+        this.searchVisitorNameInput=page.locator("//input[@id='searchVisitorCompany']");
+        this.searchVistotrCountryInput=page.locator("//input[@id='nationalityValue']");
+        this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
         this.searcgButton=page.locator("//input[@id='Search']");
 
     }

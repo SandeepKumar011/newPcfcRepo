@@ -39,5 +39,16 @@
         "hostCompany":"DEV HOST1",
         "approveUsername":"automation25",
         "approvePassword":"Login@34567"
+    },
+
+    "regressionData":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1"
     }
 }

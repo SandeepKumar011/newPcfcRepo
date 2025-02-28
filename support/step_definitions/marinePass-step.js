@@ -81,18 +81,25 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
        await page.waitForTimeout(2000);
 
 
-        if(visitDate<26){
-            const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-            await openCalendardob.click();
-            const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
-            await selectDatedob.click();
-        }
-        else{
-            const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
-            await openCalendardob.click();
-            const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[2]`)
-            await selectDatedob.click();
-        }
+       if(visitDate<26){
+        const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+        await openCalendardob.click();
+        const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
+        await selectDatedob.click();
+    }
+    else if(visitDate<29){
+      const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+      await openCalendardob.click();
+      const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
+      await selectDatedob.click();
+    }
+
+  else if(visitDate<34){
+   const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
+   await openCalendardob.click();
+   const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
+   await selectDatedob.click();
+}
 
         await page.waitForLoadState("networkidle");
         const visitArea=page.locator("//input[@id='companyNameHC']")
