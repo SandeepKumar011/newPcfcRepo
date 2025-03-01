@@ -40,7 +40,6 @@ const emailId=faker.internet.email();
 const mobileNum=faker.string.numeric({ length: 12 })
 const hoursToVisit='5';
 const nationality=testData.globalData.national
-const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
 const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
 const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');

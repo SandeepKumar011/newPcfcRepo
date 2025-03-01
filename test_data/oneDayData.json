@@ -50,5 +50,60 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1"
+    },
+    "regressionDataCompany":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536"
+    },
+    "regressionDataContractor":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536"
+    },
+    "regressionDataHost":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536"
+    },
+    "regressionDataIndividual":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536"
+    },
+    "regressionDataGov":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536"
     }
 }
