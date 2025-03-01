@@ -113,6 +113,8 @@ class PassPage
         this.searchHosctComInput=page.locator("//input[@id='searchHostCompanyName']");
         this.searchVisitorNameInput=page.locator("//input[@id='searchVisitorCompany']");
         this.searchVistotrCountryInput=page.locator("//input[@id='nationalityValue']");
+        this.searchEidInput=page.locator("//input[@id='searchEmiratesId']");
+        this.searchPassportInput=page.locator("//input[@id='searchPassportNo']");
         this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
         this.searcgButton=page.locator("//input[@id='Search']");
 
