@@ -23,7 +23,7 @@ Given('user navigates the login page for reset update profile', async ({}) => {
   });
   
   When('user enter the crendential for the reset update profile', async ({}) => {
-    const pageConstants = new PageConstants(page);
+        const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await pageConstants.loginPage.enterUsername.type(username);
         await pageConstants.loginPage.enterpassword.type(password);
@@ -48,8 +48,8 @@ Given('user navigates the login page for reset update profile', async ({}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForTimeout(2000);
        await pageConstants.loginPage.existingPwd.type('Login@345');
-       await pageConstants.loginPage.newPwd.type(lname);
-       await pageConstants.loginPage.confirmPwd.type(lname);
+       await pageConstants.loginPage.newPwd.type('Login@34567');
+       await pageConstants.loginPage.confirmPwd.type('Login@34567');
   });
   
   When('user submit the infomation for reset', async ({}) => {

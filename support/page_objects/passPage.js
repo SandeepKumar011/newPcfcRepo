@@ -86,6 +86,10 @@ class PassPage
         this.approveEmiratesEdit=page.locator("(//label[@class='form-file-name']//a)[4]");
         this.approveClose=page.locator("(//button[@class='btn-close'])[1]");
         this.approveButton=page.locator("//input[@id='approveId']");
+        this.returnButton=page.locator("//input[@id='returnId']");
+        this.returnReasonMessage=page.locator("//textarea[@id='returnRemarks']");
+        this.confirmreturnButton=page.locator("//input[@id='returnModalId']");
+        this.nextapproveButton=page.locator("//input[@id='nextId']");
         this.approveSuccessMess=page.locator("//label[normalize-space(text())='Pass Approved Successfully']");
         this.expireStatus=page.locator("//span[normalize-space(text())='Expired']");
         this.saveAsDraft=page.locator("//input[@id='saveAsDraft']");
@@ -117,6 +121,7 @@ class PassPage
         this.searchPassportInput=page.locator("//input[@id='searchPassportNo']");
         this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
         this.searcgButton=page.locator("//input[@id='Search']");
+        this.amendementMessageSuccess=page.locator("//label[normalize-space(text())='Pass Returned for Amendment Successfully']")
 
     }
 }
