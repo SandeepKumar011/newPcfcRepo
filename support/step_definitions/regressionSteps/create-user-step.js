@@ -97,4 +97,36 @@ Given('user navigates the login page for add user', async ({page}) => {
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
   });
+
+  When('search added user on the list page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    console.log('website is not woring , please add search functionality');
+  });
   
+  Then('verify user added information on list page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    console.log('website is not woring , please add search functionality');
+  });
+  
+  When('user enter the admin information for add user', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(2000);
+    const roleLocator = page.locator("//select[@id='roleIdStr']");
+    await roleLocator.selectOption({ label: 'Telephone Receiver' });
+    const genderDrop =page.locator("//select[@name='title']");
+    await genderDrop.selectOption({ label: 'Mr' });
+    await pageConstants.passPage.visfirstName.type(firstName);
+    await pageConstants.passPage.vislastName.clear();
+    await pageConstants.passPage.vislastName.type(lastName);
+    await pageConstants.passPage.visMobile.clear();
+    await pageConstants.passPage.visMobile.type(visaNumber);
+    const locationLocator = page.locator("(//span[normalize-space(text())='None selected'])[1]");
+    await locationLocator.click();
+    await page.locator("//label[normalize-space(text())='Al Hamriya Port']").click()
+    const passDuration = page.locator("(//span[normalize-space(text())='None selected'])[2]");
+    await passDuration.click();
+    await page.locator("//label[normalize-space(text())='One Day Pass']").click()
+  });

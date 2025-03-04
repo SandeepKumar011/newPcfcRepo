@@ -60,7 +60,9 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
-        "existingEid":"784199553553536"
+        "existingEid":"784199553553536",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
     },
     "regressionDataContractor":{
         "username":"wallstreet",
@@ -71,6 +73,8 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
         "existingEid":"784199553553536"
     },
     "regressionDataHost":{
@@ -82,6 +86,8 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
         "existingEid":"784199553553536"
     },
     "regressionDataIndividual":{
@@ -93,6 +99,8 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
         "existingEid":"784199553553536"
     },
     "regressionDataGov":{
@@ -104,6 +112,8 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
-        "existingEid":"784199553553536"
+        "existingEid":"784199553553536",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
     }
 }

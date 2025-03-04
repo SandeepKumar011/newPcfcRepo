@@ -4,7 +4,7 @@ Feature: Verify create user Service functionality
     Given user navigates the login page for add user
     When user enter the crendential for the add user
     Then user should be redirected to the home page for add user
-    When user enter the interan information for add user
+    When user enter the admin information for add user
     And enter the username passwrod and confirm password
     And submit the information for add user on create page
     Then verify success message for the add user
