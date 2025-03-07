@@ -135,7 +135,10 @@ class PassPage
         this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
         this.searcgButton=page.locator("//input[@id='Search']");
         this.amendementMessageSuccess=page.locator("//label[normalize-space(text())='Pass Returned for Amendment Successfully']")
-
+        this.userManagement=page.locator("//a[normalize-space(text())='User Management']");
+        this.createuser=page.locator("//a[normalize-space(text())='Create user']");
+        this.serachuser=page.locator("//a[normalize-space(text())='Search User']");
+        this.validationsearchuser=page.locator("(//tbody//tr//td[1])[1]");
     }
 }
 
