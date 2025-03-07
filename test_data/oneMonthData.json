@@ -30,5 +30,25 @@
         "approvePassword3":"Login@345",
         "approveUsername4":"ibrahim.alhammadi@dubaiworld.ae",
         "approvePassword4":"Login345"
+    },
+
+    "renewCompany":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Port Rashid",
+        "gateType":"Any Gate",
+        "passType":"Entry Permit (For Individual)",
+        "passDuration":"One Month Pass",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "approveUsername2":"automation25",
+        "approvePassword2":"Login@34567",
+        "approveUsername3":"devssdall",
+        "approvePassword3":"Login@345",
+        "approveUsername4":"ibrahim.alhammadi@dubaiworld.ae",
+        "approvePassword4":"Login345",
+        "expiredEid":"03032519053947"
     }
 }
