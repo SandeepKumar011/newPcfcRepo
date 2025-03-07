@@ -101,13 +101,15 @@ Given('user navigates the login page for add user', async ({page}) => {
   When('search added user on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    console.log('website is not woring , please add search functionality');
+    await pageConstants.passPage.userManagement.click();
+    await pageConstants.passPage.serachuser.click();
   });
   
   Then('verify user added information on list page', async ({page}) => {
-    const pageConstants = new PageConstants(page);
-    await page.waitForLoadState("networkidle");
-    console.log('website is not woring , please add search functionality');
+   const pageConstants = new PageConstants(page);
+       await page.waitForLoadState("networkidle");
+       await pageConstants.passPage.searchForPassRefence.type(firstName);
+       await expect(pageConstants.passPage.validationsearchuser).toBeVisible();
   });
   
   When('user enter the admin information for add user', async ({page}) => {
