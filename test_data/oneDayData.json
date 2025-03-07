@@ -90,6 +90,21 @@
         "approvePassword":"Login@345",
         "existingEid":"784199553553536"
     },
+
+    "renewDataHost":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "existingEid":"784199553553536",
+        "expiredEid":"784199553553536"
+    },
     "regressionDataIndividual":{
         "username":"wallstreet",
         "password":"Login@345",
@@ -103,6 +118,20 @@
         "approvePassword":"Login@345",
         "existingEid":"784199553553536"
     },
+    "renewDataIndividual":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "existingEid":"784199553553536",
+        "expiredEid":"784199553553536"
+    },
     "regressionDataGov":{
         "username":"wallstreet",
         "password":"Login@345",
@@ -115,5 +144,34 @@
         "existingEid":"784199553553536",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345"
+    },
+    "renewDataGov":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "existingEid":"784199553553536",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "expiredEid":"784199553553536"
+    },
+
+    "renewDataContractor":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "existingEid":"784199553553536",
+        "expiredEid":"784199553553536"
     }
 }
