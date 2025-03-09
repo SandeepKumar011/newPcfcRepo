@@ -105,6 +105,7 @@ class PassPage
         this.approveSuccessMess=page.locator("//label[normalize-space(text())='Pass Approved Successfully']");
         this.rejectionSuccMess=page.locator("//label[normalize-space(text())='Pass has been Rejected successfully']");
         this.expireStatus=page.locator("//span[normalize-space(text())='Expired']");
+        this.cancelledStatus=page.locator("//span[normalize-space(text())='Cancelled']");
         this.saveAsDraft=page.locator("//input[@id='saveAsDraft']");
         this.submitforDraft=page.locator("//button[@id='saveAsDraftSubmit']");
         this.draftSuccessMess=page.locator("//label[normalize-space(text())='Draft Saved Successfully']");
@@ -118,9 +119,10 @@ class PassPage
         this.passPrintingStatus=page.locator("//span[normalize-space(text())='Printing']");
         this.openPicApproval=page.locator("//a[normalize-space(text())='Photo.png']");
         this.openPassportApproval=page.locator("//a[normalize-space(text())='Passport.pdf']");
-        this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.jpg']");
+        this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.pdf']");
         this.openEmiratesApproval=page.locator("//a[normalize-space(text())='Emirates_Id.pdf']");
         this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.pdf']");
+        this.openSupportiveNocDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.pdf']");
         this.openSupportiveDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.pdf']");
         this.openUIDApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.pdf']");
         this.advanceSearchButton=page.locator("//button[normalize-space(text())='Advanced Search']");

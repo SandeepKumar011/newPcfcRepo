@@ -5,8 +5,11 @@
   "scripts": {
     "test": "npx bddgen && npx playwright test",
     "testHead":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium",
-    "regPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/regressionPack/",
+    "regressionPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/regressionPack/",
     "sanityPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/sanity/",
+    "loginPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/login-management/",
+    "passPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/pass-management/",
+    "registrationPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/registration-management/",
     "openReport":"npx playwright show-report"
   },
   "devDependencies": {

@@ -33,12 +33,16 @@ const lname=faker.person.lastName();
 const emailId=faker.internet.email();
 const mobileNum=faker.string.numeric({ length: 12 })
 const nationality=testData.globalData.national
-const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
+const uploadFilePath=path.join(process.cwd(), 'test_data/upload/sample.pdf');
+const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
+const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
+const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
+const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
 
 When('user enter pass information for one year pass', async ({page}) => {  
-    const pageConstants = new PageConstants(page);
+          const pageConstants = new PageConstants(page);
           await page.waitForTimeout(2000);
           await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
           await expect(pageConstants.passPage.portDropUi).toBeVisible();
@@ -99,7 +103,7 @@ When('user enter pass information for one year pass', async ({page}) => {
   });
   
   When('user enter the visitor information for one year pass', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+             const pageConstants = new PageConstants(page);
              await page.waitForTimeout(2000);
              const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
              await dropdownVisa.selectOption({ label: 'Resident' });
@@ -129,7 +133,7 @@ When('user enter pass information for one year pass', async ({page}) => {
               await page.waitForLoadState("networkidle");
               await expect(pageConstants.passPage.errorValidManually).toBeVisible();
               await page.waitForLoadState("networkidle");
-              await page.waitForTimeout(5000);
+              await page.waitForTimeout(2000);
               const dropdownLocator = page.locator("//select[@id='title']");
               await dropdownLocator.selectOption({ label: 'Mr' });
               await pageConstants.passPage.visfirstName.clear();
@@ -165,10 +169,10 @@ When('user enter pass information for one year pass', async ({page}) => {
                await pageConstants.passPage.visNationalField.type(nationality);
                await pageConstants.passPage.selectVisNationality.click();
                await pageConstants.passPage.visCompany.type(fname);
-               await pageConstants.passPage.personalPic.setInputFiles(uploadFilePath);
-               await pageConstants.passPage.passportup.setInputFiles(uploadFilePath);
-               await pageConstants.passPage.suppportDocUp.setInputFiles(uploadFilePath);
-               await pageConstants.passPage.eidUp.setInputFiles(uploadFilePath); 
+               await pageConstants.passPage.personalPic.setInputFiles(uploadPic);
+               await pageConstants.passPage.passportup.setInputFiles(uploadPassport);
+               await pageConstants.passPage.suppportDocUp.setInputFiles(uploadSupport);
+               await pageConstants.passPage.eidUp.setInputFiles(uploadEid); 
                await pageConstants.passPage.dnaUp.setInputFiles(uploadFilePath);  
   });
   
@@ -190,12 +194,12 @@ When('user enter pass information for one year pass', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
     await pageConstants.passPage.okForAlert.click();
   });
   
   Then('verify pass apply successfully messge for one year pass', async ({page}) => {
-      const pageConstants = new PageConstants(page);
+           const pageConstants = new PageConstants(page);
            await page.waitForLoadState("networkidle");
            await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
            await expect(pageConstants.passPage.confirmationPay).toBeVisible();
@@ -220,12 +224,12 @@ When('user enter pass information for one year pass', async ({page}) => {
   When('user approve the apply pass for one year pass', async ({page}) => {
       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
-       await page.waitForTimeout(7000);
+       await page.waitForTimeout(5000);
        await pageConstants.loginPage.enterUsername.type(approveUserName1);
        await pageConstants.loginPage.enterpassword.type(approvePassword1);
        await pageConstants.loginPage.submitButton.click();
        await page.waitForLoadState("networkidle");
-       await page.waitForTimeout(5000);
+       await page.waitForTimeout(2000);
        await pageConstants.passPage.passManaDrop.click();
        await pageConstants.passPage.approvePassOption.click();
   });
@@ -251,7 +255,7 @@ When('user enter pass information for one year pass', async ({page}) => {
           await pageConstants.passPage.openEmiratesApproval.click();
           await pageConstants.passPage.approveClose.click();
 
-          await pageConstants.passPage.openSupportiveApproval.click();
+          await pageConstants.passPage.openSupportiveNocDocApproval.click();
           await pageConstants.passPage.approveClose.click();
       
           await pageConstants.passPage.approveButton.click();
@@ -282,7 +286,7 @@ When('user enter pass information for one year pass', async ({page}) => {
           await page.waitForTimeout(1000);
           await pageConstants.passPage.approveButton.click();
           await page.waitForLoadState("networkidle");
-          await page.waitForTimeout(5000);
+          await page.waitForTimeout(3000);
           await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
 
           await page.waitForTimeout(2000);

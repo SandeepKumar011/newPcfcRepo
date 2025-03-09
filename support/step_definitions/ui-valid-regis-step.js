@@ -110,6 +110,7 @@ Given('the user navigates to the registration page', async ({page}) => {
 
 When(/^user selects back to login button on registration page$/, async({page}) => {
   const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
   await pageConstants.registrationPage.uiBacktoLogin.click();
 });
 
