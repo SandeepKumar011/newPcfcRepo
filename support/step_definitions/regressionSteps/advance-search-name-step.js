@@ -211,3 +211,33 @@ else if(visitDate<34){
     await pageConstants.passPage.searchVisitorNameInput.type(fname);
     await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
   });
+
+  Then('verify search by visitor nationality', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await pageConstants.passPage.searchVistotrCountryInput.type(hCompany);
+    await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
+    await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
+  });
+
+  Then('verify search by EID number on list page', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await pageConstants.passPage.searchEidInput.type(actualEid);
+    await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
+});
+
+Then('verify search by passport number on list page', async ({page}) => {
+ const pageConstants = new PageConstants(page);
+ await page.waitForLoadState("networkidle");
+ await pageConstants.passPage.searchPassportInput.type(dynamicNumber);
+ await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
+});
+
+Then('verify search by port name on list page', async ({page}) => {
+ const pageConstants = new PageConstants(page);
+ await page.waitForLoadState("networkidle");
+ const dropdownPort = page.locator("//select[@id='searchPortsIdStr']");
+ await dropdownPort.selectOption({ label: portName });
+ await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
+});

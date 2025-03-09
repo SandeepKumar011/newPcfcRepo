@@ -26,6 +26,10 @@ const emailId=faker.internet.email();
 const mobileNum='788956897854';
 const hoursToVisit='5';
 const nationality=testData.globalData.national
+const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
+const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
+const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
+const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 let referceNumber;
 
@@ -41,14 +45,14 @@ When(/^user enter all the information for pass information$/, async({page}) => {
     await page.waitForTimeout(5000);
     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownLocator = page.locator("//select[@id='portsId']");
     await dropdownLocator.selectOption({ label: 'Al Hamriya Port' });
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownLocator2 = page.locator("//select[@id='gateIdStr']");
     await dropdownLocator2.selectOption({ label: 'Gate - 1' });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownLocator3 = page.locator("//select[@id='passTypeIdStr']");
     await dropdownLocator3.selectOption({ label: 'Entry Permit to Maritime Zone' });
 });
@@ -56,20 +60,20 @@ When(/^user enter all the information for pass information$/, async({page}) => {
 When(/^user enter the infomation and seach visitor availability$/, async({page}) => {
 	 const pageConstants = new PageConstants(page);
         await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
         const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
         await dropdownLocator.selectOption({ label: 'Six Months Pass' });
         await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
         await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
         const dropdownLocator2 = page.locator("//select[@id='reasonOfVisitIdStr']");
         await dropdownLocator2.selectOption({ label: 'Other' });
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
         const visitReason=page.locator("//input[@id='reasonOfVisitTextStr']")
         await visitReason.fill('Maintance');
         await page.waitForLoadState("networkidle");
         await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
        const today = new Date();
        const dateString = today.toLocaleDateString();
        const parts = dateString.split("/");
@@ -106,12 +110,12 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
         await visitArea.fill('polo');
         await page.waitForLoadState("networkidle");
         //enter visa type
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
         const visaTpe = page.locator("//select[@id='searchVisaTypeIdStr']");
         await visaTpe.selectOption({ label: 'Resident' });
         await pageConstants.passPage.eidUi.type(actualEid);
         await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2000);
         //calendra handle dob
         const openCalendardob = page.locator("//input[@id='dateOfBirth']");
         await openCalendardob.click();
@@ -127,7 +131,7 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
      await selectDatedob.click();
      await page.waitForLoadState("networkidle");
      //select gender
-     await page.waitForTimeout(5000);
+     await page.waitForTimeout(2000);
      const genderDrop =page.locator("//select[@name='serachGender']");
      await genderDrop.selectOption({ label: 'Male' });
      await pageConstants.passPage.searchButton.click();
@@ -137,6 +141,7 @@ When(/^user enter the infomation and seach visitor availability$/, async({page})
 
 When(/^user enter the infomation of visitor manually$/, async({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
     const dropdownLocator = page.locator("//select[@id='title']");
     await dropdownLocator.selectOption({ label: 'Mr' });
@@ -167,7 +172,7 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
     await pageConstants.passPage.visemail.type(emailId);
     await pageConstants.passPage.visMobile.clear();
     await pageConstants.passPage.visMobile.type(mobileNum);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
     const designation = page.locator("//select[@id='designationIdStr']");
     await designation.selectOption({ label: 'Admin' });
     await pageConstants.passPage.vispassPortNumber.clear();
@@ -193,10 +198,10 @@ When(/^user enter the valid email address for visitor$/, async({page}) => {
      await pageConstants.passPage.selectVisNationality.click();
      await pageConstants.passPage.visCompany.clear();
      await pageConstants.passPage.visCompany.type(fname);
-     await pageConstants.passPage.personalPic.setInputFiles(uploadFilePath);
-     await pageConstants.passPage.passportup.setInputFiles(uploadFilePath);
-     await pageConstants.passPage.suppportDocUp.setInputFiles(uploadFilePath);
-     await pageConstants.passPage.eidUp.setInputFiles(uploadFilePath);
+     await pageConstants.passPage.personalPic.setInputFiles(uploadPic);
+     await pageConstants.passPage.passportup.setInputFiles(uploadPassport);
+     await pageConstants.passPage.suppportDocUp.setInputFiles(uploadSupport);
+     await pageConstants.passPage.eidUp.setInputFiles(uploadEid);
      await pageConstants.passPage.dnaUp.setInputFiles(uploadFilePath);
     
 });
@@ -227,7 +232,7 @@ When(/^user submit the visitor information$/, async({page}) => {
 Then(/^user should redirected to the payment page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
     await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
     await expect(pageConstants.passPage.creditDebit).toBeVisible();
 });
@@ -236,7 +241,7 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 	    const pageConstants = new PageConstants(page);
         await pageConstants.passPage.creditDebit.click();
         await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(20000);
+        await page.waitForTimeout(7000);
         await page.waitForSelector(`//img[@id='MasterCard']`, { state: 'visible' });
         await pageConstants.passPage.masterCard.click();
         await pageConstants.passPage.notifyMe.click();
@@ -263,7 +268,7 @@ When(/^user enter infomation for the payment and submit$/,async ({page}) => {
 Then(/^Verify payment successfull message$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
     await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
     referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
@@ -277,11 +282,11 @@ When('user cancelled apply pass on the list page for marine', async ({page}) => 
     await pageConstants.loginPage.enterpassword.fill(testData.globalData.adminPassword);
     await pageConstants.loginPage.submitButton.click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
     await pageConstants.passPage.adminDropdown.click();
     await pageConstants.passPage.cancelOption.click();
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
     await pageConstants.passPage.referenceNumInput.type(referceNumber);
     await pageConstants.passPage.remarkInput.type('this is generated by automation and cancelled');
     await pageConstants.passPage.cancelSubmit.click();
@@ -290,7 +295,7 @@ When('user cancelled apply pass on the list page for marine', async ({page}) => 
   Then('verify confirmation message for the cancelled for marine', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
     await expect(pageConstants.passPage.cancelConfirmtion).toBeVisible();
   });
   
@@ -309,5 +314,5 @@ When('user cancelled apply pass on the list page for marine', async ({page}) => 
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
-    await expect(pageConstants.passPage.expireStatus).toBeVisible();
+    await expect(pageConstants.passPage.cancelledStatus).toBeVisible();
   });

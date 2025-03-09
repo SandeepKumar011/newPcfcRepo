@@ -147,6 +147,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
   
   Given('user submit the files for the Registration', async ({page}) => {
     const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
     await pageConstants.registrationPage.submitInfo.click();
   });
   
@@ -160,6 +161,7 @@ Given('user navigates to the registration page fo add registration', async ({pag
 
 When(/^user selects back to login button$/, async({page}) => {
   const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
   await pageConstants.registrationPage.backToginButton.click();
 });
 
