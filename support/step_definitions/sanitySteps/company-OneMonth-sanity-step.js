@@ -130,6 +130,7 @@ else if(visitDate<34){
   
     await page.waitForTimeout(2000);
     await pageConstants.passPage.hostCompanyUi.type(hCompany);
+    await page.waitForTimeout(1000);
     await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
   });
   
@@ -319,7 +320,6 @@ Then(/^verify pass approved successfully message for the company for one month$/
           console.log('this is updated refence number'+ referceNumber);
 });
 
-
 When('verify second second approval message for the company one month', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
@@ -360,10 +360,10 @@ When('verify second second approval message for the company one month', async ({
 
 When('verify Third approval message for the company one month', async ({page}) => {
   const pageConstants = new PageConstants(page);
-  await page.waitForTimeout(2000);
-  await pageConstants.loginPage.logoutDrop.click();
-  await pageConstants.loginPage.logoutButton.click();
-  await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(2000);
+    await pageConstants.loginPage.logoutDrop.click();
+    await pageConstants.loginPage.logoutButton.click();
+    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
     await pageConstants.loginPage.enterUsername.type(approvalusername3);
     await pageConstants.loginPage.enterpassword.type(approvalpassword3);

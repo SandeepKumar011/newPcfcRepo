@@ -359,14 +359,26 @@ Then(/^verify Final approval successfully message for the host for one year$/, a
         await pageConstants.loginPage.enterUsername.type(approvalusername4);
         await pageConstants.loginPage.enterpassword.type(approvalpassword4);
         await pageConstants.loginPage.submitButton.click();
+        await page.waitForTimeout(1000);
+        await pageConstants.passPage.passManaDrop.click();
+        await pageConstants.passPage.printPass.click();
         await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(1000);
+        await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+        await page.waitForTimeout(2000);
+        await pageConstants.passPage.checkboxForPrint.click();
+        await pageConstants.passPage.donwloadPass.click();
+        await page.waitForTimeout(2000);
+        await pageConstants.passPage.yesForDownload.click();
+        await page.waitForTimeout(3000);
+        await pageConstants.passPage.okForAlert.click();
         await page.waitForTimeout(2000);
         await pageConstants.passPage.passManaDrop.click();
         await pageConstants.passPage.viewAllPassOption.click();
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(1000);
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-        await page.waitForTimeout(5000);
-        await expect(pageConstants.passPage.forPrintStatus).toBeVisible();
+        await page.waitForTimeout(3000);
+        await expect(pageConstants.passPage.completedStatus).toBeVisible();
 });
 
 //this is for the lost pass

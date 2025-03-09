@@ -201,7 +201,7 @@ Given('user navigates to the login page for governmental', async ({page}) => {
         await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
         await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
         await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
-        await pageConstants.passPage.uidFileUpload.setInputFiles(uploadFilePath);
+        await pageConstants.passPage.uidFileUpload.setInputFiles(uploadSupport);
   });
   
   Then('user save the visitor for governmental', async ({page}) => {
