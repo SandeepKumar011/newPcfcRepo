@@ -86,6 +86,7 @@ class PassPage
         this.checkboxForPrint=page.locator("(//input[@type='checkbox'])[1]");
         this.donwloadPass=page.locator("//input[@id='download']");
         this.yesForDownload=page.locator("//button[normalize-space(text())='Yes']");
+        this.alertheader=page.locator("//h5[normalize-space(text()='Alert')]");
         this.searchForPassRefence=page.locator("//input[@id='tableSearch']");
         this.completedStatus=page.locator("//span[normalize-space(text())='Completed']");
         this.openViewOption=page.locator("//i[@class='bi bi-three-dots-vertical tableIcon']");

@@ -22,8 +22,8 @@ const contrapprovalUsername1=oneYearData.sanityDataContractor.approvalUsername1
 const contrapprovalpassword1=oneYearData.sanityDataContractor.approvalPassword1
 const contrapprovalUsername2=oneYearData.sanityDataContractor.approvalUsername2
 const contrapprovalpassword2=oneYearData.sanityDataContractor.approvalPassword2
-const contrapprovalUsername4=oneYearData.sanityDataContractor.approvalUsername4
-const contrapprovalpassword4=oneYearData.sanityDataContractor.approvalPassword4
+const contrapprovalUsername4=oneYearData.sanityDataContractor.approveUsername4
+const contrapprovalpassword4=oneYearData.sanityDataContractor.approvePassword4
 const masterCardNo=testData.globalData.masterCard
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
@@ -293,6 +293,7 @@ Then(/^verify first approvel successfully message for contractor$/, async({page}
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(5000);
               await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+              console.log('this is updated refence number'+ referceNumber);
     
               await page.waitForTimeout(2000);
               await pageConstants.loginPage.logoutDrop.click();
@@ -342,5 +343,33 @@ Then(/^verify second approval successfully message for contractor$/, async({page
 });
 
 Then(/^verify Final approval successfully message for contractor$/, async({page}) => {
-   console.log('no need for the final approval');
+  const pageConstants = new PageConstants(page);
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(2000);
+  await pageConstants.loginPage.logoutDrop.click();
+  await pageConstants.loginPage.logoutButton.click();
+  await page.waitForTimeout(1000);
+  await pageConstants.loginPage.enterUsername.type(contrapprovalUsername4);
+  await pageConstants.loginPage.enterpassword.type(contrapprovalpassword4);
+  await pageConstants.loginPage.submitButton.click();
+  await page.waitForTimeout(1000);
+  await pageConstants.passPage.passManaDrop.click();
+  await pageConstants.passPage.printPass.click();
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(1000);
+  await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+  await page.waitForTimeout(2000);
+  await pageConstants.passPage.checkboxForPrint.click();
+  await pageConstants.passPage.donwloadPass.click();
+  await page.waitForTimeout(2000);
+  await pageConstants.passPage.yesForDownload.click();
+  await page.waitForTimeout(3000);
+  await pageConstants.passPage.okForAlert.click();
+  await page.waitForTimeout(2000);
+  await pageConstants.passPage.passManaDrop.click();
+  await pageConstants.passPage.viewAllPassOption.click();
+  await page.waitForTimeout(1000);
+  await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+  await page.waitForTimeout(3000);
+  await expect(pageConstants.passPage.completedStatus).toBeVisible();
 });
