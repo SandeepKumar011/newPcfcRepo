@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npx bddgen && npx playwright test",
     "testHead":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium",
-    "regressionPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/regressionPack/",
+    "advancesearch":" npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/regressionPack/advanceSearch/",
     "sanityPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/sanity/",
     "loginPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/login-management/",
     "passPack":"npx bddgen && npx playwright test --workers=1 --headed --project=chromium features/pass-management/",
