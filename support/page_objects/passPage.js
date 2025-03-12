@@ -74,6 +74,7 @@ class PassPage
         this.passManaDrop=page.locator("//a[normalize-space(text())='Pass Management']");
         this.viewAllPassOption=page.locator("//a[normalize-space(text())='View All Passes']");
         this.approvePassOption=page.locator("//a[normalize-space(text())='Pass Approval']");
+        this.reportLostdropdown=page.locator("//a[normalize-space(text())='Report Lost Pass']");
         this.lostPassOption=page.locator("//span[normalize-space(text())='Lost']");
         this.viewLostPass=page.locator("//i[@class='bi bi-eye tableIcon action-icon']");
         this.remarkLostPass=page.locator("//textarea[@id='remarks']");
@@ -136,7 +137,7 @@ class PassPage
         this.searchEidInput=page.locator("//input[@id='searchEmiratesId']");
         this.searchPassportInput=page.locator("//input[@id='searchPassportNo']");
         this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
-        this.searcgButton=page.locator("//input[@id='Search']");
+        this.advanceSearchsubmit=page.locator("//input[@id='Search']");
         this.amendementMessageSuccess=page.locator("//label[normalize-space(text())='Pass Returned for Amendment Successfully']")
         this.userManagement=page.locator("//a[normalize-space(text())='User Management']");
         this.createuser=page.locator("//a[normalize-space(text())='Create user']");
