@@ -57,35 +57,25 @@ Then('user should be redirected to the home page for company', async ({page}) =>
   await page.waitForLoadState("networkidle");
   await page.waitForTimeout(2000);
   await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
+  await pageConstants.passPage.passmanagementDrop.click();
+  await pageConstants.passPage.selectapplyGatePass.click();
 });
 
 When('user enter the infomation for pass for company', async ({page}) => {
      const pageConstants = new PageConstants(page);
-     await page.waitForTimeout(5000);
-     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
-     await expect(pageConstants.passPage.portDropUi).toBeVisible();
-     await page.waitForTimeout(5000);
-     const dropdownPort = page.locator("//select[@id='portsId']");
-     await dropdownPort.selectOption({ label: portName });
      await page.waitForLoadState("networkidle");
-     await page.waitForTimeout(5000);
-     const dropdownGate = page.locator("//select[@id='gateIdStr']");
-     await dropdownGate.selectOption({ label: gateType });
-     await page.waitForTimeout(5000);
-     const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
-     await dropdownPassType.selectOption({ label: passType });
-      await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
-      await page.waitForTimeout(5000);
-     const dropdownPassDura = page.locator("//select[@id='passDurationIdStr']");
-     await dropdownPassDura.selectOption({ label: passDuration });
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.fromoldPassButton.click();
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.passReferenceInputoldPass.type(actualEid);
+     await pageConstants.passPage.oldPassSubmit.click();
      await page.waitForLoadState("networkidle");
-     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
-     await page.waitForTimeout(5000);
-     const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
-     await dropdownreason.selectOption({ label: reasonVisit });
-     await page.waitForLoadState("networkidle");
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.editButton.click();
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.okForAlert.click();
+     await page.waitForTimeout(2000);
      await expect(pageConstants.passPage.dateOfVisitDropUi).toBeVisible();
-     await page.waitForTimeout(5000);
      const today = new Date();
      const dateString = today.toLocaleDateString();
      const parts = dateString.split("/");
@@ -119,49 +109,11 @@ When('user enter the infomation for pass for company', async ({page}) => {
      await page.waitForTimeout(2000);
      await pageConstants.passPage.visitHour.type(hoursToVisit);
      await pageConstants.passPage.visitMinutes.type(hoursToVisit);
-     await pageConstants.passPage.hostCompanyUi.type(hCompany);
-     await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
 });
 
 When('user enter infomation for the visitor for company', async ({page}) => {
      const pageConstants = new PageConstants(page);
-     await page.waitForTimeout(5000);
-     const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
-     await dropdownVisa.selectOption({ label: 'Resident' });
-     await pageConstants.passPage.eidUi.type(actualEid);
-     await page.waitForLoadState("networkidle");
- 
-      //calendra handle dob
-      await page.waitForTimeout(5000);
-      const openCalendardob = page.locator("//input[@id='dateOfBirth']");
-      await openCalendardob.click();
-      const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
-      await openYeardob.click();
-      const openYearListdob=page.locator("(//th[@class='datepicker-switch'])[2]")
-      await openYearListdob.click();
-      const selectYeardob=page.locator(`//span[normalize-space(text())='${yearDob}']`)
-      await selectYeardob.click();
-      const selectMonthdob=page.locator(`//span[normalize-space(text())='${monthDob}']`)
-      await selectMonthdob.click();
-      const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
-      await selectDatedob.click();
-      await page.waitForLoadState("networkidle");
-      //select gender
-      await page.waitForTimeout(5000);
-      const dropdownLocator2 = page.locator("//select[@name='serachGender']");
-      await dropdownLocator2.selectOption({ label: 'Male' });
-      await pageConstants.passPage.searchButton.click();
-      await page.waitForLoadState("networkidle");
-
-      //select yes confirm and continue with previous data
-      await pageConstants.passPage.yesConfirm.click();
-      await page.waitForLoadState("networkidle");
-      await page.waitForTimeout(5000);
-      await pageConstants.passPage.visCompany.type(fname);
-      await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
-      await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
-      await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
-      await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
+    console.log('there is not need to enter visitor infomation');
 });
 
 When('user apply the pass for one day for company', async ({page}) => {
@@ -173,7 +125,7 @@ When('user apply the pass for one day for company', async ({page}) => {
     await expect(pageConstants.passPage.editButton).toBeVisible();
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
 });
 
 When('user payment for the apply pass on payment page for old pass', async ({page}) => {

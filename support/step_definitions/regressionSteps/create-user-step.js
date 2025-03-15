@@ -8,6 +8,7 @@ const path = require('path');
 const { faker } = require('@faker-js/faker');
 const dataUtils = new DataUtils();
 const testData=require('../../../test_data/userData.json');
+const createuserData=require('../../../test_data/createuserData.json');
 const wrongFile=path.join(process.cwd(), 'test_data/upload/txtFile.txt');
 const uploadFile=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 
@@ -25,8 +26,12 @@ const lastName=faker.person.lastName()
 const emailIdd=faker.internet.email();
 const visaNumber=faker.string.numeric({ length: 12 })
 const nationality=testData.globalData.national
-const more2mbFilePath=path.join(process.cwd(), 'test_data/upload/car2.jpg');
-const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
+const loginUsername=createuserData.credentials.username
+const loginPassword=createuserData.credentials.password
+const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
+const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
+const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
+const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 
 
 Given('user navigates the login page for add user', async ({page}) => {
@@ -39,8 +44,8 @@ Given('user navigates the login page for add user', async ({page}) => {
   When('user enter the crendential for the add user', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
-    await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+    await pageConstants.loginPage.enterUsername.type(loginUsername);
+    await pageConstants.loginPage.enterpassword.type(loginPassword);
     await pageConstants.loginPage.submitButton.click();
   });
   
@@ -55,8 +60,12 @@ Given('user navigates the login page for add user', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
+    await pageConstants.passPage.userManagement.click();
+    await pageConstants.passPage.createuser.click();
+    await page.waitForTimeout(3000);
     const roleLocator = page.locator("//select[@id='roleIdStr']");
     await roleLocator.selectOption({ label: 'Telephone Receiver' });
+    await page.waitForTimeout(2000);
     const genderDrop =page.locator("//select[@name='title']");
     await genderDrop.selectOption({ label: 'Mr' });
     await pageConstants.passPage.visfirstName.type(firstName);
@@ -67,7 +76,9 @@ Given('user navigates the login page for add user', async ({page}) => {
     const locationLocator = page.locator("(//span[normalize-space(text())='None selected'])[1]");
     await locationLocator.click();
     await page.locator("//label[normalize-space(text())='Al Hamriya Port']").click()
-    const passDuration = page.locator("(//span[normalize-space(text())='None selected'])[2]");
+    await pageConstants.passPage.visMobile.click();
+    await page.waitForTimeout(2000);
+    const passDuration = page.locator("//span[normalize-space(text())='None selected']");
     await passDuration.click();
     await page.locator("//label[normalize-space(text())='One Day Pass']").click()
   });
@@ -75,7 +86,8 @@ Given('user navigates the login page for add user', async ({page}) => {
   When('enter the username passwrod and confirm password', async ({page}) => {
     const pageConstants = new PageConstants(page);
     const username = page.locator("//input[@id='userName']");
-    await username.type(firstName)
+    const usernamedata='auto'+faker.person.firstName()
+    await username.type(usernamedata);
     const usernamepassword = page.locator("//input[@id='password']");
     await usernamepassword.type('Login@345')
     const usernameconfirmPass = page.locator("//input[@id='confirmPassword']");
@@ -106,9 +118,10 @@ Given('user navigates the login page for add user', async ({page}) => {
   });
   
   Then('verify user added information on list page', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await pageConstants.passPage.searchForPassRefence.type(firstName);
+       await page.waitForTimeout(2000);
        await expect(pageConstants.passPage.validationsearchuser).toBeVisible();
   });
   
@@ -116,6 +129,8 @@ Given('user navigates the login page for add user', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
+    await pageConstants.passPage.userManagement.click();
+    await pageConstants.passPage.createuser.click();
     const roleLocator = page.locator("//select[@id='roleIdStr']");
     await roleLocator.selectOption({ label: 'Telephone Receiver' });
     const genderDrop =page.locator("//select[@name='title']");
@@ -125,10 +140,13 @@ Given('user navigates the login page for add user', async ({page}) => {
     await pageConstants.passPage.vislastName.type(lastName);
     await pageConstants.passPage.visMobile.clear();
     await pageConstants.passPage.visMobile.type(visaNumber);
+    await page.waitForTimeout(2000);
     const locationLocator = page.locator("(//span[normalize-space(text())='None selected'])[1]");
     await locationLocator.click();
     await page.locator("//label[normalize-space(text())='Al Hamriya Port']").click()
-    const passDuration = page.locator("(//span[normalize-space(text())='None selected'])[2]");
+    await pageConstants.passPage.visMobile.click();
+    await page.waitForTimeout(2000);
+    const passDuration = page.locator("//span[normalize-space(text())='None selected']");
     await passDuration.click();
     await page.locator("//label[normalize-space(text())='One Day Pass']").click()
   });

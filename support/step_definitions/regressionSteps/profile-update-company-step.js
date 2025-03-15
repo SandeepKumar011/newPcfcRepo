@@ -55,7 +55,7 @@ Given('user navigates the login page for company update profile', async ({page})
   
   When('user submit the infomation for company', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.loginPage.submitButton.click();
+    await pageConstants.passPage.updateButton.click();
   });
   
   Then('verify success messge for the company', async ({page}) => {

@@ -219,8 +219,9 @@ else if(visitDate<34){
   Then('verify search by passreferce number on list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.passPage.referenceInput.type("6589548754")
+    await pageConstants.passPage.referenceInput.type(referceNumber)
     await pageConstants.passPage.advanceSearchsubmit.click();
+    await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
   });
   
   Then('verify search by first and last name on list page', async ({page}) => {
@@ -245,12 +246,13 @@ else if(visitDate<34){
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForTimeout(2000);
     await pageConstants.passPage.advanceSearchButton.click();
-    await pageConstants.passPage.hostCompanyUi.type(hCompany);
+    const hostCompanyname=page.locator("//input[@id='searchHostCompanyName']");
+    await  hostCompanyname.type(nationhCompanyality);
     await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
     await pageConstants.passPage.advanceSearchsubmit.click();
     await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
-    await pageConstants.passPage.searchHosctComInput.clear();
+    await hostCompanyname.clear();
     await pageConstants.passPage.searchVisitorNameInput.type(companyName);
     await pageConstants.passPage.advanceSearchsubmit.click();
     await page.waitForTimeout(5000);
@@ -260,10 +262,10 @@ else if(visitDate<34){
   Then('verify search by visitor nationality', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.passPage.searchVistotrCountryInput.type(hCompany);
-    await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
+    await pageConstants.passPage.searchVistotrCountryInput.type(nationality);
+    await page.locator(`//div[normalize-space(text())='${nationality}']`).click();
     await pageConstants.passPage.advanceSearchsubmit.click();
-    await page.waitForTimeout(8000);
+    await page.waitForTimeout(3000);
     await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
   });
 
@@ -272,7 +274,7 @@ else if(visitDate<34){
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.searchEidInput.type(actualEid);
     await pageConstants.passPage.advanceSearchsubmit.click();
-    await page.waitForTimeout(8000);
+    await page.waitForTimeout(3000);
     await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
 });
 
@@ -281,16 +283,18 @@ Then('verify search by passport number on list page', async ({page}) => {
  await page.waitForLoadState("networkidle");
  await pageConstants.passPage.searchPassportInput.type(dynamicNumber);
  await pageConstants.passPage.advanceSearchsubmit.click();
- await page.waitForTimeout(8000);
+ await page.waitForTimeout(3000);
  await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
 });
 
 Then('verify search by port name on list page', async ({page}) => {
  const pageConstants = new PageConstants(page);
  await page.waitForLoadState("networkidle");
+ await page.waitForTimeout(3000);
  const dropdownPort = page.locator("//select[@id='searchPortsIdStr']");
+ await page.waitForTimeout(3000);
  await dropdownPort.selectOption({ label: portName });
  await pageConstants.passPage.advanceSearchsubmit.click();
- await page.waitForTimeout(8000);
+ await page.waitForTimeout(3000);
  await expect(pageConstants.passPage.forvalidationHostCom).toBeVisible();
 });
