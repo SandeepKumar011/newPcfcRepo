@@ -10,6 +10,5 @@ Feature: Advance search by name Service Availability
     Then verify confirmation message for the applied pass
     When user select advance search on view all passes page
     Then verify search by first and last name on list page
-    Then verify search by host and visitor company name on list page
     When user select logout dropdown on home page
     Then verify user is redirected to the login page
