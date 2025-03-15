@@ -5,6 +5,9 @@ class PassPage
         this.portAccess=page.locator("//input[@id='portAccess']");
         this.passmanagementDrop=page.locator("//a[normalize-space(text())='Pass Management']");
         this.selectapplyGatePass=page.locator("//a[normalize-space(text())='Apply Gate Pass']");
+        this.fromoldPassButton=page.locator("//input[@id='applyfromoldpass']");
+        this.passReferenceInputoldPass=page.locator("//input[@id='passreferanceid']");
+        this.oldPassSubmit=page.locator("//button[@id='passreferancesearchid']");
         this.portDropUi=page.locator("//select[@id='portsId']");
         this.gateDropUi=page.locator("//select[@id='gateIdStr']");
         this.passTypeDropUi=page.locator("//select[@id='passTypeIdStr']");
@@ -136,13 +139,23 @@ class PassPage
         this.searchVistotrCountryInput=page.locator("//input[@id='nationalityValue']");
         this.searchEidInput=page.locator("//input[@id='searchEmiratesId']");
         this.searchPassportInput=page.locator("//input[@id='searchPassportNo']");
-        this.forvalidationHostCom=page.locator("//td[normalize-space(text())='Host Company']");
+        this.forvalidationHostCom=page.locator("(//td[normalize-space(text())='Host Company'])[1]");
         this.advanceSearchsubmit=page.locator("//input[@id='Search']");
         this.amendementMessageSuccess=page.locator("//label[normalize-space(text())='Pass Returned for Amendment Successfully']")
         this.userManagement=page.locator("//a[normalize-space(text())='User Management']");
         this.createuser=page.locator("//a[normalize-space(text())='Create user']");
         this.serachuser=page.locator("//a[normalize-space(text())='Search User']");
         this.validationsearchuser=page.locator("(//tbody//tr//td[1])[1]");
+        this.updateEid=page.locator("//input[@id='emiratesId']");
+        this.updatePassport=page.locator("//input[@id='passportNo']");
+        this.updateEmailId=page.locator("//input[@id='emailId']");
+        this.updateNationality=page.locator("//input[@id='nationalityValue']");
+        this.updateVisanumber=page.locator("//input[@id='visaNumber']");
+        this.updateFileuploadPassport=page.locator("//input[@id='passport']");
+        this.updateFileuploadPic=page.locator("//input[@id='pic']");
+        this.updateFileuploadEid=page.locator("//input[@id='eid']");
+        this.updateFileuploadVisa=page.locator("//input[@id='visa']");
+        this.updateButton=page.locator("//input[@value='Update']");
     }
 }
 

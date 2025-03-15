@@ -6,6 +6,9 @@ const { expect } = require('@playwright/test');
 const path = require('path');
 const { faker } = require('@faker-js/faker');
 const dataUtils = new DataUtils();
+const createuserData=require('../../../test_data/createuserData.json');
+const loginUsername=createuserData.credentials.username
+const loginPassword=createuserData.credentials.password
 const testData=require('../../../test_data/userData.json');
 const wrongFile=path.join(process.cwd(), 'test_data/upload/txtFile.txt');
 const uploadFile=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
@@ -30,29 +33,29 @@ const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
 const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 
 
-Given('user navigates the login page for add superuser', async ({}) => { 
+Given('user navigates the login page for add superuser', async ({page}) => { 
     const pageConstants = new PageConstants(page);
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     await pageConstants.loginPage.loginButton.click();
   });
   
-  When('user enter the crendential for the add superuser', async ({}) => {
+  When('user enter the crendential for the add superuser', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
-    await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+    await pageConstants.loginPage.enterUsername.type(loginUsername);
+    await pageConstants.loginPage.enterpassword.type(loginPassword);
     await pageConstants.loginPage.submitButton.click();
   });
   
-  Then('user should be redirected to the home page for add superuser', async ({}) => {
+  Then('user should be redirected to the home page for add superuser', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
   });
   
-  When('user enter the interan information for add superuser', async ({}) => {
+  When('user enter the interan information for add superuser', async ({page}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(2000);
@@ -70,29 +73,32 @@ Given('user navigates the login page for add superuser', async ({}) => {
        const locationLocator = page.locator("(//span[normalize-space(text())='None selected'])[1]");
        await locationLocator.click();
        await page.locator("//label[normalize-space(text())='Al Hamriya Port']").click()
-       const passDuration = page.locator("(//span[normalize-space(text())='None selected'])[2]");
+       await pageConstants.passPage.visMobile.click();
+       await page.waitForTimeout(2000);
+       const passDuration = page.locator("//span[normalize-space(text())='None selected']");
        await passDuration.click();
-       await page.locator("//label[normalize-space(text())='One Day Pass']").click()
+      await page.locator("//label[normalize-space(text())='One Day Pass']").click()
   });
   
-  When('enter the username passwrod and confirm password for superuser', async ({}) => {
+  When('enter the username passwrod and confirm password for superuser', async ({page}) => {
        const pageConstants = new PageConstants(page);
        const username = page.locator("//input[@id='userName']");
-       await username.type(firstName)
+       const usernamedata='auto'+faker.person.firstName()
+       await username.type(usernamedata)
        const usernamepassword = page.locator("//input[@id='password']");
        await usernamepassword.type('Login@345')
        const usernameconfirmPass = page.locator("//input[@id='confirmPassword']");
        await usernameconfirmPass.type('Login@345')
   });
   
-  When('submit the information for add superuser on create page', async ({}) => {
+  When('submit the information for add superuser on create page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     const submitt = page.locator("//input[@id='createUser']");
     await submitt.click()
   });
   
-  Then('verify success message for the add superuser', async ({}) => {
+  Then('verify success message for the add superuser', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(20000);
@@ -100,16 +106,17 @@ Given('user navigates the login page for add superuser', async ({}) => {
     await expect(pageConstants.passPage.confirmationPay).toBeVisible();
   });
   
-  When('search added superuser on the list page', async ({}) => {
+  When('search added superuser on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await pageConstants.passPage.userManagement.click();
     await pageConstants.passPage.serachuser.click();
   });
   
-  Then('verify superuser added information on list page', async ({}) => {
+  Then('verify superuser added information on list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(2000);
     await pageConstants.passPage.searchForPassRefence.type(firstName);
     await expect(pageConstants.passPage.validationsearchuser).toBeVisible();
   });

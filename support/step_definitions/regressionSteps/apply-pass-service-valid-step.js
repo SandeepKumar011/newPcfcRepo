@@ -32,6 +32,8 @@ Given('user navigates the login page for pass', async ({page}) => {
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
+    await pageConstants.passPage.passmanagementDrop.click();
+    await pageConstants.passPage.selectapplyGatePass.click();
   });
   
   Then('verify Apply Pass service option should be visible', async ({page}) => {

@@ -41,14 +41,14 @@ const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
 
-Given('user navigates to the login page for reject company', async ({}) => {
+Given('user navigates to the login page for reject company', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     await pageConstants.loginPage.loginButton.click();
   });
   
-  When('user enter the credential for the login for reject company', async ({}) => {
+  When('user enter the credential for the login for reject company', async ({page}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await pageConstants.loginPage.enterUsername.type(usernameLogin)
@@ -56,7 +56,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
        await pageConstants.loginPage.submitButton.click();
   });
   
-  Then('user redirected to the home page for reject company', async ({}) => {
+  Then('user redirected to the home page for reject company', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
@@ -65,7 +65,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
     await (pageConstants.passPage.selectapplyGatePass).click();
   });
   
-  Then('Enter the pass information for the reject company', async ({}) => {
+  Then('Enter the pass information for the reject company', async ({page}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(5000);
@@ -128,7 +128,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
        await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
   });
   
-  Then('user enter the visitor information for the rejectcompany', async ({}) => {
+  Then('user enter the visitor information for the rejectcompany', async ({page}) => {
    const pageConstants = new PageConstants(page);
        await page.waitForTimeout(2000);
        const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
@@ -201,7 +201,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
          await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);   
   });
   
-  Then('user save the visitor on the add page for reject the company', async ({}) => {
+  Then('user save the visitor on the add page for reject the company', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
@@ -210,12 +210,12 @@ Given('user navigates to the login page for reject company', async ({}) => {
     await expect(pageConstants.passPage.editButton).toBeVisible();
   });
   
-  Then('verify user is added in the list for the reject company for', async ({}) => {
+  Then('verify user is added in the list for the reject company for', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await expect(pageConstants.passPage.editButton).toBeVisible();
   });
   
-  When('user submit the visitor information for the reject company', async ({}) => {
+  When('user submit the visitor information for the reject company', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
@@ -223,7 +223,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
     await pageConstants.passPage.okForAlert.click();
   });
   
-  When('user paid amount for the apply pass for the reject  company', async ({}) => {
+  When('user paid amount for the apply pass for the reject  company', async ({page}) => {
     const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(10000);
@@ -252,7 +252,7 @@ Given('user navigates to the login page for reject company', async ({}) => {
        await pageConstants.passPage.finalPay.click();
   });
   
-  Then('verify pass apply successfully messge for the reject company', async ({}) => {
+  Then('verify pass apply successfully messge for the reject company', async ({page}) => {
      const pageConstants = new PageConstants(page);
              await page.waitForLoadState("networkidle");
              await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
@@ -293,27 +293,27 @@ Then(/^verify reject successfully message for the company$/, async({page}) => {
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(5000);
               await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-                       await pageConstants.passPage.approveEdit.click();
+              await pageConstants.passPage.approveEdit.click();
                    
-                       await pageConstants.passPage.approvePhotoEdit.click();
-                       await pageConstants.passPage.approveClose.click();
+             await pageConstants.passPage.approvePhotoEdit.click();
+             await pageConstants.passPage.approveClose.click();
                    
-                       await pageConstants.passPage.approvePassportEdit.click();
-                       await pageConstants.passPage.approveClose.click();
+             await pageConstants.passPage.approvePassportEdit.click();
+             await pageConstants.passPage.approveClose.click();
                    
-                       await pageConstants.passPage.approveSupportEdit.click();
-                       await pageConstants.passPage.approveClose.click();
+               await pageConstants.passPage.approveSupportEdit.click();
+                await pageConstants.passPage.approveClose.click();
                    
-                       await pageConstants.passPage.approveEmiratesEdit.click();
-                       await pageConstants.passPage.approveClose.click();
+                 await pageConstants.passPage.approveEmiratesEdit.click();
+                 await pageConstants.passPage.approveClose.click();
                    
-                       await pageConstants.passPage.rejectButton.click();
-                       await page.waitForLoadState("networkidle");
-                       const designation = page.locator("//select[@id='reasonOfRejectIdStr']");
-                       await designation.selectOption({ label: 'Passport copy not uploaded.' });
-                       await pageConstants.passPage.rejectRemark.type("automation rejection");
-                       await pageConstants.passPage.rejectButton2.click();
-                       await expect(pageConstants.passPage.rejectionSuccMess).toBeVisible();
-                       referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
-                       console.log('this is rejected refence number'+ referceNumber);
+                 await pageConstants.passPage.rejectButton.click();
+                 await page.waitForLoadState("networkidle");
+                 const designation = page.locator("//select[@id='reasonOfRejectIdStr']");
+                 await designation.selectOption({ label: 'Passport copy not uploaded.' });
+                 await pageConstants.passPage.rejectRemark.type("automation rejection");
+                 await pageConstants.passPage.rejectButton2.click();
+                await expect(pageConstants.passPage.rejectionSuccMess).toBeVisible();
+                referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+               console.log('this is rejected refence number'+ referceNumber);
 });

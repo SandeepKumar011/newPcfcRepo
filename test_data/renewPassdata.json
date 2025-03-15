@@ -1,0 +1,27 @@
+{
+    "companyRenewData" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "expiredEID":"devhost1"
+    },
+    "contractorRenewData":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "expiredEID":"devhost1"
+    },
+    "hostCompanyRenewData" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "expiredEID":"devhost1"
+    },
+    "goverenmentRenewData":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "expiredEID":"devhost1"
+    },
+    "individualRenewData":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "expiredEID":"devhost1"
+    }
+}

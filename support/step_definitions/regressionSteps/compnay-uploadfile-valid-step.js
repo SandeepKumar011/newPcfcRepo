@@ -24,7 +24,7 @@ const lastName=faker.person.lastName()
 const emailIdd=faker.internet.email();
 const visaNumber=faker.string.numeric({ length: 12 })
 const nationality=testData.globalData.national
-const more2mbFilePath=path.join(process.cwd(), 'test_data/upload/car2.jpg');
+const more2mbFilePath=path.join(process.cwd(), 'test_data/upload/rangecar.jpg');
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 
 
