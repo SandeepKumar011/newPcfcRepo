@@ -46,6 +46,7 @@ class PassPage
         this.eidUp=page.locator("(//input[@id='existingUserFilePath'])[4]")
         this.dnaUp=page.locator("(//input[@id='existingUserFilePath'])[5]")
         this.addVisitor=page.locator("//input[@id='addVisitor']");
+        this.editDropOption=page.locator("//a[normalize-space(text())='Edit Pass']");
         this.editButton=page.locator("(//a[@data-bind='click: $root.editUser'])[1]");
         this.deletButton=page.locator("(//a[@data-bind='click: $root.deleteUser'])[2]");
         this.yesConfirm=page.locator("//button[normalize-space(text())='Yes,Confirm Details']");
@@ -156,6 +157,18 @@ class PassPage
         this.updateFileuploadEid=page.locator("//input[@id='eid']");
         this.updateFileuploadVisa=page.locator("//input[@id='visa']");
         this.updateButton=page.locator("//input[@value='Update']");
+        this.successEditPass=page.locator("//label[normalize-space(text())='Pass Updated Successfully']");
+        this.editPassValid=page.locator("(//tbody//tr//td[1])[1]");
+        //super admin
+        this.admindropdown=page.locator("//a[normalize-space(text())='Admin']");
+        this.selectBlackList=page.locator("//a[normalize-space(text())='Create BlackList']");
+        this.valueInput=page.locator("//input[@id='blackListText']");
+        this.remarkInputAdmin=page.locator("//textarea[@id='remarks']");
+        this.submitAdmin=page.locator("//input[@id='Create']");
+        this.successBlacklist=page.locator("//label[normalize-space(text())='Black List created successfully.']");
+        this.searchBlackList=page.locator("//a[normalize-space(text())='Search BlackList']");
+        this.validEid=page.locator("(//tbody//tr//td[2])[1]");
+
     }
 }
 
