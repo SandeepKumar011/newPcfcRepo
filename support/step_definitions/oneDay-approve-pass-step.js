@@ -192,7 +192,7 @@ else if(visitDate<34){
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
   });
   
   Then('verify pass apply successfully messge', async ({page}) => {
@@ -207,7 +207,7 @@ else if(visitDate<34){
   When('user approve the apply pass on the list page', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(5000);
     await pageConstants.loginPage.enterUsername.type(approvalusername);
     await pageConstants.loginPage.enterpassword.type(approvalpassword);
     await pageConstants.loginPage.submitButton.click();
