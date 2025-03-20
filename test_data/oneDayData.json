@@ -186,5 +186,19 @@
         "existingEid":"17032519054190",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345"
+    },
+
+    "duplicateOneDayDataHostCompany":{
+        "username":"devhost1",
+        "password":"Login@345",
+        "portName":"JAFZA",
+        "gateType":"Any Gate",
+        "passType":"Business Meeting",
+        "passDuration":"One Day Pass",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "existingEid":"784199553553536"
     }
 }

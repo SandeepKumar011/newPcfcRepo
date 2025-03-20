@@ -3,6 +3,7 @@ class PassPage
     constructor(page)
     {
         this.portAccess=page.locator("//input[@id='portAccess']");
+        this.zoneAccess=page.locator("//input[@id='zoneAccess']");
         this.passmanagementDrop=page.locator("//a[normalize-space(text())='Pass Management']");
         this.selectapplyGatePass=page.locator("//a[normalize-space(text())='Apply Gate Pass']");
         this.fromoldPassButton=page.locator("//input[@id='applyfromoldpass']");

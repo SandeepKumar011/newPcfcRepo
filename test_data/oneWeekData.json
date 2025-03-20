@@ -12,5 +12,19 @@
         "passType":"Entry Permit (For Individual)",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1"
+    },
+
+    "duplicateOneweekDataCompany":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "portName":"JAFZA",
+        "gateType":"Any Gate",
+        "passType":"Business Meeting",
+        "passDuration":"One Day Pass",
+        "visitReason":"Business Meeting",
+        "hostCompany":"DEV HOST1",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345",
+        "existingEid":"784199553553536"
     }
 }
