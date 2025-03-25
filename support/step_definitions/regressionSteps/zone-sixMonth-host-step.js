@@ -66,23 +66,20 @@ Given('user navigates to the login page for host for zone six month', async ({pa
     await page.waitForTimeout(5000);
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
     await expect(pageConstants.passPage.passmanagementDrop).toBeVisible();
-    await pageConstants.passPage.zoneAccess.click();
+    await page.waitForTimeout(2000);
     await (pageConstants.passPage.passmanagementDrop).click();
     await (pageConstants.passPage.selectapplyGatePass).click();
+    await page.waitForTimeout(2000);
+    await (pageConstants.passPage.zoneAccess).click();
   });
   
   Then('Enter the pass information for the host for zone six month', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+           const pageConstants = new PageConstants(page);
            await page.waitForTimeout(2000);
-           await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
-           await expect(pageConstants.passPage.portDropUi).toBeVisible();
-           await page.waitForTimeout(2000);
-           const dropdownPort = page.locator("//select[@id='portsId']");
+           await page.waitForSelector(`//select[@id='zonePicker']`, { state: 'visible' });
+           const dropdownPort = page.locator("//select[@id='zonePicker']");
            await dropdownPort.selectOption({ label: portName });
            await page.waitForLoadState("networkidle");
-           await page.waitForTimeout(2000);
-           const dropdownGate = page.locator("//select[@id='gateIdStr']");
-           await dropdownGate.selectOption({ label: gateType });
            await page.waitForTimeout(2000);
            const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
            await dropdownPassType.selectOption({ label: passType });
@@ -138,8 +135,6 @@ Given('user navigates to the login page for host for zone six month', async ({pa
   Then('user enter the visitor information for the host for zone six month', async ({page}) => {
             const pageConstants = new PageConstants(page);
              await page.waitForTimeout(2000);
-             const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
-             await dropdownVisa.selectOption({ label: 'Resident' });
              await pageConstants.passPage.eidUi.type(actualEid);
              await page.waitForLoadState("networkidle");
          
@@ -209,7 +204,7 @@ Given('user navigates to the login page for host for zone six month', async ({pa
                await page.waitForTimeout(2000);
                await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
                await page.waitForTimeout(2000);
-               await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);   
+               await pageConstants.passPage.hcsupportingaFile.setInputFiles(uploadSupport); 
   });
   
   Then('user save the visitor on the add page for the host for zone six month', async ({page}) => {

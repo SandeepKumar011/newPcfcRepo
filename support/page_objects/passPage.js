@@ -3,7 +3,7 @@ class PassPage
     constructor(page)
     {
         this.portAccess=page.locator("//input[@id='portAccess']");
-        this.zoneAccess=page.locator("//input[@id='zoneAccess']");
+        this.zoneAccess=page.locator("//label[normalize-space(text())='Zone Access']");
         this.passmanagementDrop=page.locator("//a[normalize-space(text())='Pass Management']");
         this.selectapplyGatePass=page.locator("//a[normalize-space(text())='Apply Gate Pass']");
         this.fromoldPassButton=page.locator("//input[@id='applyfromoldpass']");
@@ -41,6 +41,7 @@ class PassPage
         this.eidFile=page.locator("//input[@name='Emirates Id']");
         this.uidFileUpload=page.locator("//input[@name='Unique Identification Document(UID)']");
         this.supportingaFile=page.locator("//input[@name='Supporting Documents']");
+        this.hcsupportingaFile=page.locator("//input[@name='Supporting Documents and Approval from HC of Other Ports']");
         this.personalPic=page.locator("(//input[@id='existingUserFilePath'])[1]")
         this.passportup=page.locator("(//input[@id='existingUserFilePath'])[2]")
         this.suppportDocUp=page.locator("(//input[@id='existingUserFilePath'])[3]")
@@ -169,6 +170,7 @@ class PassPage
         this.successBlacklist=page.locator("//label[normalize-space(text())='Black List created successfully.']");
         this.searchBlackList=page.locator("//a[normalize-space(text())='Search BlackList']");
         this.validEid=page.locator("(//tbody//tr//td[2])[1]");
+        this.imageNext=page.locator("//input[@id='nextId']");
 
     }
 }
