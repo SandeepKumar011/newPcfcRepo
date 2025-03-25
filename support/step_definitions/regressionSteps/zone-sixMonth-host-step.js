@@ -5,25 +5,25 @@ const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
 const testData=require('../../../test_data/userData.json');
-const sixMonthData=require('../../../test_data/sixMonthData.json');
+const sixmonthData=require('../../../test_data/sixMonthData.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const portName=sixMonthData.zoneDataHost.portName
-const gateType=sixMonthData.zoneDataHost.gateType
-const passDuration=sixMonthData.zoneDataHost.passDuration
-const passType=sixMonthData.zoneDataHost.passType
-const reasonVisit=sixMonthData.zoneDataHost.visitReason
-const hCompany=sixMonthData.zoneDataHost.hostCompany
+const portName=sixmonthData.zoneDataHost.portName
+const gateType=sixmonthData.zoneDataHost.gateType
+const passDuration=sixmonthData.zoneDataHost.passDuration
+const passType=sixmonthData.zoneDataHost.passType
+const reasonVisit=sixmonthData.zoneDataHost.visitReason
+const hCompany=sixmonthData.zoneDataHost.hostCompany
 const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
-const approvalusername1=sixMonthData.zoneDataHost.approveUsername1
-const approvalpassword1=sixMonthData.zoneDataHost.approvePassword1
-const approvalusername2=sixMonthData.zoneDataHost.approveUsername2
-const approvalpassword2=sixMonthData.zoneDataHost.approvePassword2
-const approvalusername4=sixMonthData.zoneDataHost.approveUsername4
-const approvalpassword4=sixMonthData.zoneDataHost.approvePassword4
-const hostusername=sixMonthData.zoneDataHost.hostUsername
-const hostpassword=sixMonthData.zoneDataHost.hostPassword
+const approvalusername1=sixmonthData.zoneDataHost.approveUsername1
+const approvalpassword1=sixmonthData.zoneDataHost.approvePassword1
+const approvalusername2=sixmonthData.zoneDataHost.approveUsername2
+const approvalpassword2=sixmonthData.zoneDataHost.approvePassword2
+const approvalusername4=sixmonthData.zoneDataHost.approveUsername4
+const approvalpassword4=sixmonthData.zoneDataHost.approvePassword4
+const hostusername=sixmonthData.zoneDataHost.hostUsername
+const hostpassword=sixmonthData.zoneDataHost.hostPassword
 const masterCardNo=testData.globalData.masterCard
 const cvnNo=testData.globalData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
@@ -136,7 +136,7 @@ Given('user navigates to the login page for host for zone six month', async ({pa
   });
   
   Then('user enter the visitor information for the host for zone six month', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+            const pageConstants = new PageConstants(page);
              await page.waitForTimeout(2000);
              const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
              await dropdownVisa.selectOption({ label: 'Resident' });
@@ -274,20 +274,20 @@ Given('user navigates to the login page for host for zone six month', async ({pa
   });
 
   
-When(/^user select logout button on home page for the host for zone six month$/, async(page) => {
+When(/^user select logout button on home page for the host for zone six month$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
     await pageConstants.loginPage.logoutButton.click();
 });
 
-Then(/^verify logout verification message for the host for zone six month$/, async(page) => {
+Then(/^verify logout verification message for the host for zone six month$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.enterUsername).toBeVisible();
 });
 
-When(/^user approve the apply pass for the host for zone six month$/, async(page) => {
+When(/^user approve the apply pass for the host for zone six month$/, async({page}) => {
    const pageConstants = new PageConstants(page);
                await page.waitForLoadState("networkidle");
                await page.waitForTimeout(7000);
@@ -296,7 +296,7 @@ When(/^user approve the apply pass for the host for zone six month$/, async(page
                await pageConstants.loginPage.submitButton.click();  
 });
 
-Then(/^verify first approvel successfully message for the host for zone six month$/, async(page) => {
+Then(/^verify first approvel successfully message for the host for zone six month$/, async({page}) => {
 	 const pageConstants = new PageConstants(page);
       await page.waitForLoadState("networkidle");
       await page.waitForTimeout(5000);
@@ -329,7 +329,7 @@ Then(/^verify first approvel successfully message for the host for zone six mont
      await pageConstants.loginPage.logoutButton.click();
 });
 
-Then(/^verify second approval successfully message for the host for zone six month$/, async(page) => {
+Then(/^verify second approval successfully message for the host for zone six month$/, async({page}) => {
 	  const pageConstants = new PageConstants(page);
       await page.waitForLoadState("networkidle");
       await page.waitForTimeout(7000);
@@ -355,8 +355,8 @@ Then(/^verify second approval successfully message for the host for zone six mon
      await pageConstants.loginPage.logoutButton.click();
 });
 
-Then(/^verify Final approval successfully message for the host for zone six month$/, async(page) => {
-	 const pageConstants = new PageConstants(page);
+Then(/^verify Final approval successfully message for the host for zone six month$/, async({page}) => {
+	          const pageConstants = new PageConstants(page);
             await page.waitForLoadState("networkidle");
             await page.waitForTimeout(2000);
             await pageConstants.loginPage.enterUsername.type(approvalusername4);
