@@ -83,19 +83,21 @@
     "zoneDataCompany":{
         "username":"wallstreet",
         "password":"Login@345",
-        "portName":"Port Rashid",
+        "portName":"ZONE 01",
         "gateType":"Any Gate",
         "passType":"Entry Permit (For Individual)",
-        "passDuration":"One Month Pass",
+        "passDuration":"One Year Pass",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345",
-        "approveUsername2":"automation25",
-        "approvePassword2":"Login@34567",
         "approveUsername3":"devssdall",
         "approvePassword3":"Login@345",
-        "approveUsername4":"ibrahim.alhammadi@dubaiworld.ae",
-        "approvePassword4":"Login345"
+        "approveUsername4":"devhdall",
+        "approvePassword4":"Login@345",
+        "approveUsername5":"devmarinepoliceall",
+        "approvePassword5":"Login@345",
+        "approveUsername6":"ibrahim.alhammadi@dubaiworld.ae",
+        "approvePassword6":"Login345"
     }
 }

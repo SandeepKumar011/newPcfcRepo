@@ -2,9 +2,9 @@
     "zoneDataHost":{
         "hostUsername":"devhost1",
         "hostPassword":"Login@345",
-        "portName":"JAFZA",
+        "portName":"ZONE 01",
         "gateType":"Any Gate",
-        "passDuration":"One Year Pass",
+        "passDuration":"Six Months Pass",
         "passType":"Entry Permit (For Individual)",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",

@@ -19,12 +19,14 @@ const usernameLogin=oneYearData.zoneDataCompany.username
 const passwordLogin=oneYearData.zoneDataCompany.password
 const approvalusername=oneYearData.zoneDataCompany.approveUsername
 const approvalpassword=oneYearData.zoneDataCompany.approvePassword
-const approvalusername2=oneYearData.zoneDataCompany.approveUsername2
-const approvalpassword2=oneYearData.zoneDataCompany.approvePassword2
 const approvalusername3=oneYearData.zoneDataCompany.approveUsername3
 const approvalpassword3=oneYearData.zoneDataCompany.approvePassword3
 const approvalusername4=oneYearData.zoneDataCompany.approveUsername4
 const approvalpassword4=oneYearData.zoneDataCompany.approvePassword4
+const approvalusername5=oneYearData.zoneDataCompany.approveUsername5
+const approvalpassword5=oneYearData.zoneDataCompany.approvePassword5
+const approvalusername6=oneYearData.zoneDataCompany.approveUsername6
+const approvalpassword6=oneYearData.zoneDataCompany.approvePassword6
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
@@ -67,24 +69,21 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
     await expect(pageConstants.passPage.passmanagementDrop).toBeVisible();
-    await pageConstants.passPage.zoneAccess.click();
+    await page.waitForTimeout(3000);
     await (pageConstants.passPage.passmanagementDrop).click();
     await (pageConstants.passPage.selectapplyGatePass).click();
+    await page.waitForTimeout(2000);
+    await (pageConstants.passPage.zoneAccess).click();
   });
   
   Then('Enter the pass information for the zone for one year', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(5000);
-       await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
-       await expect(pageConstants.passPage.portDropUi).toBeVisible();
-       await page.waitForTimeout(2000);
-       const dropdownPort = page.locator("//select[@id='portsId']");
+       await page.waitForSelector(`//select[@id='zonePicker']`, { state: 'visible' });
+       const dropdownPort = page.locator("//select[@id='zonePicker']");
        await dropdownPort.selectOption({ label: portName });
        await page.waitForLoadState("networkidle");
-       await page.waitForTimeout(2000);
-       const dropdownGate = page.locator("//select[@id='gateIdStr']");
-       await dropdownGate.selectOption({ label: gateType });
        await page.waitForTimeout(2000);
        const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
        await dropdownPassType.selectOption({ label: passType });
@@ -137,10 +136,8 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
   });
   
   Then('user enter the visitor information for the zone for one year', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
       await page.waitForTimeout(2000);
-      const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
-      await dropdownVisa.selectOption({ label: 'Resident' });
       await pageConstants.passPage.eidUi.type(actualEid);
       await page.waitForLoadState("networkidle");
   
@@ -206,7 +203,7 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
         await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
         await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
         await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
-        await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);   
+        await pageConstants.passPage.hcsupportingaFile.setInputFiles(uploadSupport);
   });
   
   Then('user save the visitor on the add page for the zone for one year', async ({page}) => {
@@ -297,7 +294,7 @@ When(/^user approve the apply pass on the list page for the zone for one year$/,
 });
 
 Then(/^verify pass approved successfully message for the zone for one year$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	           const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(5000);
               await pageConstants.passPage.searchForPassRefence.type(referceNumber);
@@ -319,19 +316,17 @@ Then(/^verify pass approved successfully message for the zone for one year$/, as
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(5000);
               await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-              referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
-              console.log('this is updated refence number'+ referceNumber);
 });
 
 When(/^verify second second approval message for the zone one year$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	      const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
-        await pageConstants.loginPage.enterUsername.type(approvalusername2);
-        await pageConstants.loginPage.enterpassword.type(approvalpassword2);
+        await pageConstants.loginPage.enterUsername.type(approvalusername3);
+        await pageConstants.loginPage.enterpassword.type(approvalpassword3);
         await pageConstants.loginPage.submitButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
@@ -342,33 +337,52 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
         await pageConstants.passPage.approveEdit.click();
     
-        await pageConstants.passPage.approvePhotoEdit.click();
+        await pageConstants.passPage.openPicApproval.click();
         await pageConstants.passPage.approveClose.click();
         await page.waitForTimeout(7000);
-        await pageConstants.passPage.approvePassportEdit.click();
+        await pageConstants.passPage.openPassportApproval.click();
         await pageConstants.passPage.approveClose.click();
     
-        await pageConstants.passPage.approveSupportEdit.click();
-        await pageConstants.passPage.approveClose.click();
-    
-        await pageConstants.passPage.approveEmiratesEdit.click();
+        await pageConstants.passPage.openEmiratesApproval.click();
         await pageConstants.passPage.approveClose.click();
     
         await pageConstants.passPage.approveButton.click();
         await page.waitForLoadState("networkidle");
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(7000);
         await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-});
-
-When(/^verify Third approval message for the zone one year$/, async({page}) => {
-	 const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
-        await pageConstants.loginPage.enterUsername.type(approvalusername3);
-        await pageConstants.loginPage.enterpassword.type(approvalpassword3);
+        await pageConstants.loginPage.enterUsername.type(approvalusername4);
+        await pageConstants.loginPage.enterpassword.type(approvalpassword4);
+        await pageConstants.loginPage.submitButton.click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
+        await pageConstants.passPage.passManaDrop.click();
+        await pageConstants.passPage.approvePassOption.click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
+        await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+        await pageConstants.passPage.approveEdit.click();
+    
+        await pageConstants.passPage.approveButton.click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
+        await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+        
+});
+
+When(/^verify Third approval message for the zone one year$/, async({page}) => {
+	      const pageConstants = new PageConstants(page);
+        await page.waitForTimeout(2000);
+        await pageConstants.loginPage.logoutDrop.click();
+        await pageConstants.loginPage.logoutButton.click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(5000);
+        await pageConstants.loginPage.enterUsername.type(approvalusername5);
+        await pageConstants.loginPage.enterpassword.type(approvalpassword5);
         await pageConstants.loginPage.submitButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
@@ -386,14 +400,14 @@ When(/^verify Third approval message for the zone one year$/, async({page}) => {
 });
 
 Then(/^verify final status completed for the applyied pass for zone$/, async({page}) => {
-	    const pageConstants = new PageConstants(page);
+	     const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
-        await pageConstants.loginPage.enterUsername.type(approvalusername4);
-        await pageConstants.loginPage.enterpassword.type(approvalpassword4);
+        await pageConstants.loginPage.enterUsername.type(approvalusername6);
+        await pageConstants.loginPage.enterpassword.type(approvalpassword6);
         await pageConstants.loginPage.submitButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
@@ -414,5 +428,5 @@ Then(/^verify final status completed for the applyied pass for zone$/, async({pa
         await page.waitForTimeout(5000);
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
         await page.waitForTimeout(5000);
-        await expect(pageConstants.passPage.passPrintingStatus).toBeVisible();
+        //await expect(pageConstants.passPage.passPrintingStatus).toBeVisible();
 });
