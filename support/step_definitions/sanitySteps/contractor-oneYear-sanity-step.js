@@ -57,7 +57,9 @@ Given('user navigates to the login page for contractor', async ({page}) => {
   When('user enter the credential for the login for contractor', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(contractorusername)
+    console.log('this is username' + contractorusername);
+    console.log('this is password' + contractorpassword);
+    await pageConstants.loginPage.enterUsername.type(contractorusername);
     await pageConstants.loginPage.enterpassword.type(contractorpassword);
     await pageConstants.loginPage.submitButton.click();
   });
@@ -260,6 +262,8 @@ When(/^user approve the apply pass for contractor$/, async({page}) => {
 	         const pageConstants = new PageConstants(page);
            await page.waitForLoadState("networkidle");
            await page.waitForTimeout(7000);
+           console.log('this is username' + contrapprovalUsername1);
+           console.log('this is password' + contrapprovalpassword1);
            await pageConstants.loginPage.enterUsername.type(contrapprovalUsername1);
            await pageConstants.loginPage.enterpassword.type(contrapprovalpassword1);
            await pageConstants.loginPage.submitButton.click();
@@ -304,6 +308,8 @@ Then(/^verify second approval successfully message for contractor$/, async({page
 	           const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(1000);
+              console.log('this is username' + contrapprovalUsername2);
+              console.log('this is password' + contrapprovalpassword2);
               await pageConstants.loginPage.enterUsername.type(contrapprovalUsername2);
               await pageConstants.loginPage.enterpassword.type(contrapprovalpassword2);
               await pageConstants.loginPage.submitButton.click();
@@ -349,6 +355,8 @@ Then(/^verify Final approval successfully message for contractor$/, async({page}
   await pageConstants.loginPage.logoutDrop.click();
   await pageConstants.loginPage.logoutButton.click();
   await page.waitForTimeout(1000);
+  console.log('this is username' + contrapprovalUsername4);
+  console.log('this is password' + contrapprovalpassword4);
   await pageConstants.loginPage.enterUsername.type(contrapprovalUsername4);
   await pageConstants.loginPage.enterpassword.type(contrapprovalpassword4);
   await pageConstants.loginPage.submitButton.click();

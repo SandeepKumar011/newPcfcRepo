@@ -53,6 +53,8 @@ Given(/^user navigates to the login page for sanity$/, async({page}) => {
 When(/^user enter the credential for the login for sanity$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    console.log('this is username' + loginusername);
+    console.log('this is password' + loginpassword);
     await pageConstants.loginPage.enterUsername.type(loginusername);
     await pageConstants.loginPage.enterpassword.type(loginpassword);
     await pageConstants.loginPage.submitButton.click();
@@ -179,6 +181,8 @@ When(/^user approve the apply pass on the list page for sanity$/, async({page}) 
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(10000);
+    console.log('this is username' + approvalusername);
+    console.log('this is password' + approvalpassword);
     await pageConstants.loginPage.enterUsername.type(approvalusername);
     await pageConstants.loginPage.enterpassword.type(approvalpassword);
     await pageConstants.loginPage.submitButton.click();

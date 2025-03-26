@@ -55,6 +55,8 @@ Given('user navigates to the login page for host for zone six month', async ({pa
   When('user enter the credential for the login for host for zone six month', async ({page}) => {
           const pageConstants = new PageConstants(page);
           await page.waitForLoadState("networkidle");
+          console.log('this is username' + hostusername);
+          console.log('this is password' + hostpassword);
           await pageConstants.loginPage.enterUsername.type(hostusername);
           await pageConstants.loginPage.enterpassword.type(hostpassword);
           await pageConstants.loginPage.submitButton.click();
@@ -286,6 +288,8 @@ When(/^user approve the apply pass for the host for zone six month$/, async({pag
    const pageConstants = new PageConstants(page);
                await page.waitForLoadState("networkidle");
                await page.waitForTimeout(7000);
+               console.log('this is username' + approvalusername1);
+               console.log('this is password' + approvalpassword1);
                await pageConstants.loginPage.enterUsername.type(approvalusername1);
                await pageConstants.loginPage.enterpassword.type(approvalpassword1);
                await pageConstants.loginPage.submitButton.click();  
@@ -328,6 +332,8 @@ Then(/^verify second approval successfully message for the host for zone six mon
 	  const pageConstants = new PageConstants(page);
       await page.waitForLoadState("networkidle");
       await page.waitForTimeout(7000);
+      console.log('this is username' + approvalusername1);
+      console.log('this is password' + approvalpassword1);
       await pageConstants.loginPage.enterUsername.type(approvalusername2);
       await pageConstants.loginPage.enterpassword.type(approvalpassword2);
       await pageConstants.loginPage.submitButton.click();
@@ -354,6 +360,8 @@ Then(/^verify Final approval successfully message for the host for zone six mont
 	          const pageConstants = new PageConstants(page);
             await page.waitForLoadState("networkidle");
             await page.waitForTimeout(2000);
+            console.log('this is username' + approvalusername4);
+            console.log('this is password' + approvalpassword4);
             await pageConstants.loginPage.enterUsername.type(approvalusername4);
             await pageConstants.loginPage.enterpassword.type(approvalpassword4);
             await pageConstants.loginPage.submitButton.click();
