@@ -58,6 +58,8 @@ Given('user navigates to the login page for governmental', async ({page}) => {
   When('user enter the credential for the login for governmental', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    console.log('this is username' + gevernmentusername);
+    console.log('this is password' + governmentpassword);
     await pageConstants.loginPage.enterUsername.type(gevernmentusername)
     await pageConstants.loginPage.enterpassword.type(governmentpassword);
     await pageConstants.loginPage.submitButton.click();
@@ -260,6 +262,8 @@ When(/^user approve the apply pass for governmental$/, async({page}) => {
 	 const pageConstants = new PageConstants(page);
            await page.waitForLoadState("networkidle");
            await page.waitForTimeout(7000);
+           console.log('this is username' + govapprovalUsername1);
+           console.log('this is password' + govapprovalpassword1);
            await pageConstants.loginPage.enterUsername.type(govapprovalUsername1);
            await pageConstants.loginPage.enterpassword.type(govapprovalpassword1);
            await pageConstants.loginPage.submitButton.click();
@@ -303,6 +307,8 @@ Then(/^verify second approval successfully message for governmental$/, async({pa
 	           const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(2000);
+              console.log('this is username' + govapprovalUsername2);
+              console.log('this is password' + govapprovalpassword2);
               await pageConstants.loginPage.enterUsername.type(govapprovalUsername2);
               await pageConstants.loginPage.enterpassword.type(govapprovalpassword2);
               await pageConstants.loginPage.submitButton.click();

@@ -59,6 +59,8 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
   When('user enter the credential for the login for zone for one year', async ({page}) => {
    const pageConstants = new PageConstants(page);
       await page.waitForLoadState("networkidle");
+      console.log('this is username' + usernameLogin);
+      console.log('this is password' + passwordLogin);
       await pageConstants.loginPage.enterUsername.type(usernameLogin)
       await pageConstants.loginPage.enterpassword.type(passwordLogin);
       await pageConstants.loginPage.submitButton.click();
@@ -284,6 +286,8 @@ When(/^user approve the apply pass on the list page for the zone for one year$/,
 	    const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
+        console.log('this is username' + approvalusername);
+        console.log('this is password' + approvalpassword);
         await pageConstants.loginPage.enterUsername.type(approvalusername);
         await pageConstants.loginPage.enterpassword.type(approvalpassword);
         await pageConstants.loginPage.submitButton.click();
@@ -325,6 +329,8 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
+        console.log('this is username' + approvalusername3);
+        console.log('this is password' + approvalpassword3);
         await pageConstants.loginPage.enterUsername.type(approvalusername3);
         await pageConstants.loginPage.enterpassword.type(approvalpassword3);
         await pageConstants.loginPage.submitButton.click();
@@ -337,13 +343,13 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
         await pageConstants.passPage.approveEdit.click();
     
-        await pageConstants.passPage.openPicApproval.click();
+        await pageConstants.passPage.approvePhotoEdit.click();
         await pageConstants.passPage.approveClose.click();
-        await page.waitForTimeout(7000);
-        await pageConstants.passPage.openPassportApproval.click();
+          
+        await pageConstants.passPage.approvePassportEdit.click();
         await pageConstants.passPage.approveClose.click();
-    
-        await pageConstants.passPage.openEmiratesApproval.click();
+          
+        await pageConstants.passPage.approveSupportEdit.click();
         await pageConstants.passPage.approveClose.click();
     
         await pageConstants.passPage.approveButton.click();
@@ -355,6 +361,8 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
+        console.log('this is username' + approvalusername4);
+        console.log('this is password' + approvalpassword4);
         await pageConstants.loginPage.enterUsername.type(approvalusername4);
         await pageConstants.loginPage.enterpassword.type(approvalpassword4);
         await pageConstants.loginPage.submitButton.click();
@@ -366,7 +374,16 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await page.waitForTimeout(5000);
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
         await pageConstants.passPage.approveEdit.click();
-    
+
+        await pageConstants.passPage.approvePhotoEdit.click();
+        await pageConstants.passPage.approveClose.click();
+          
+        await pageConstants.passPage.approvePassportEdit.click();
+        await pageConstants.passPage.approveClose.click();
+          
+        await pageConstants.passPage.approveSupportEdit.click();
+        await pageConstants.passPage.approveClose.click();
+
         await pageConstants.passPage.approveButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
@@ -381,6 +398,8 @@ When(/^verify Third approval message for the zone one year$/, async({page}) => {
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
+        console.log('this is username' + approvalusername5);
+        console.log('this is password' + approvalpassword5);
         await pageConstants.loginPage.enterUsername.type(approvalusername5);
         await pageConstants.loginPage.enterpassword.type(approvalpassword5);
         await pageConstants.loginPage.submitButton.click();
@@ -406,6 +425,8 @@ Then(/^verify final status completed for the applyied pass for zone$/, async({pa
         await pageConstants.loginPage.logoutButton.click();
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
+        console.log('this is username' + approvalusername6);
+        console.log('this is password' + approvalpassword6);
         await pageConstants.loginPage.enterUsername.type(approvalusername6);
         await pageConstants.loginPage.enterpassword.type(approvalpassword6);
         await pageConstants.loginPage.submitButton.click();

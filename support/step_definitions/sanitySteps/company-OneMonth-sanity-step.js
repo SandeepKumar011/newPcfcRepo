@@ -56,6 +56,8 @@ let referceNumber;
   When('user enter the credential for the login for company for one Month', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    console.log('this is username' + usernameLogin);
+    console.log('this is password' + passwordLogin);
     await pageConstants.loginPage.enterUsername.type(usernameLogin)
     await pageConstants.loginPage.enterpassword.type(passwordLogin);
     await pageConstants.loginPage.submitButton.click();
@@ -284,6 +286,8 @@ When(/^user approve the apply pass on the list page for the company for one mont
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
+    console.log('this is username' + approvalusername);
+    console.log('this is password' + approvalpassword);
     await pageConstants.loginPage.enterUsername.type(approvalusername);
     await pageConstants.loginPage.enterpassword.type(approvalpassword);
     await pageConstants.loginPage.submitButton.click();
@@ -327,6 +331,8 @@ When('verify second second approval message for the company one month', async ({
     await pageConstants.loginPage.logoutButton.click();
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
+    console.log('this is username' + approvalusername2);
+    console.log('this is password' + approvalpassword2);
     await pageConstants.loginPage.enterUsername.type(approvalusername2);
     await pageConstants.loginPage.enterpassword.type(approvalpassword2);
     await pageConstants.loginPage.submitButton.click();
@@ -365,6 +371,8 @@ When('verify Third approval message for the company one month', async ({page}) =
     await pageConstants.loginPage.logoutButton.click();
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
+    console.log('this is username' + approvalusername3);
+    console.log('this is password' + approvalpassword3);
     await pageConstants.loginPage.enterUsername.type(approvalusername3);
     await pageConstants.loginPage.enterpassword.type(approvalpassword3);
     await pageConstants.loginPage.submitButton.click();
@@ -390,6 +398,8 @@ Then('verify final status completed for the applyied pass', async ({page}) => {
     await pageConstants.loginPage.logoutButton.click();
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
+    console.log('this is username' + approvalusername4);
+    console.log('this is password' + approvalpassword4);
     await pageConstants.loginPage.enterUsername.type(approvalusername4);
     await pageConstants.loginPage.enterpassword.type(approvalpassword4);
     await pageConstants.loginPage.submitButton.click();

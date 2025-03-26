@@ -52,6 +52,8 @@ Given('user navigates to the login page for host for one day', async ({page}) =>
   When('user enter the credential for the login for host for one day', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
+    console.log('this is username' + hostusername);
+    console.log('this is password' + hostpassword);
     await pageConstants.loginPage.enterUsername.type(hostusername);
     await pageConstants.loginPage.enterpassword.type(hostpassword);
     await pageConstants.loginPage.submitButton.click();
@@ -256,6 +258,8 @@ When(/^user approve the apply pass on the list page for the host for one day$/, 
 	     const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
+        console.log('this is username' + approvalusername);
+        console.log('this is password' + approvalpassword);
         await pageConstants.loginPage.enterUsername.type(approvalusername);
         await pageConstants.loginPage.enterpassword.type(approvalpassword);
         await pageConstants.loginPage.submitButton.click();
