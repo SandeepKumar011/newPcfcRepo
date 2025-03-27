@@ -69,13 +69,13 @@
         "password":"Login@345",
         "portName":"Jebel Ali Port",
         "gateType":"Any Gate",
-        "passDuration":"One Day Pass",
-        "passType":"Business Meeting",
+        "passDuration":"One Year Pass",
+        "passType":"Free Pass",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345",
-        "existingEid":"784199553553536"
+        "existingEid":"01042519054334"
     },
     "regressionDataHost":{
         "username":"wallstreet",
@@ -88,7 +88,7 @@
         "hostCompany":"DEV HOST1",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345",
-        "existingEid":"784199553553536"
+        "existingEid":"14032519054175"
     },
 
     "renewDataHost":{
@@ -141,7 +141,7 @@
         "passType":"Business Meeting",
         "visitReason":"Business Meeting",
         "hostCompany":"DEV HOST1",
-        "existingEid":"784199553553536",
+        "existingEid":"01042519054332",
         "approveUsername":"devhost1",
         "approvePassword":"Login@345"
     },

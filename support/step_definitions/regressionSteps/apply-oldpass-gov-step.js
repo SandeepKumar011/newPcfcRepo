@@ -37,14 +37,14 @@ const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
 
-Given('user navigates the login page for government', async ({}) => {
+Given('user navigates the login page for government', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     await pageConstants.loginPage.loginButton.click();
   });
   
-  When('user enter the crendential for the government', async ({}) => {
+  When('user enter the crendential for the government', async ({page}) => {
     const pageConstants = new PageConstants(page);
              await page.waitForLoadState("networkidle");
              await pageConstants.loginPage.enterUsername.type(username);
@@ -52,7 +52,7 @@ Given('user navigates the login page for government', async ({}) => {
              await pageConstants.loginPage.submitButton.click();
   });
   
-  Then('user should be redirected to the home page for government', async ({}) => {
+  Then('user should be redirected to the home page for government', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(2000);
@@ -62,7 +62,7 @@ Given('user navigates the login page for government', async ({}) => {
     
   });
   
-  When('user enter the infomation for pass for government', async ({}) => {
+  When('user enter the infomation for pass for government', async ({page}) => {
         const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(2000);
@@ -112,12 +112,12 @@ Given('user navigates the login page for government', async ({}) => {
         await pageConstants.passPage.visitMinutes.type(hoursToVisit);
   });
   
-  When('user enter infomation for the visitor for government', async ({}) => {
+  When('user enter infomation for the visitor for government', async ({page}) => {
     const pageConstants = new PageConstants(page);
     console.log('there is not need to enter visitor infomation');
   });
   
-  When('user apply the pass for one day for government', async ({}) => {
+  When('user apply the pass for one day for government', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
@@ -129,7 +129,7 @@ Given('user navigates the login page for government', async ({}) => {
     await page.waitForTimeout(10000);
   });
   
-  Then('verify confirmation message for government', async ({}) => {
+  Then('verify confirmation message for government', async ({page}) => {
        const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });

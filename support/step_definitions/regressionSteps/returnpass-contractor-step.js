@@ -38,14 +38,14 @@ const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
 const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
-Given('user navigates the login page for contractor return', async ({}) => {
+Given('user navigates the login page for contractor return', async ({page}) => {
   const pageConstants = new PageConstants(page);
   await page.goto("/");
   await page.waitForLoadState("networkidle");
   await pageConstants.loginPage.loginButton.click();
 });
 
-When('user enter the crendential for the contractor return', async ({}) => {
+When('user enter the crendential for the contractor return', async ({page}) => {
   const pageConstants = new PageConstants(page);
       await page.waitForLoadState("networkidle");
       await pageConstants.loginPage.enterUsername.type(username);
@@ -53,7 +53,7 @@ When('user enter the crendential for the contractor return', async ({}) => {
       await pageConstants.loginPage.submitButton.click();
 });
 
-Then('user should be redirected to the home page for contractor return', async ({}) => {
+Then('user should be redirected to the home page for contractor return', async ({page}) => {
   const pageConstants = new PageConstants(page);
   await page.waitForLoadState("networkidle");
   await page.waitForTimeout(2000);
@@ -62,8 +62,8 @@ Then('user should be redirected to the home page for contractor return', async (
   await pageConstants.passPage.selectapplyGatePass.click();
 });
 
-When('user enter the infomation for pass for contractor return', async ({}) => {
-   const pageConstants = new PageConstants(page);
+When('user enter the infomation for pass for contractor return', async ({page}) => {
+          const pageConstants = new PageConstants(page);
           await page.waitForTimeout(5000);
           await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
           await expect(pageConstants.passPage.portDropUi).toBeVisible();
@@ -97,7 +97,7 @@ When('user enter the infomation for pass for contractor return', async ({}) => {
           const intDate=parseInt(day);
           const visitDate=(intDate+2);
           console.log('this is actual visit date ' + visitDate);
-          await page.waitForTimeout(2000);
+          await page.waitForTimeout(3000);
       
           if(visitDate<26){
             const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
@@ -105,7 +105,7 @@ When('user enter the infomation for pass for contractor return', async ({}) => {
             const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
             await selectDatedob.click();
         }
-        else if(visitDate<29){
+        else if(visitDate<=29){
           const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
           await openCalendardob.click();
           const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
@@ -126,7 +126,7 @@ When('user enter the infomation for pass for contractor return', async ({}) => {
           await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
 });
 
-When('user enter infomation for the visitor for contractor return', async ({}) => {
+When('user enter infomation for the visitor for contractor return', async ({page}) => {
    const pageConstants = new PageConstants(page);
       await page.waitForTimeout(2000);
       const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
@@ -194,12 +194,15 @@ When('user enter infomation for the visitor for contractor return', async ({}) =
         await pageConstants.passPage.selectVisNationality.click();
         await pageConstants.passPage.visCompany.type(fname);
         await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
+        await page.waitForTimeout(1000);
         await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
+        await page.waitForTimeout(1000);
         await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
+        await page.waitForTimeout(1000);
         await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
 });
 
-When('user apply the pass for one day for contractor return', async ({}) => {
+When('user apply the pass for one day for contractor return', async ({page}) => {
   const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
@@ -209,13 +212,14 @@ When('user apply the pass for one day for contractor return', async ({}) => {
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
     await page.waitForTimeout(10000);
+    await pageConstants.passPage.okForAlert.click();
 });
 
-When('user pay amount for the retun pass for contractor', async ({}) => {
+When('user pay amount for the retun pass for contractor', async ({page}) => {
   console.log('there is not need to pay');
 });
 
-Then('verify confirmation message for contractor return', async ({}) => {
+Then('verify confirmation message for contractor return', async ({page}) => {
   const pageConstants = new PageConstants(page);
      await page.waitForLoadState("networkidle");
      await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
@@ -224,7 +228,7 @@ Then('verify confirmation message for contractor return', async ({}) => {
      console.log('this is added refence number'+ referceNumber);
 });
 
-When('login with the approval crendential for contractor', async ({}) => {
+When('login with the approval crendential for contractor', async ({page}) => {
   const pageConstants = new PageConstants(page);
      await page.waitForTimeout(2000);
      await pageConstants.loginPage.logoutDrop.click();
@@ -240,7 +244,7 @@ When('login with the approval crendential for contractor', async ({}) => {
      await page.waitForTimeout(5000);
 });
 
-When('host company return pass to the contractor', async ({}) => {
+When('host company return pass to the contractor', async ({page}) => {
  const pageConstants = new PageConstants(page);
           await page.waitForLoadState("networkidle");
           await pageConstants.passPage.passManaDrop.click();

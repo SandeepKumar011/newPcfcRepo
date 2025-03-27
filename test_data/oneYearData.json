@@ -83,7 +83,7 @@
     "zoneDataCompany":{
         "username":"wallstreet",
         "password":"Login@345",
-        "portName":"ZONE 01",
+        "portName":"ZONE 02",
         "gateType":"Any Gate",
         "passType":"Entry Permit (For Individual)",
         "passDuration":"One Year Pass",
