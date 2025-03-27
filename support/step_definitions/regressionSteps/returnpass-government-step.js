@@ -40,14 +40,14 @@ const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
 
-Given('user navigates the login page for government return', async ({}) => {
+Given('user navigates the login page for government return', async ({page}) => {
     const pageConstants = new PageConstants(page);
   await page.goto("/");
   await page.waitForLoadState("networkidle");
   await pageConstants.loginPage.loginButton.click();
   });
   
-  When('user enter the crendential for the government return', async ({}) => {
+  When('user enter the crendential for the government return', async ({page}) => {
   const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await pageConstants.loginPage.enterUsername.type(username);
@@ -55,7 +55,7 @@ Given('user navigates the login page for government return', async ({}) => {
        await pageConstants.loginPage.submitButton.click();
   });
   
-  Then('user should be redirected to the home page for government return', async ({}) => {
+  Then('user should be redirected to the home page for government return', async ({page}) => {
     const pageConstants = new PageConstants(page);
   await page.waitForLoadState("networkidle");
   await page.waitForTimeout(2000);
@@ -64,7 +64,7 @@ Given('user navigates the login page for government return', async ({}) => {
   await pageConstants.passPage.selectapplyGatePass.click();
   });
   
-  When('user enter the infomation for pass for government return', async ({}) => {
+  When('user enter the infomation for pass for government return', async ({page}) => {
    const pageConstants = new PageConstants(page);
             await page.waitForTimeout(5000);
             await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
@@ -99,7 +99,7 @@ Given('user navigates the login page for government return', async ({}) => {
             const intDate=parseInt(day);
             const visitDate=(intDate+2);
             console.log('this is actual visit date ' + visitDate);
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(3000);
         
             if(visitDate<26){
               const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
@@ -107,7 +107,7 @@ Given('user navigates the login page for government return', async ({}) => {
               const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
               await selectDatedob.click();
           }
-          else if(visitDate<29){
+          else if(visitDate<=29){
             const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
             await openCalendardob.click();
             const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
@@ -128,7 +128,7 @@ Given('user navigates the login page for government return', async ({}) => {
             await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
   });
   
-  When('user enter infomation for the visitor for government return', async ({}) => {
+  When('user enter infomation for the visitor for government return', async ({page}) => {
      const pageConstants = new PageConstants(page);
          await page.waitForTimeout(2000);
          const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
@@ -196,12 +196,15 @@ Given('user navigates the login page for government return', async ({}) => {
            await pageConstants.passPage.selectVisNationality.click();
            await pageConstants.passPage.visCompany.type(fname);
            await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
+           await page.waitForTimeout(1000);
            await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
+           await page.waitForTimeout(1000);
            await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
+           await page.waitForTimeout(1000);
            await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
   });
   
-  When('user apply the pass for one day for government return', async ({}) => {
+  When('user apply the pass for one day for government return', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
@@ -213,11 +216,11 @@ Given('user navigates the login page for government return', async ({}) => {
     await page.waitForTimeout(10000);
   });
   
-  When('user pay amount for the retun pass for government', async ({}) => {
+  When('user pay amount for the retun pass for government', async ({page}) => {
     console.log('there is not need to pay');
   });
   
-  Then('verify confirmation message for government return', async ({}) => {
+  Then('verify confirmation message for government return', async ({page}) => {
    const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
@@ -226,7 +229,7 @@ Given('user navigates the login page for government return', async ({}) => {
        console.log('this is added refence number'+ referceNumber);
   });
   
-  When('login with the approval crendential for government', async ({}) => {
+  When('login with the approval crendential for government', async ({page}) => {
    const pageConstants = new PageConstants(page);
        await page.waitForTimeout(2000);
        await pageConstants.loginPage.logoutDrop.click();
@@ -242,7 +245,7 @@ Given('user navigates the login page for government return', async ({}) => {
        await page.waitForTimeout(5000);
   });
   
-  When('host company return pass to the government', async ({}) => {
+  When('host company return pass to the government', async ({page}) => {
   const pageConstants = new PageConstants(page);
             await page.waitForLoadState("networkidle");
             await pageConstants.passPage.passManaDrop.click();

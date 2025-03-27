@@ -107,15 +107,15 @@ Given('user navigates the login page for contractor', async ({page}) => {
        await selectDatedob.click();
       }
         
-          await page.waitForTimeout(2000);
-          await pageConstants.passPage.visitHour.type(hoursToVisit);
-          await pageConstants.passPage.visitMinutes.type(hoursToVisit);
+        await page.waitForTimeout(2000);
+        await pageConstants.passPage.okForAlert.click();
         
   });
   
   When('user enter infomation for the visitor for contractor', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    console.log('there is not need to enter visitor infomation');
+    const designation = page.locator("//select[@id='designationIdStr']");
+    await designation.selectOption({ label: 'Admin' });
   });
   
   When('user apply the pass for one day for contractor', async ({page}) => {

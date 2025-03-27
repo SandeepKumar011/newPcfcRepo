@@ -129,6 +129,7 @@ class PassPage
         this.openPassportApproval=page.locator("//a[normalize-space(text())='Passport.pdf']");
         this.openUniqueApproval=page.locator("//a[normalize-space(text())='Unique_Identification_Document.pdf']");
         this.openEmiratesApproval=page.locator("//a[normalize-space(text())='Emirates_Id.pdf']");
+        this.openHcSupportApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_Approval_from_HC_Other_Ports.pdf']");
         this.openSupportiveApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.pdf']");
         this.openSupportiveNocDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents_NOC_from_DMA.pdf']");
         this.openSupportiveDocApproval=page.locator("//a[normalize-space(text())='Supporting_Documents.pdf']");

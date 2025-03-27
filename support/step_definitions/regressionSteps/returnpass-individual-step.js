@@ -97,7 +97,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
               const intDate=parseInt(day);
               const visitDate=(intDate+2);
               console.log('this is actual visit date ' + visitDate);
-              await page.waitForTimeout(2000);
+              await page.waitForTimeout(3000);
           
               if(visitDate<26){
                 const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
@@ -105,7 +105,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
                 const selectDatedob=page.locator(`(//td[normalize-space(text())='${visitDate}'])[1]`)
                 await selectDatedob.click();
             }
-            else if(visitDate<29){
+            else if(visitDate<=29){
               const openCalendardob=page.locator("//input[@id='dateOfVisitStr']");
               await openCalendardob.click();
               const selectDatedob=page.locator(`(//td[normalize-space(text())='1'])[2]`)
@@ -127,7 +127,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
   });
   
   When('user enter infomation for the visitor for individual return', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+            const pageConstants = new PageConstants(page);
             await page.waitForTimeout(2000);
             const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
             await dropdownVisa.selectOption({ label: 'Resident' });
@@ -194,8 +194,11 @@ Given('user navigates the login page for individual return', async ({page}) => {
               await pageConstants.passPage.selectVisNationality.click();
               await pageConstants.passPage.visCompany.type(fname);
               await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
+              await page.waitForTimeout(1000);
               await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
+              await page.waitForTimeout(1000);
               await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
+              await page.waitForTimeout(1000);
               await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
   });
   

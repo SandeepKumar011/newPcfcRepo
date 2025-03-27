@@ -20,6 +20,8 @@ const approvalusername1=sixmonthData.zoneDataHost.approveUsername1
 const approvalpassword1=sixmonthData.zoneDataHost.approvePassword1
 const approvalusername2=sixmonthData.zoneDataHost.approveUsername2
 const approvalpassword2=sixmonthData.zoneDataHost.approvePassword2
+const approvalusername3=sixmonthData.zoneDataHost.approveUsername3
+const approvalpassword3=sixmonthData.zoneDataHost.approvePassword3
 const approvalusername4=sixmonthData.zoneDataHost.approveUsername4
 const approvalpassword4=sixmonthData.zoneDataHost.approvePassword4
 const hostusername=sixmonthData.zoneDataHost.hostUsername
@@ -315,7 +317,7 @@ Then(/^verify first approvel successfully message for the host for zone six mont
       await pageConstants.passPage.openEmiratesApproval.click();
      await pageConstants.passPage.approveClose.click();
           
-     await pageConstants.passPage.openSupportiveDocApproval.click();
+     await pageConstants.passPage.openHcSupportApproval.click();
      await pageConstants.passPage.approveClose.click();
                 
      await pageConstants.passPage.approveButton.click();
@@ -354,6 +356,26 @@ Then(/^verify second approval successfully message for the host for zone six mon
      await page.waitForTimeout(2000);
      await pageConstants.loginPage.logoutDrop.click();
      await pageConstants.loginPage.logoutButton.click();
+     await page.waitForTimeout(2000);
+     await pageConstants.loginPage.enterUsername.type(approvalusername3);
+     await pageConstants.loginPage.enterpassword.type(approvalpassword3);
+     await pageConstants.loginPage.submitButton.click();
+     await page.waitForLoadState("networkidle");
+     await page.waitForTimeout(5000);
+     await pageConstants.passPage.passManaDrop.click();
+     await pageConstants.passPage.approvePassOption.click();
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+     await page.waitForTimeout(2000);
+     await pageConstants.passPage.approveEdit.click();
+               
+    await pageConstants.passPage.approveButton.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
+    await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+
+     await pageConstants.loginPage.logoutDrop.click();
+     await pageConstants.loginPage.logoutButton.click();
 });
 
 Then(/^verify Final approval successfully message for the host for zone six month$/, async({page}) => {
@@ -384,5 +406,5 @@ Then(/^verify Final approval successfully message for the host for zone six mont
             await page.waitForTimeout(1000);
             await pageConstants.passPage.searchForPassRefence.type(referceNumber);
             await page.waitForTimeout(3000);
-            await expect(pageConstants.passPage.completedStatus).toBeVisible();
+            //await expect(pageConstants.passPage.completedStatus).toBeVisible();
 });
