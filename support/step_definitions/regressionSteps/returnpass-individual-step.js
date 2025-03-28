@@ -127,91 +127,16 @@ Given('user navigates the login page for individual return', async ({page}) => {
   });
   
   When('user enter infomation for the visitor for individual return', async ({page}) => {
-            const pageConstants = new PageConstants(page);
-            await page.waitForTimeout(2000);
-            const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
-            await dropdownVisa.selectOption({ label: 'Resident' });
-            await pageConstants.passPage.eidUi.type(actualEid);
-            await page.waitForLoadState("networkidle");
-        
-             //calendra handle dob
-             await page.waitForTimeout(2000);
-             const openCalendardob = page.locator("//input[@id='dateOfBirth']");
-             await openCalendardob.click();
-             const openYeardob=page.locator("(//th[@class='datepicker-switch'])[1]")
-             await openYeardob.click();
-             const openYearListdob=page.locator("(//th[@class='datepicker-switch'])[2]")
-             await openYearListdob.click();
-             const selectYeardob=page.locator(`//span[normalize-space(text())='${yearDob}']`)
-             await selectYeardob.click();
-             const selectMonthdob=page.locator(`//span[normalize-space(text())='${monthDob}']`)
-             await selectMonthdob.click();
-             const selectDatedob=page.locator(`//td[normalize-space(text())='${particularDate}']`)
-             await selectDatedob.click();
-             await page.waitForLoadState("networkidle");
-             //select gender
-             await page.waitForTimeout(2000);
-             const dropdownLocator2 = page.locator("//select[@name='serachGender']");
-             await dropdownLocator2.selectOption({ label: 'Male' });
-             await pageConstants.passPage.searchButton.click();
-             await page.waitForLoadState("networkidle");
-             await expect(pageConstants.passPage.errorValidManually).toBeVisible();
-             await page.waitForLoadState("networkidle");
-             await page.waitForTimeout(2000);
-             const dropdownLocator = page.locator("//select[@id='title']");
-             await dropdownLocator.selectOption({ label: 'Mr' });
-             await pageConstants.passPage.visfirstName.clear();
-             await pageConstants.passPage.visfirstName.type(fname);
-             await pageConstants.passPage.vislastName.clear();
-             await pageConstants.passPage.vislastName.type(lname);
-             await pageConstants.passPage.visemail.clear();
-             await pageConstants.passPage.visemail.type(emailId);
-             await pageConstants.passPage.visMobile.clear();
-             await pageConstants.passPage.visMobile.type(mobileNum);
-             await page.waitForTimeout(2000);
-             const designation = page.locator("//select[@id='designationIdStr']");
-             await designation.selectOption({ label: visDesignation });
-             await pageConstants.passPage.vispassPortNumber.clear();
-             await pageConstants.passPage.vispassPortNumber.type(dynamicNumber);
-             await page.waitForLoadState("networkidle");
-             await page.waitForTimeout(2000);
-             //eid expire date
-              const openCalendarExp = page.locator("//input[@id='emiratesIdExpiry']");
-              await openCalendarExp.click();
-              const openYearExp=page.locator("(//th[@class='datepicker-switch'])[1]")
-              await openYearExp.click();
-              const openYearListExp=page.locator("(//th[@class='datepicker-switch'])[2]")
-              await openYearListExp.click();
-              const selectYearExp=page.locator(`//span[normalize-space(text())='${futureYear}']`)
-              await selectYearExp.click();
-              const selectMonthExp=page.locator(`//span[normalize-space(text())='${monthDob}']`)
-              await selectMonthExp.click();
-              const selectDateExp=page.locator(`//td[normalize-space(text())='${particularDate}']`)
-              await selectDateExp.click();
-              await page.waitForLoadState("networkidle");
-              //enter nationality
-              await pageConstants.passPage.visNationalField.type(nationality);
-              await pageConstants.passPage.selectVisNationality.click();
-              await pageConstants.passPage.visCompany.type(fname);
-              await pageConstants.passPage.personalFile.setInputFiles(uploadPic);
-              await page.waitForTimeout(1000);
-              await pageConstants.passPage.passportFile.setInputFiles(uploadPassport);
-              await page.waitForTimeout(1000);
-              await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
-              await page.waitForTimeout(1000);
-              await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
+           const pageConstants = new PageConstants(page);
+           await pageConstants.passPage.companyNameInput.type(fname);
+           console.log('ther is not need to filled othere data')
   });
   
   When('user apply the pass for one day for individual return', async ({page}) => {
     const pageConstants = new PageConstants(page);
-    await pageConstants.passPage.addVisitor.click();
-    await page.waitForTimeout(10000);
-    await page.waitForLoadState("networkidle");
-    await page.waitForSelector(`(//a[@data-bind='click: $root.editUser'])[1]`, { state: 'visible' });
-    await expect(pageConstants.passPage.editButton).toBeVisible();
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
   });
   
   When('user pay amount for the retun pass for individual', async ({page}) => {
@@ -219,7 +144,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
   });
   
   Then('verify confirmation message for individual return', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+          const pageConstants = new PageConstants(page);
           await page.waitForLoadState("networkidle");
           await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
           await expect(pageConstants.passPage.confirmationPay).toBeVisible();
@@ -228,7 +153,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
   });
   
   When('login with the approval crendential for individual', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+          const pageConstants = new PageConstants(page);
           await page.waitForTimeout(2000);
           await pageConstants.loginPage.logoutDrop.click();
           await pageConstants.loginPage.logoutButton.click();
@@ -244,7 +169,7 @@ Given('user navigates the login page for individual return', async ({page}) => {
   });
   
   When('host company return pass to the individual', async ({page}) => {
-   const pageConstants = new PageConstants(page);
+              const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
               await pageConstants.passPage.passManaDrop.click();
               await pageConstants.passPage.approvePassOption.click();

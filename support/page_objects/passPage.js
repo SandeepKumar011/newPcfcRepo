@@ -36,6 +36,7 @@ class PassPage
         this.visNationalField=page.locator("//input[@id='nationalityValue']");
         this.selectVisNationality=page.locator(`//div[normalize-space(text())='India']`);
         this.visCompany=page.locator("//input[@id='vistorCompanyName']");
+        this.companyNameInput=page.locator("//input[@id='companyName']");
         this.passportFile=page.locator("//input[@name='Passport']");
         this.personalFile=page.locator("//input[@name='Photo']");
         this.eidFile=page.locator("//input[@name='Emirates Id']");
