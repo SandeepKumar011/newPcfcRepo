@@ -120,16 +120,10 @@ Given('user navigates the login page for government return', async ({page}) => {
          const selectDatedob=page.locator(`(//td[normalize-space(text())='3'])[2]`)
          await selectDatedob.click();
         }
-          
-            await page.waitForTimeout(2000);
-            await pageConstants.passPage.visitHour.type(hoursToVisit);
-            await pageConstants.passPage.visitMinutes.type(hoursToVisit);
-            await pageConstants.passPage.hostCompanyUi.type(hCompany);
-            await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
   });
   
   When('user enter infomation for the visitor for government return', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+        const pageConstants = new PageConstants(page);
          await page.waitForTimeout(2000);
          const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
          await dropdownVisa.selectOption({ label: 'Resident' });
@@ -202,6 +196,8 @@ Given('user navigates the login page for government return', async ({page}) => {
            await pageConstants.passPage.eidFile.setInputFiles(uploadEid);
            await page.waitForTimeout(1000);
            await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);
+           await page.waitForTimeout(1000);
+           await pageConstants.passPage.uidFileUpload.setInputFiles(uploadSupport);
   });
   
   When('user apply the pass for one day for government return', async ({page}) => {
@@ -213,7 +209,8 @@ Given('user navigates the login page for government return', async ({page}) => {
     await expect(pageConstants.passPage.editButton).toBeVisible();
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
+    await pageConstants.passPage.okForAlert.click();
   });
   
   When('user pay amount for the retun pass for government', async ({page}) => {
@@ -265,6 +262,8 @@ Given('user navigates the login page for government return', async ({page}) => {
             await page.waitForTimeout(1000);
             await pageConstants.passPage.nextapproveButton.click();
             //eid approve
+            await page.waitForTimeout(1000);
+            await pageConstants.passPage.nextapproveButton.click();
             await page.waitForTimeout(1000);
             await pageConstants.passPage.nextapproveButton.click();
             await page.waitForTimeout(1000);

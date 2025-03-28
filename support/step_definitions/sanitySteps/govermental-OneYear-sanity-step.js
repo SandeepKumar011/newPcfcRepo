@@ -320,7 +320,7 @@ Then(/^verify second approval successfully message for governmental$/, async({pa
               await pageConstants.passPage.searchForPassRefence.type(referceNumber);
               await page.waitForTimeout(1000);
               //this functionality is not working as of now
-              //await expect(pageConstants.passPage.completedStatus).toBeVisible();
+              await expect(pageConstants.passPage.completedStatus).toBeVisible();
 });
 
 Then(/^verify Final approval successfully message for governmental$/, async({page}) => {
