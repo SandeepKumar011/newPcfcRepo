@@ -1,0 +1,15 @@
+{
+    "individualUser" : {
+        "username":"automation21",
+        "password":"Login@345",
+        "approveUsername":"devhost1",
+        "approvePassword":"Login@345"
+    },
+    "commonData":{
+        "roleName":"Telephone Receiver",
+        "location":"Al Hamriya Port",
+        "passDuration":"One Day Pass",
+        "password":"Login@345",
+        "confirmpassword":"Login@345"
+    }
+}

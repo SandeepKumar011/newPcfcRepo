@@ -173,6 +173,9 @@ class PassPage
         this.searchBlackList=page.locator("//a[normalize-space(text())='Search BlackList']");
         this.validEid=page.locator("(//tbody//tr//td[2])[1]");
         this.imageNext=page.locator("//input[@id='nextId']");
+        //update profile
+        this.updateProfile=page.locator("//a[normalize-space(text())='Update Profile']");
+        this.confirmationUpdateuser=page.locator("//div[@class='toastify on toast-success toastify-right toastify-top']");
 
     }
 }

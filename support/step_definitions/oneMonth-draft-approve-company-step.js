@@ -1,30 +1,30 @@
 const { createBdd } = require('playwright-bdd');
 const { Given, Then ,When} = createBdd();
 const path = require('path');
-const { PageConstants } = require("../../PageConstants");
+const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../../test_data/userData.json');
-const oneMonthData=require('../../../test_data/oneMonthData.json');
+const testData=require('../../test_data/userData.json');
+const oneMonthData=require('../../test_data/oneMonthData.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const portName=oneMonthData.sanityDataCompany.portName
-const gateType=oneMonthData.sanityDataCompany.gateType
-const passDuration=oneMonthData.sanityDataCompany.passDuration
-const passType=oneMonthData.sanityDataCompany.passType
-const reasonVisit=oneMonthData.sanityDataCompany.visitReason
-const hCompany=oneMonthData.sanityDataCompany.hostCompany
+const portName=oneMonthData.DraftCompanyData.portName
+const gateType=oneMonthData.DraftCompanyData.gateType
+const passDuration=oneMonthData.DraftCompanyData.passDuration
+const passType=oneMonthData.DraftCompanyData.passType
+const reasonVisit=oneMonthData.DraftCompanyData.visitReason
+const hCompany=oneMonthData.DraftCompanyData.hostCompany
 const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
-const usernameLogin=oneMonthData.sanityDataCompany.username
-const passwordLogin=oneMonthData.sanityDataCompany.password
-const approvalusername=oneMonthData.sanityDataCompany.approveUsername
-const approvalpassword=oneMonthData.sanityDataCompany.approvePassword
-const approvalusername2=oneMonthData.sanityDataCompany.approveUsername2
-const approvalpassword2=oneMonthData.sanityDataCompany.approvePassword2
-const approvalusername3=oneMonthData.sanityDataCompany.approveUsername3
-const approvalpassword3=oneMonthData.sanityDataCompany.approvePassword3
-const approvalusername4=oneMonthData.sanityDataCompany.approveUsername4
-const approvalpassword4=oneMonthData.sanityDataCompany.approvePassword4
+const usernameLogin=oneMonthData.DraftCompanyData.username
+const passwordLogin=oneMonthData.DraftCompanyData.password
+const approvalusername=oneMonthData.DraftCompanyData.approveUsername
+const approvalpassword=oneMonthData.DraftCompanyData.approvePassword
+const approvalusername2=oneMonthData.DraftCompanyData.approveUsername2
+const approvalpassword2=oneMonthData.DraftCompanyData.approvePassword2
+const approvalusername3=oneMonthData.DraftCompanyData.approveUsername3
+const approvalpassword3=oneMonthData.DraftCompanyData.approvePassword3
+const approvalusername4=oneMonthData.DraftCompanyData.approveUsername4
+const approvalpassword4=oneMonthData.DraftCompanyData.approvePassword4
 const dynamicNumber=faker.string.numeric({ length: 8 })
 const emid=testData.globalData.emiratesId;
 const actualEid=emid+dynamicNumber
@@ -46,14 +46,15 @@ const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
 const uploadSupport=path.join(process.cwd(), 'test_data/upload/sample.pdf');
 let referceNumber;
 
-  Given('user navigates to the login page for company for one Month', async ({page}) => {      
+
+Given('user navigates to the login page for company for one Month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     await pageConstants.loginPage.loginButton.click();
   });
   
-  When('user enter the credential for the login for company for one Month', async ({page}) => {
+  When('user enter the credential for the login for company for one Month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     console.log('this is username' + usernameLogin);
@@ -63,7 +64,7 @@ let referceNumber;
     await pageConstants.loginPage.submitButton.click();
   });
   
-  Then('user redirected to the home page for company for one Month', async ({page}) => {
+  Then('user redirected to the home page for company for one Month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.dashboardValidation).toBeVisible();
@@ -72,7 +73,7 @@ let referceNumber;
     await (pageConstants.passPage.selectapplyGatePass).click();
   });
   
-  Then('Enter the pass information for the company for one month', async ({page}) => {
+  Then('Enter the pass information for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
@@ -136,7 +137,7 @@ else if(visitDate<34){
     await page.locator(`//div[normalize-space(text())='${hCompany}']`).click();
   });
   
-  Then('user enter the visitor information for the company for one month', async ({page}) => {
+  Then('user enter the visitor information for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
@@ -209,7 +210,7 @@ else if(visitDate<34){
       await pageConstants.passPage.supportingaFile.setInputFiles(uploadSupport);   
   });
   
-  Then('user save the visitor on the add page for the company for one month', async ({page}) => {
+  Then('user save the visitor on the add page for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
@@ -218,20 +219,36 @@ else if(visitDate<34){
     await expect(pageConstants.passPage.editButton).toBeVisible();
   });
   
-  Then('verify user is added in the list for the company for one month', async ({page}) => {
+  Then('verify user is added in the list for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await expect(pageConstants.passPage.editButton).toBeVisible();
   });
   
-  When('user submit the visitor information for the company for one month', async ({page}) => {
+  When('user submit the visitor information for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
-    await pageConstants.passPage.finalSubmit.click();
+    await pageConstants.passPage.saveAsDraft.click();
+    await pageConstants.passPage.submitforDraft.click();
+    referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+    console.log('this is added refence number'+ referceNumber);
+    await pageConstants.passPage.myWorkspace.click();
+    await pageConstants.passPage.myDraft.click();
+    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+    await expect(pageConstants.passPage.eyeIcon).toBeVisible();
+    await (pageConstants.passPage.eyeIcon).click();
+    await (pageConstants.passPage.editButton).click();
+    await pageConstants.passPage.okForAlert.click();
+    await pageConstants.passPage.addVisitor.click();
     await page.waitForTimeout(10000);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`(//a[@data-bind='click: $root.editUser'])[1]`, { state: 'visible' });
+    await expect(pageConstants.passPage.editButton).toBeVisible();
+    await pageConstants.passPage.finalSubmit.click();
+    await page.waitForTimeout(7000);
     await pageConstants.passPage.okForAlert.click();
   });
   
-  When('user paid amount for the apply pass for the company for one month', async ({page}) => {
+  When('user paid amount for the apply pass for the company for one month draft', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(10000);
@@ -260,29 +277,30 @@ else if(visitDate<34){
     await pageConstants.passPage.finalPay.click();
   });
   
-  Then('verify pass apply successfully messge for the company for one month', async ({page}) => {
-         const pageConstants = new PageConstants(page);
-          await page.waitForLoadState("networkidle");
-          await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
-          await expect(pageConstants.passPage.confirmationPay).toBeVisible();
-          referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
-          console.log('this is added refence number'+ referceNumber);
+  Then('verify pass apply successfully messge for the company for one month draft', async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
+    await expect(pageConstants.passPage.confirmationPay).toBeVisible();
+    referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+    console.log('this is added refence number'+ referceNumber);
   });
 
-When(/^user select logout button on home page for the company for one month$/, async({page}) => {
+  
+When(/^user select logout button on home page for the company for one month draft$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
     await pageConstants.loginPage.logoutButton.click();
 });
 
-Then(/^verify logout verification message for the company for one month$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+Then(/^verify logout verification message for the company for one month draft$/, async({page}) => {
+	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.loginPage.enterUsername).toBeVisible();
 });
 
-When(/^user approve the apply pass on the list page for the company for one month$/, async({page}) => {
+When(/^user approve the apply pass on the list page for the company for one month draft$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
@@ -297,34 +315,34 @@ When(/^user approve the apply pass on the list page for the company for one mont
     await pageConstants.passPage.approvePassOption.click();
 });
 
-Then(/^verify pass approved successfully message for the company for one month$/, async({page}) => {
-	        const pageConstants = new PageConstants(page);
-          await page.waitForLoadState("networkidle");
-          await page.waitForTimeout(5000);
-          await pageConstants.passPage.searchForPassRefence.type(referceNumber);
-          await pageConstants.passPage.approveEdit.click();
-      
-          await pageConstants.passPage.approvePhotoEdit.click();
-          await pageConstants.passPage.approveClose.click();
-      
-          await pageConstants.passPage.approvePassportEdit.click();
-          await pageConstants.passPage.approveClose.click();
-      
-          await pageConstants.passPage.approveSupportEdit.click();
-          await pageConstants.passPage.approveClose.click();
-      
-          await pageConstants.passPage.approveEmiratesEdit.click();
-          await pageConstants.passPage.approveClose.click();
-      
-          await pageConstants.passPage.approveButton.click();
-          await page.waitForLoadState("networkidle");
-          await page.waitForTimeout(5000);
-          await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-          referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
-          console.log('this is updated refence number'+ referceNumber);
+Then(/^verify pass approved successfully message for the company for one month draft$/,async ({page}) => {
+    const pageConstants = new PageConstants(page);
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
+    await pageConstants.passPage.searchForPassRefence.type(referceNumber);
+    await pageConstants.passPage.approveEdit.click();
+
+    await pageConstants.passPage.approvePhotoEdit.click();
+    await pageConstants.passPage.approveClose.click();
+
+    await pageConstants.passPage.approvePassportEdit.click();
+    await pageConstants.passPage.approveClose.click();
+
+    await pageConstants.passPage.approveSupportEdit.click();
+    await pageConstants.passPage.approveClose.click();
+
+    await pageConstants.passPage.approveEmiratesEdit.click();
+    await pageConstants.passPage.approveClose.click();
+
+    await pageConstants.passPage.approveButton.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(5000);
+    await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+    referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+    console.log('this is updated refence number'+ referceNumber);
 });
 
-When('verify second second approval message for the company one month', async ({page}) => {
+When(/^verify second second approval message for the company one month draft$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
@@ -361,10 +379,9 @@ When('verify second second approval message for the company one month', async ({
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(5000);
     await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
-
 });
 
-When('verify Third approval message for the company one month', async ({page}) => {
+When(/^verify Third approval message for the company one month draft$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
@@ -391,7 +408,7 @@ When('verify Third approval message for the company one month', async ({page}) =
     await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
 });
 
-Then('verify final status completed for the applyied pass', async ({page}) => {
+Then(/^verify final status completed for the applyied pass draft$/, async({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForTimeout(2000);
     await pageConstants.loginPage.logoutDrop.click();
