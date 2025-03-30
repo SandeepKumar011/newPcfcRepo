@@ -1,5 +1,5 @@
 
-Feature: Verify one six month approve pass for host functionality
+Feature: Verify six month approve pass for host functionality
 
   Scenario: Verify apply and approve pass for six month with host functionality
     Given user navigates to the login page for host for zone six month
