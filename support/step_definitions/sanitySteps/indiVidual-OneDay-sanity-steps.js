@@ -74,23 +74,23 @@ Then(/^user enter pass information for sanity$/, async({page}) => {
     await page.waitForTimeout(5000);
     await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
     await expect(pageConstants.passPage.portDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownPort = page.locator("//select[@id='portsId']");
     await dropdownPort.selectOption({ label: portName });
     await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownGate = page.locator("//select[@id='gateIdStr']");
     await dropdownGate.selectOption({ label: gateType });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownPassType = page.locator("//select[@id='passTypeIdStr']");
     await dropdownPassType.selectOption({ label: passType });
      await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
-     await page.waitForTimeout(5000);
+     await page.waitForTimeout(2000);
     const dropdownPassDura = page.locator("//select[@id='passDurationIdStr']");
     await dropdownPassDura.selectOption({ label: passDuration });
     await page.waitForLoadState("networkidle");
     await expect(pageConstants.passPage.purposeDropUi).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     const dropdownreason = page.locator("//select[@id='reasonOfVisitIdStr']");
     await dropdownreason.selectOption({ label: reasonVisit });
     await page.waitForLoadState("networkidle");
@@ -199,16 +199,17 @@ Then(/^verify pass approved successfully message for sanity$/, async({page}) => 
     await pageConstants.passPage.searchForPassRefence.type(referceNumber);
     await pageConstants.passPage.approveEdit.click();
 
-    await pageConstants.passPage.approvePhotoEdit.click();
-    await pageConstants.passPage.approveClose.click();
+    await pageConstants.passPage.openPicApproval.click();
+    await pageConstants.passPage.nextButtonApprove.click();
+    await page.waitForTimeout(2000);
+    await pageConstants.passPage.nextButtonApprove.click();
+    await page.waitForTimeout(2000);
+    
+    await pageConstants.passPage.nextButtonApprove.click();
+    await page.waitForTimeout(2000);
 
-    await pageConstants.passPage.approvePassportEdit.click();
-    await pageConstants.passPage.approveClose.click();
-
-    await pageConstants.passPage.approveSupportEdit.click();
-    await pageConstants.passPage.approveClose.click();
-
-    await pageConstants.passPage.approveEmiratesEdit.click();
+    await pageConstants.passPage.nextButtonApprove.click();
+    await page.waitForTimeout(2000);
     await pageConstants.passPage.approveClose.click();
 
     await pageConstants.passPage.approveButton.click();

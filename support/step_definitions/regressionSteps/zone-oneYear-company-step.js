@@ -61,6 +61,7 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
       await page.waitForLoadState("networkidle");
       console.log('this is username' + usernameLogin);
       console.log('this is password' + passwordLogin);
+      await page.waitForTimeout(2000);
       await pageConstants.loginPage.enterUsername.type(usernameLogin)
       await pageConstants.loginPage.enterpassword.type(passwordLogin);
       await pageConstants.loginPage.submitButton.click();
@@ -226,7 +227,7 @@ Given('user navigates to the login page for zone for one year', async ({page}) =
     const pageConstants = new PageConstants(page);
     await (pageConstants.passPage.termsAndCondiUi).click();
     await pageConstants.passPage.finalSubmit.click();
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(7000);
     await pageConstants.passPage.okForAlert.click();
   });
   
@@ -375,14 +376,17 @@ When(/^verify second second approval message for the zone one year$/, async({pag
         await pageConstants.passPage.searchForPassRefence.type(referceNumber);
         await pageConstants.passPage.approveEdit.click();
 
-        await pageConstants.passPage.approvePhotoEdit.click();
-        await pageConstants.passPage.approveClose.click();
+              await pageConstants.passPage.approvePhotoEdit.click();
+              await pageConstants.passPage.approveClose.click();
           
-        await pageConstants.passPage.approvePassportEdit.click();
-        await pageConstants.passPage.approveClose.click();
+              await pageConstants.passPage.approvePassportEdit.click();
+              await pageConstants.passPage.approveClose.click();
           
-        await pageConstants.passPage.approveSupportEdit.click();
-        await pageConstants.passPage.approveClose.click();
+              await pageConstants.passPage.approveSupportEdit.click();
+              await pageConstants.passPage.approveClose.click();
+          
+              await pageConstants.passPage.approveEmiratesEdit.click();
+              await pageConstants.passPage.approveClose.click();
 
         await pageConstants.passPage.approveButton.click();
         await page.waitForLoadState("networkidle");
@@ -416,6 +420,8 @@ When(/^verify Third approval message for the zone one year$/, async({page}) => {
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
         await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+        referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+        console.log('this is updated refence number'+ referceNumber);
 });
 
 Then(/^verify final status completed for the applyied pass for zone$/, async({page}) => {

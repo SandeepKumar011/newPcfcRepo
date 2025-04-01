@@ -54,8 +54,11 @@
     "cjs": "^0.0.11",
     "cjs-loader": "^0.1.0",
     "cli": "^1.0.1",
+    "dotenv": "^16.4.7",
     "folio": "^0.3.18",
+    "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
+    "path": "^0.12.7",
     "playwright-firefox": "^1.49.1",
     "playwright-webkit": "^1.49.1"
   }
