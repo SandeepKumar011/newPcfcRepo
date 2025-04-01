@@ -55,7 +55,7 @@ Given('user navigates to the login page for company for six Month', async ({page
   });
   
   When('user enter the credential for the login for company six one Month', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        console.log('this is username' + usernameLogin);
        console.log('this is password' + passwordLogin);
@@ -74,7 +74,7 @@ Given('user navigates to the login page for company for six Month', async ({page
   });
   
   Then('Enter the pass information for the company for six month', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(5000);
        await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
@@ -138,7 +138,7 @@ Given('user navigates to the login page for company for six Month', async ({page
   });
   
   Then('user enter the visitor information for the company for six month', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForTimeout(2000);
        const dropdownVisa = page.locator("//select[@id='searchVisaTypeIdStr']");
        await dropdownVisa.selectOption({ label: 'Resident' });
@@ -233,7 +233,7 @@ Given('user navigates to the login page for company for six Month', async ({page
   });
   
   When('user paid amount for the apply pass for the company for six month', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(10000);
        await page.waitForSelector(`//span[normalize-space(text())='Debit/Credit']`, { state: 'visible' });
@@ -262,7 +262,7 @@ Given('user navigates to the login page for company for six Month', async ({page
   });
   
   Then('verify pass apply successfully messge for the company for six month', async ({page}) => {
-     const pageConstants = new PageConstants(page);
+             const pageConstants = new PageConstants(page);
              await page.waitForLoadState("networkidle");
              await page.waitForSelector(`//label[@class='successCard-header']`, { state: 'visible' });
              await expect(pageConstants.passPage.confirmationPay).toBeVisible();
@@ -285,7 +285,7 @@ Then(/^verify logout verification message for the company for six month$/, async
 });
 
 When(/^user approve the apply pass on the list page for the company for six month$/, async({page}) => {
-	 const pageConstants = new PageConstants(page);
+	      const pageConstants = new PageConstants(page);
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
         console.log('this is username' + approvalusername);
@@ -300,7 +300,7 @@ When(/^user approve the apply pass on the list page for the company for six mont
 });
 
 Then(/^verify pass approved successfully message for the company for six month$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	            const pageConstants = new PageConstants(page);
               await page.waitForLoadState("networkidle");
               await page.waitForTimeout(5000);
               await pageConstants.passPage.searchForPassRefence.type(referceNumber);
@@ -327,7 +327,7 @@ Then(/^verify pass approved successfully message for the company for six month$/
 });
 
 When(/^verify second second approval message for the company six month$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	     const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();
@@ -367,7 +367,7 @@ When(/^verify second second approval message for the company six month$/, async(
 });
 
 When(/^verify Third approval message for the company six month$/, async({page}) => {
-	  const pageConstants = new PageConstants(page);
+	     const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();
@@ -394,7 +394,7 @@ When(/^verify Third approval message for the company six month$/, async({page}) 
 });
 
 Then(/^verify final status completed for the applyied pass for six month$/, async({page}) => {
-	   const pageConstants = new PageConstants(page);
+	     const pageConstants = new PageConstants(page);
         await page.waitForTimeout(2000);
         await pageConstants.loginPage.logoutDrop.click();
         await pageConstants.loginPage.logoutButton.click();

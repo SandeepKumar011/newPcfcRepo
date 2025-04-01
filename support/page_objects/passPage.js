@@ -163,6 +163,7 @@ class PassPage
         this.updateButton=page.locator("//input[@value='Update']");
         this.successEditPass=page.locator("//label[normalize-space(text())='Pass Updated Successfully']");
         this.editPassValid=page.locator("(//tbody//tr//td[1])[1]");
+        this.nextButtonApprove=page.locator("//input[@id='nextId']");
         //super admin
         this.admindropdown=page.locator("//a[normalize-space(text())='Admin']");
         this.selectBlackList=page.locator("//a[normalize-space(text())='Create BlackList']");

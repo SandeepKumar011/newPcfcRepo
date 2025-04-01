@@ -58,6 +58,7 @@
     "folio": "^0.3.18",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
+    "path": "^0.12.7",
     "playwright-firefox": "^1.49.1",
     "playwright-webkit": "^1.49.1"
   }

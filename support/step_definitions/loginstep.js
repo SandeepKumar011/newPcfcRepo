@@ -31,7 +31,6 @@ When(/^user click on submit button on login page$/, async({page}) => {
    await pageConstants.loginPage.submitButton.click();
 });
 
-
 Then(/^verify user is redirected to the home page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
