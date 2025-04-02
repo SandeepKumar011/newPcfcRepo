@@ -381,6 +381,8 @@ When(/^verify Third approval message for lost pass company$/, async({page}) => {
         await page.waitForLoadState("networkidle");
         await page.waitForTimeout(5000);
         await expect(pageConstants.passPage.approveSuccessMess).toBeVisible();
+        referceNumber=await page.innerText("(//td[@class='detail-value'])[1]");
+        console.log('this is added refence number'+ referceNumber);
 });
 
 Then(/^verify final status completed message for lost pass company$/, async({page}) => {
