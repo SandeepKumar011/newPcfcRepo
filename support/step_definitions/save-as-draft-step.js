@@ -3,11 +3,12 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../test_data/userData.json');
+const uatData=require('../../test_data/uat.json');
 const { faker} = require('@faker-js/faker');
-const hCompany=testData.globalData.approveHostCompany
+
+const hCompany=uatData.allData.approveHostCompany
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesId;
+const emid=uatData.allData.emiratesId;
 const actualEid=emid+dynamicNumber
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
@@ -18,13 +19,13 @@ const lname=faker.person.lastName();
 const emailId=faker.internet.email();
 const mobileNum='788956897854';
 const hoursToVisit='5';
-const nationality=testData.globalData.national
+const nationality=uatData.allData.national
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 let referceNumber;
 
 
 When('user enter pass information on the create page for draft', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+      const pageConstants = new PageConstants(page);
       await page.waitForSelector(`//select[@id='portsId']`, { state: 'visible' });
       await expect(pageConstants.passPage.portDropUi).toBeVisible();
       const dropdownPort = page.locator("//select[@id='portsId']");

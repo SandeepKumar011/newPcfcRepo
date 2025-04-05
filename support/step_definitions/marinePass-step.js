@@ -3,16 +3,19 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../test_data/userData.json');
+const uatData=require('../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
-const hCompany=testData.globalData.hostCompany
-const emailForNotification=testData.globalData.emailNotification
+
+const hCompany=uatData.allData.hostCompany
+const emailForNotification=uatData.allData.emailNotification
+const adminUsername=uatData.allData.adminUsername
+const adminPassword=uatData.allData.adminPassword
 const passportNumber='896587548956'
-const masterCardNo=testData.globalData.masterCard
-const cvnNo=testData.globalData.cvv
+const masterCardNo=uatData.allData.masterCard
+const cvnNo=uatData.allData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesId;
+const emid=uatData.allData.emiratesId;
 const actualEid=emid+dynamicNumber
 const addedEid='784199221026589';
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
@@ -25,7 +28,7 @@ const lname=faker.person.lastName();
 const emailId=faker.internet.email();
 const mobileNum='788956897854';
 const hoursToVisit='5';
-const nationality=testData.globalData.national
+const nationality=uatData.allData.national
 const uploadPic=path.join(process.cwd(), 'test_data/upload/pic.png');
 const uploadPassport=path.join(process.cwd(), 'test_data/upload/passport.pdf');
 const uploadEid=path.join(process.cwd(), 'test_data/upload/EID.pdf');
@@ -58,7 +61,7 @@ When(/^user enter all the information for pass information$/, async({page}) => {
 });
 
 When(/^user enter the infomation and seach visitor availability$/, async({page}) => {
-	 const pageConstants = new PageConstants(page);
+	    const pageConstants = new PageConstants(page);
         await expect(pageConstants.passPage.passdurationDropUi).toBeVisible();
         await page.waitForTimeout(2000);
         const dropdownLocator = page.locator("//select[@id='passDurationIdStr']");
@@ -278,8 +281,8 @@ Then(/^Verify payment successfull message$/, async({page}) => {
 When('user cancelled apply pass on the list page for marine', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.fill(testData.globalData.adminUsername);
-    await pageConstants.loginPage.enterpassword.fill(testData.globalData.adminPassword);
+    await pageConstants.loginPage.enterUsername.fill(adminUsername);
+    await pageConstants.loginPage.enterpassword.fill(adminPassword);
     await pageConstants.loginPage.submitButton.click();
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(7000);

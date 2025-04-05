@@ -5,20 +5,23 @@ const { PageConstants } = require("../PageConstants");
 const { DataUtils } = require("../../utils/DataUtils");
 const { expect } = require('@playwright/test');
 const dataUtils = new DataUtils();
-const testData=require('../../test_data/userData.json');
+
+const uatData=require('../../test_data/uat.json');
 const { faker } = require('@faker-js/faker');
 
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesIdRegis;
+const emid=uatData.allData.emiratesIdRegis;
 const actualEid=emid+dynamicNumber
 const passportnumber=faker.string.numeric({ length: 8 })
-const expiredYear=testData.globalData.exYear
-const expiredMonth=testData.globalData.exMonth
-const particularDate=testData.globalData.singleDate
-const visanmr=testData.globalData.visaNumber
-const yearDob=testData.globalData.dobYear
-const mobileNumber=testData.globalData.mobileNo
-const nationality=testData.globalData.national
+const expiredYear=uatData.allData.exYear
+const expiredMonth=uatData.allData.exMonth
+const particularDate=uatData.allData.singleDate
+const visanmr=uatData.allData.visaNumber
+const yearDob=uatData.allData.dobYear
+const mobileNumber=uatData.allData.mobileNo
+const nationality=uatData.allData.national
+const hdUsername=uatData.allData.hdusername;
+const hdPassword=uatData.allData.hdpassword;
 const firstName=faker.person.firstName()
 const lastName=faker.person.lastName()
 const emailIdd=faker.internet.email()
@@ -159,8 +162,8 @@ Given('user navigates to the registration page for add user', async ({page}) => 
 When(/^user login with the hd user for validation for add user$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
-    await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+    await pageConstants.loginPage.enterUsername.type(hdUsername);
+    await pageConstants.loginPage.enterpassword.type(hdPassword);
 });
 
 When(/^user verify the added user by hd user for add user$/, async({page}) => {

@@ -4,6 +4,8 @@
         "baseUrl":"https://eservicesuat.tasreeh.ae/gp/dyna/pcfc/public/doLogin",
         "username":"uatvisitor",
         "password":"Login#12345",
+        "hdusername":"uatvisitor",
+        "hdpassword":"Login#12345",
         "adminUsername":"ibrahim.alhammadi@dubaiworld.ae",
         "adminPassword":"Login345",
         "approveUsername":"uathost1",
@@ -24,7 +26,7 @@
         "companyMobile":"789-4-9868754",
         "masterCard":"5555555555554444",
         "cvv":"123",
-        "hostCompany":"HASCO GENERAL TRADING",
+        "hostCompany":"UATHOST1",
         "approveHostCompany":"UATHOST1",
         "emailNotification":"abc@gmail.com"
     },
@@ -512,6 +514,51 @@
         "location":"Al Hamriya Port",
         "passDuration":"One Day Pass",
         "confirmpassword":"Login@345"
+    },
+
+    "commonDataOneweek":{
+        "username":"wallstreet",
+        "password":"Login@345",
+        "approvalUsername":"uathost1",
+        "approvalPassword":"Login@345",
+        "portName":"Al Hamriya Port",
+        "gateType":"Gate - 1",
+        "passDuration":"One Week Pass",
+        "passType":"Entry Permit (For Individual)",
+        "visitReason":"Business Meeting",
+        "hostCompany":"UATHOST1"
+    },
+
+    "commonDataOneday":{
+        "portName":"Jebel Ali Port",
+        "gateType":"Any Gate",
+        "passDuration":"One Day Pass",
+        "passType":"Business Meeting",
+        "visitReason":"Business Meeting",
+        "hostCompany":"UATHOST1",
+        "username":"uatvisitor",
+        "password":"Login#12345",
+        "approveUsername":"uathost1",
+        "approvePassword":"Login@345"
+    },
+
+    "oneyearApprovalCred" : {
+        "username":"wallstreet",
+        "password":"Login@345",
+        "approvalUsername1":"devhdall",
+        "approvalPassword1":"Login@345",
+        "approvalUsername2":"devssdall",
+        "approvalPassword2":"Login@345",
+        "approvalUsername3":"devmarinepoliceall",
+        "approvalPassword3":"Login@345"
+    },
+
+    "commonDataOneyear":{
+        "portName":"Al Hamriya Port",
+        "gateType":"Gate - 1",
+        "passDuration":"One Year Pass",
+        "passType":"Entry Permit to Maritime Zone",
+        "visitReason":"Maintanance/Repairing"
     }
 
 }

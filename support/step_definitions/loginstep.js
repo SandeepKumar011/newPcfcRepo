@@ -4,8 +4,11 @@ const { PageConstants } = require("../PageConstants");
 const { DataUtils } = require("../../utils/DataUtils");
 const { expect } = require('@playwright/test');
 const dataUtils = new DataUtils();
-const testData=require('../../test_data/userData.json')
+const uatData=require('../../test_data/uat.json')
 
+
+const usernameLogin=uatData.allData.username
+const passwordLogin=uatData.allData.username
 
 Given(/^user navigates to the login page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
@@ -18,12 +21,12 @@ Given(/^user navigates to the login page$/, async({page}) => {
 When(/^user enter the username on login page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
+    await pageConstants.loginPage.enterUsername.type(usernameLogin);
 });
 
 When(/^user enter the password on login page$/, async({page}) => {
 	const pageConstants = new PageConstants(page);
-   await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+    await pageConstants.loginPage.enterpassword.type(passwordLogin);
 });
 
 When(/^user click on submit button on login page$/, async({page}) => {

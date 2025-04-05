@@ -3,7 +3,7 @@ const { createBdd } = require('playwright-bdd');
 const { Given, Then ,When} = createBdd();
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../test_data/userData.json');
+const uatData=require('../../test_data/uat.json');
 
 Given('user logged in and directed to the homepage', async ({page}) => {
   const pageConstants = new PageConstants(page);
@@ -11,8 +11,8 @@ Given('user logged in and directed to the homepage', async ({page}) => {
   await page.waitForLoadState("networkidle");
   await page.waitForTimeout(5000);
   await pageConstants.loginPage.loginButton.click();
-  await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
-  await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+  await pageConstants.loginPage.enterUsername.type(uatData.allData.username);
+  await pageConstants.loginPage.enterpassword.type(uatData.allData.password);
   await pageConstants.loginPage.submitButton.click();
   });
   

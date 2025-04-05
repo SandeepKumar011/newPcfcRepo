@@ -4,24 +4,24 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../test_data/userData.json');
-const oneDayData=require('../../test_data/oneDayData.json');
+
+const uatData=require('../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const portName=oneDayData.commonData.portName
-const gateType=oneDayData.commonData.gateType
-const passDuration=oneDayData.commonData.passDuration
-const passType=oneDayData.commonData.passType
-const reasonVisit=oneDayData.commonData.visitReason
-const hCompany=oneDayData.commonData.hostCompany
+const portName=uatData.commonDataOneday.portName
+const gateType=uatData.commonDataOneday.gateType
+const passDuration=uatData.commonDataOneday.passDuration
+const passType=uatData.commonDataOneday.passType
+const reasonVisit=uatData.commonDataOneday.visitReason
+const hCompany=uatData.commonDataOneday.hostCompany
 const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
-const approvalusername=oneDayData.approvalCredentials.approveUsername
-const approvalpassword=oneDayData.approvalCredentials.approvePassword
-const masterCardNo=testData.globalData.masterCard
-const cvnNo=testData.globalData.cvv
+const approvalusername=uatData.commonDataOneday.approveUsername
+const approvalpassword=uatData.commonDataOneday.approvePassword
+const masterCardNo=uatData.allData.masterCard
+const cvnNo=uatData.allData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesId;
+const emid=uatData.allData.emiratesId;
 const actualEid=emid+dynamicNumber
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
@@ -32,7 +32,7 @@ const lname=faker.person.lastName();
 const emailId=faker.internet.email();
 const mobileNum=faker.string.numeric({ length: 12 })
 const hoursToVisit='5';
-const nationality=testData.globalData.national
+const nationality=uatData.allData.national
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 let referceNumber;
 

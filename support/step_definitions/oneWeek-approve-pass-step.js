@@ -4,25 +4,25 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../test_data/userData.json');
-const oneWeekdata=require('../../test_data/oneWeekData.json');
+
+const uatData=require('../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const approveHostCom=oneWeekdata.commonData.hostCompany
-const approveUserName=oneWeekdata.approvalCredentials.approvalUsername
-const approvePassword=oneWeekdata.approvalCredentials.approvalPassword
-const portName=oneWeekdata.commonData.portName
-const gateType=oneWeekdata.commonData.gateType
-const passType=oneWeekdata.commonData.passType
-const passDuration=oneWeekdata.commonData.passDuration
-const reasonVisit=oneWeekdata.commonData.visitReason
+const approveHostCom=uatData.commonDataOneweek.hostCompany
+const approveUserName=uatData.commonDataOneweek.approvalUsername
+const approvePassword=uatData.commonDataOneweek.approvalPassword
+const portName=uatData.commonDataOneweek.portName
+const gateType=uatData.commonDataOneweek.gateType
+const passType=uatData.commonDataOneweek.passType
+const passDuration=uatData.commonDataOneweek.passDuration
+const reasonVisit=uatData.commonDataOneweek.visitReason
 const visDesignation=faker.helpers.arrayElement(['Ac Technician', 'Account Assistant','Admin']);
 
-const masterCardNo=testData.globalData.masterCard
-const cvnNo=testData.globalData.cvv
+const masterCardNo=uatData.allData.masterCard
+const cvnNo=uatData.allData.cvv
 const dynamicNumber=faker.string.numeric({ length: 8 })
-const emid=testData.globalData.emiratesId;
+const emid=uatData.allData.emiratesId;
 const actualEid=emid+dynamicNumber
 const particularDate=faker.helpers.arrayElement(['15', '16', '17', '18', '19', '20']);
 const yearDob=faker.helpers.arrayElement(['2004', '2005']);
@@ -33,7 +33,7 @@ const lname=faker.person.lastName();
 const emailId=faker.internet.email();
 const mobileNum=faker.string.numeric({ length: 12 })
 const hoursToVisit='5';
-const nationality=testData.globalData.national
+const nationality=uatData.allData.national
 const uploadFilePath=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 let referceNumber;
 
@@ -233,7 +233,7 @@ When('user enter pass information for one week pass', async ({page}) => {
   });
   
   Then('verify pass approved successfully message for one week pass', async ({page}) => {
-    const pageConstants = new PageConstants(page);
+       const pageConstants = new PageConstants(page);
        await page.waitForLoadState("networkidle");
        await page.waitForTimeout(5000);
        await pageConstants.passPage.searchForPassRefence.type(referceNumber);
