@@ -3,7 +3,6 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../../test_data/userData.json');
 const uatData=require('../../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
