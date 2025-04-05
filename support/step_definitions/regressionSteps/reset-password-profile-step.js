@@ -3,16 +3,14 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../../test_data/userData.json');
-const oneDayData=require('../../../test_data/oneDayData.json');
+const uatData=require('../../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const username=oneDayData.regressionDataCompany.username
-const password=oneDayData.regressionDataCompany.password
+const username=uatData.regressionDataCompany.username
+const password=uatData.regressionDataCompany.password
 const fname='auto'+faker.person.firstName();
 const lname=faker.person.lastName();
-
 
 
 Given('user navigates the login page for reset update profile', async ({}) => {

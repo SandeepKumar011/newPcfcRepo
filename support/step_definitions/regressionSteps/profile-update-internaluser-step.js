@@ -4,13 +4,12 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../../test_data/userData.json');
-const oneDayData=require('../../../test_data/oneDayData.json');
+const uatData=require('../../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const username=oneDayData.regressionDataInternalUser.username
-const password=oneDayData.regressionDataInternalUser.password
+const username=uatData.regressionDataInternalUser.username
+const password=uatData.regressionDataInternalUser.password
 const fname='auto'+faker.person.firstName();
 const lname=faker.person.lastName();
 

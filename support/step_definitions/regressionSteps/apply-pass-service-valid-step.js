@@ -7,7 +7,10 @@ const { expect } = require('@playwright/test');
 const path = require('path');
 const { faker } = require('@faker-js/faker');
 const dataUtils = new DataUtils();
-const testData=require('../../../test_data/userData.json');
+
+const uatData=require('../../../test_data/uat.json');
+const usernamelogin=uatData.allData.username
+const passpwordlogin=uatData.allData.password
 const wrongFile=path.join(process.cwd(), 'test_data/upload/txtFile.txt');
 const uploadFile=path.join(process.cwd(), 'test_data/upload/416kb.jpg');
 
@@ -22,8 +25,8 @@ Given('user navigates the login page for pass', async ({page}) => {
   When('user enter the crendential for the pass Apply', async ({page}) => {
     const pageConstants = new PageConstants(page);
     await page.waitForLoadState("networkidle");
-    await pageConstants.loginPage.enterUsername.type(testData.globalData.username);
-    await pageConstants.loginPage.enterpassword.type(testData.globalData.password);
+    await pageConstants.loginPage.enterUsername.type(usernamelogin);
+    await pageConstants.loginPage.enterpassword.type(passpwordlogin);
     await pageConstants.loginPage.submitButton.click();
   });
 

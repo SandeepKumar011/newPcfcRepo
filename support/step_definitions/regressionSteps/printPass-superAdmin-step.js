@@ -3,13 +3,12 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
-const testData=require('../../../test_data/userData.json');
-const oneMonthData=require('../../../test_data/oneMonthData.json');
+const uatData=require('../../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const approvalusername4=oneMonthData.sanityDataCompany.approveUsername4
-const approvalpassword4=oneMonthData.sanityDataCompany.approvePassword4
+const approvalusername4=uatData.sanityDataCompany.approveUsername4
+const approvalpassword4=uatData.sanityDataCompany.approvePassword4
 let referceNumber;
 
 

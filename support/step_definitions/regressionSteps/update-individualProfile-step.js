@@ -3,12 +3,12 @@ const { Given, Then ,When} = createBdd();
 const path = require('path');
 const { PageConstants } = require("../../PageConstants");
 const { expect } = require('@playwright/test');
-const updateUser=require('../../../test_data/updateProfileData.json');
+const uatData=require('../../../test_data/uat.json');
 const { faker, fa } = require('@faker-js/faker');
 const exp = require('constants');
 
-const loginusername=updateUser.individualUser.username
-const loginpassword=updateUser.individualUser.password
+const loginusername=uatData.individualUser.username
+const loginpassword=uatData.individualUser.password
 const mobileNum=faker.string.numeric({ length: 12 })
 
 

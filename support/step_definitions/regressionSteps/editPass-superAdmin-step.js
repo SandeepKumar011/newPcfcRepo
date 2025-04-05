@@ -6,9 +6,10 @@ const { expect } = require('@playwright/test');
 const path = require('path');
 const { faker } = require('@faker-js/faker');
 const dataUtils = new DataUtils();
-const createuserData=require('../../../test_data/createuserData.json');
-const loginUsername=createuserData.credentials.username
-const loginPassword=createuserData.credentials.password
+const uatData=require('../../../test_data/uat.json');
+
+const loginUsername=uatData.createcredentials.username
+const loginPassword=uatData.createcredentials.password
 const firstNameReal='automation';
 const lastName=faker.person.lastName()
 const visaNumber=faker.string.numeric({ length: 12 })
